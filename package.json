@@ -5,7 +5,7 @@
   "main": "lib/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc -p tsconfig-build.json && copyfiles \"./lib/**/*.{css}\" \"./dist/\"",
+    "build": "tsc -p tsconfig-build.json && copyfiles -u 1 \"./lib/**/*.css\" \"./dist/\"",
     "lint": "eslint .",
     "lint:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
   },
