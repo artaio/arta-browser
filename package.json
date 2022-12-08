@@ -1,0 +1,39 @@
+{
+  "name": "arta-browser",
+  "version": "2.0.0",
+  "description": "",
+  "main": "lib/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p tsconfig-build.json && copyfiles \"./lib/**/*.{css}\" \"./dist/\"",
+    "lint": "eslint .",
+    "lint:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.40.1",
+    "copyfiles": "^2.4.1",
+    "eslint": "^8.24.0",
+    "eslint-config-preact": "^1.3.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "prettier": "2.7.1",
+    "typescript": "^4.8.4",
+    "typescript-plugin-css-modules": "^4.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artaio/arta-browser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artaio/arta-browser/issues"
+  },
+  "homepage": "https://github.com/artaio/arta-browser#readme",
+  "dependencies": {
+    "preact": "^10.11.3"
+  }
+}

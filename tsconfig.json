@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipDefaultLibCheck": false,
+    "skipLibCheck": false,
+    "resolveJsonModule": true
+  },
+  "include": ["lib/**/*", "test/**/*"]
+}
