@@ -1,29 +1,33 @@
-import { render } from 'preact';
-import { Modal } from './components/Modal';
-import { ArtaObject, Origin } from './types';
 
-enum ModalStatus {
-  CLOSED,
-  DISQUALIFIED,
-  LOADING,
-  OPEN,
-  QUOTED,
+import Estimate from './estimate';
+import { ArtaObject, ArtaLocation } from './types';
+
+export interface ArtaJsConfig {
+  position?: 'center' | 'left' | 'right';
+  apiKey: string;
 }
 
 export interface IArta {
-  status: ModalStatus;
   ready: boolean;
-  init: (apiKey: string) => void;
+  init: (apiKey: string, config?: ArtaJsConfig) => void;
 }
 
-export default class Arta implements IArta {
-  private apiKey: string | undefined;
-  private el: HTMLDivElement | undefined;
-  constructor(public status = ModalStatus.CLOSED, public ready = false) {}
+export type ValidateResult = any;
 
-  public init(apiKey: string): void {
-    this.apiKey = apiKey;
-    if (document.querySelectorAll("#arta-widget").length) {
+const defaultConfig: Partial<ArtaJsConfig> = {
+  position: 'right',
+};
+
+export default class Arta implements IArta {
+  private el: HTMLDivElement | undefined;
+  private config: ArtaJsConfig | undefined;
+
+  constructor(public ready = false) {}
+
+  public init(apiKey: string, config?: ArtaJsConfig): void {
+    this.config = Object.assign({ ...defaultConfig, apiKey }, config);
+
+    if (document.querySelectorAll('#arta-widget').length) {
       return;
     }
     this.el = document.createElement('div');
@@ -31,12 +35,7 @@ export default class Arta implements IArta {
     document.body.appendChild(this.el);
   }
 
-  public estimate(artaOrigin: Origin, artaObject: ArtaObject) {
-    return {
-      open: () => {
-        console.log(artaOrigin, this.el);
-        render(<Modal color={artaOrigin}/>, this.el!);
-      }
-    };
+  public estimate(artaOrigin: ArtaLocation, artaObjects: ArtaObject[]) {
+    return new Estimate(artaOrigin, artaObjects, this.config!, this.el!);
   }
 }
