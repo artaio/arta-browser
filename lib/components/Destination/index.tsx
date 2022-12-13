@@ -2,8 +2,7 @@ import { useState } from 'preact/hooks';
 import { ArtaLocation } from '../../types';
 import { ModalStatus } from '../Modal';
 import { withoutPostal } from './countriesWithoutPostalCode';
-import { countries } from "../../fixtures/countries";
-
+import { countries } from '../../fixtures/countries';
 
 interface DestinationOpts {
   parsedOrigin: string;
@@ -11,8 +10,11 @@ interface DestinationOpts {
   setStatus: (status: ModalStatus) => void;
 }
 
-export const Destination = ({ parsedOrigin, setDestination, setStatus }: DestinationOpts) => {
-
+export const Destination = ({
+  parsedOrigin,
+  setDestination,
+  setStatus,
+}: DestinationOpts) => {
   const [country, setCountry] = useState('US');
   const [isWithoutPostal, setIsWithoutPostal] = useState(false);
   const [postalCode, setPostalCode] = useState('');
@@ -23,7 +25,7 @@ export const Destination = ({ parsedOrigin, setDestination, setStatus }: Destina
   const onCountryChange = (e: any) => {
     setCountry(e.target.value);
 
-    if(!withoutPostal.has(e.target.value)) {
+    if (!withoutPostal.has(e.target.value)) {
       setIsWithoutPostal(true);
       setPostalCode('');
     }
@@ -33,7 +35,6 @@ export const Destination = ({ parsedOrigin, setDestination, setStatus }: Destina
     setPostalCode(e.target.value);
   };
 
-
   return (
     <div className="artajs__modal__form">
       <p class="artajs__modal__form__row__context">
@@ -42,20 +43,20 @@ export const Destination = ({ parsedOrigin, setDestination, setStatus }: Destina
       <p class="artajs__modal__form__row__location">
         {parsedOrigin ? (
           <span>
-            <span class="artajs__modal__capitalize">{parsedOrigin}</span>{" "}
+            <span class="artajs__modal__capitalize">{parsedOrigin}</span>{' '}
             <span class="artajs__modal__form__light">(origin)</span>
           </span>
         ) : (
           <span>...</span>
         )}
       </p>
-      <form onSubmit={e => console.log('submit')}>
+      <form onSubmit={(e) => console.log('submit')}>
         <div className="artajs__modal__form__row">
           <label
             class={`artajs__modal__textfield__outlined ${
               isDestinationError
-                ? "artajs__modal__textfield__outlined__error"
-                : ""
+                ? 'artajs__modal__textfield__outlined__error'
+                : ''
             }`}
             for="country"
           >
@@ -79,8 +80,8 @@ export const Destination = ({ parsedOrigin, setDestination, setStatus }: Destina
           <label
             class={`artajs__modal__textfield__outlined ${
               isDestinationError
-                ? "artajs__modal__textfield__outlined__error"
-                : ""
+                ? 'artajs__modal__textfield__outlined__error'
+                : ''
             }`}
             for="postal_code"
           >
@@ -93,15 +94,15 @@ export const Destination = ({ parsedOrigin, setDestination, setStatus }: Destina
             />
             <span>
               {isWithoutPostal
-                ? "Destination City"
-                : "Destination Postal/Zip Code"}
+                ? 'Destination City'
+                : 'Destination Postal/Zip Code'}
             </span>
           </label>
         </div>
 
         <div className="artajs__modal__form__row">
           <button
-            disabled={!enabled || postalCode === "" ? true : false}
+            disabled={!enabled || postalCode === '' ? true : false}
             type="submit"
           >
             Get Costs

@@ -1,9 +1,7 @@
 export const Header = () => {
   return (
     <div class="artajs__modal__header">
-      <div className="artajs__modal__header__cta">
-        Estimate Shipping Costs
-      </div>
+      <div className="artajs__modal__header__cta">Estimate Shipping Costs</div>
       <div className="artajs__modal__header__close">
         <a onClick={(e) => console.log('hey', e)} href="#">
           <svg

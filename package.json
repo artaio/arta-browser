@@ -3,12 +3,17 @@
   "version": "2.0.0",
   "description": "",
   "source": "lib/index.ts",
+  "exports": "./dist/arta.modern.js",
+  "main": "./dist/arta.cjs",
+  "module": "./dist/arta.module.js",
+  "unpkg": "./dist/arta.umd.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:npm && npm run build:cdn",
     "build:npm": "tsc -p tsconfig-build.json && copyfiles -u 1 \"./lib/**/*.css\" \"./dist/\"",
-    "build:cdn": "microbundle --external none -o dist/index.js --no-pkg-main -f umd --css inline --no-sourcemap --css-modules true",
+    "build:cdn": "microbundle -i lib/index.ts -o dist/bundle.js --external none --no-pkg-main -f umd --no-sourcemap",
     "lint": "eslint .",
-    "lint:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+    "lint:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|tsx|jsx|json)\""
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.39.0",

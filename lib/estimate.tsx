@@ -9,7 +9,7 @@ export default class Estimate {
     private readonly artaOrigin: ArtaLocation,
     private readonly artaObjects: ArtaObject[],
     private readonly config: ArtaJsConfig,
-    private readonly el: HTMLDivElement,
+    private readonly el: HTMLDivElement
   ) {}
 
   public open() {
@@ -19,28 +19,24 @@ export default class Estimate {
         objects={this.artaObjects}
         config={this.config}
       />,
-      this.el);
+      this.el
+    );
   }
 
-  async ok() {
-    if (this.ready) {
-      return this.ready;
-    } else {
-      await fetch('https://api.arta.io/estimate/validate', {
-        method: 'POST',
-        body: JSON.stringify({
-          estimate: {
-            objects: this.artaObjects,
-            origin: this.artaOrigin,
-          },
-        }),
-        headers: {
-          Authorization: `ARTA_APIKey ${this.config.apiKey}`,
-          'Content-Type': 'application/json',
+  public async validate() {
+    await fetch('https://api.arta.io/estimate/validate', {
+      method: 'POST',
+      body: JSON.stringify({
+        estimate: {
+          objects: this.artaObjects,
+          origin: this.artaOrigin,
         },
-      });
-
-      this.ready = true;
-    }
+      }),
+      headers: {
+        Authorization: `ARTA_APIKey ${this.config.apiKey}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    this.ready = true;
   }
 }

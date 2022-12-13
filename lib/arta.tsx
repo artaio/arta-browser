@@ -1,4 +1,3 @@
-
 import Estimate from './estimate';
 import { ArtaObject, ArtaLocation } from './types';
 
@@ -36,6 +35,10 @@ export default class Arta implements IArta {
   }
 
   public estimate(artaOrigin: ArtaLocation, artaObjects: ArtaObject[]) {
-    return new Estimate(artaOrigin, artaObjects, this.config!, this.el!);
+    if(this.config && this.el) {
+      return new Estimate(artaOrigin, artaObjects, this.config, this.el);
+    } else {
+      throw new Error('Please initialize the SDK with Arta.init before creating estimates');
+    }
   }
 }
