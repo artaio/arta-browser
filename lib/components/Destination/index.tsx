@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 import { ArtaLocation } from '../../types';
-import { ModalStatus } from '../Modal';
+import { Modal, ModalStatus } from '../Modal';
 import { withoutPostal } from './countriesWithoutPostalCode';
 import { countries } from '../../fixtures/countries';
 
@@ -35,6 +35,14 @@ export const Destination = ({
     setPostalCode(e.target.value);
   };
 
+  const onFormSubmit = (e: any) => {
+    e.preventDefault();
+    setDestination({
+      postal_code: postalCode,
+      country,
+    });
+  };
+
   return (
     <div className="artajs__modal__form">
       <p class="artajs__modal__form__row__context">
@@ -50,7 +58,7 @@ export const Destination = ({
           <span>...</span>
         )}
       </p>
-      <form onSubmit={(e) => console.log('submit')}>
+      <form onSubmit={onFormSubmit}>
         <div className="artajs__modal__form__row">
           <label
             class={`artajs__modal__textfield__outlined ${
@@ -62,7 +70,7 @@ export const Destination = ({
           >
             <select
               id="country"
-              onChange={() => console.log('country change')}
+              onChange={onCountryChange}
               placeholder=" "
               value={country}
             >
@@ -87,7 +95,7 @@ export const Destination = ({
           >
             <input
               id="postal_code"
-              onInput={() => console.log('input')}
+              onInput={onPostalCodeInput}
               placeholder=" "
               type="text"
               value={postalCode}

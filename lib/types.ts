@@ -209,7 +209,206 @@ export type ObjectSubType =
   | 'medical_equipment'
   | 'other';
 
+
+  export type ArtaTrackingServiceType =
+  | 'transport'
+  | 'location'
+  | 'handling'
+  | 'packing'
+  | 'storage'
+  | 'administration'
+  | 'taxes_duties_fees'
+  | 'security'
+  | 'equipment';
+
+export type ArtaTrackingServiceSubType =
+  | 'specialized'
+  | 'consolidated'
+  | 'freight'
+  | 'parcel'
+  | 'collection'
+  | 'delivery'
+  | 'location'
+  | 'unpacking'
+  | 'condition'
+  | 'installation'
+  | 'deinstallation'
+  | 'debris_disposal'
+  | 'site_visit'
+  | 'handling'
+  | 'packing'
+  | 'packing_materials'
+  | 'receive_release'
+  | 'warehouse'
+  | 'customs'
+  | 'coi'
+  | 'administration'
+  | 'taxes_duties'
+  | 'fees'
+  | 'security'
+  | 'equipment';
+
+export type ArtaTrackingServiceSubSubType =
+  | 'armored_transport'
+  | 'dedicated_transport'
+  | 'specialized_shuttle'
+  | 'road_groupage'
+  | 'sea_groupage'
+  | 'sea_freight'
+  | 'ltl_freight'
+  | 'ftl_freight'
+  | 'air_freight'
+  | 'cargo_air_freight'
+  | 'parcel'
+  | 'priority_freight'
+  | 'economy_freight'
+  | 'collection'
+  | 'art_fair_collection'
+  | 'residential_collection'
+  | 'airport_collection'
+  | 'port_collection'
+  | 'dock_collection'
+  | 'consolidated_collection'
+  | 'failed_collection'
+  | 'recollection'
+  | 'delivery'
+  | 'inside_delivery'
+  | 'art_fair_delivery'
+  | 'room_of_choice_delivery'
+  | 'curbside_delivery'
+  | 'residential_delivery'
+  | 'signature_delivery'
+  | 'saturday_delivery'
+  | 'sunday_delivery'
+  | 'scheduled_delivery'
+  | 'after_hours_delivery'
+  | 'airport_delivery'
+  | 'port_delivery'
+  | 'dock_delivery'
+  | 'failed_delivery'
+  | 'redelivery'
+  | 'origin_additional_stops'
+  | 'destination_additional_stops'
+  | 'origin_off_route'
+  | 'destination_off_route'
+  | 'must_fly'
+  | 'origin_unpacking_soft'
+  | 'destination_unpacking_soft'
+  | 'origin_unpacking_wood'
+  | 'destination_unpacking_wood'
+  | 'origin_unpacking'
+  | 'destination_unpacking'
+  | 'origin_full_condition_report'
+  | 'destination_full_condition_report'
+  | 'origin_condition_check'
+  | 'destination_condition_check'
+  | 'installation'
+  | 'placement'
+  | 'assembly'
+  | 'deinstallation'
+  | 'disassembly'
+  | 'debris_disposal'
+  | 'crate_disposal'
+  | 'soft_packed_disposal'
+  | 'origin_site_visit'
+  | 'destination_site_visit'
+  | 'origin_additional_labor'
+  | 'destination_additional_labor'
+  | 'airport_handling'
+  | 'origin_oversized_handling'
+  | 'destination_oversized_handling'
+  | 'origin_additional_stairs'
+  | 'destination_additional_stairs'
+  | 'packing_labor'
+  | 'crate_fabrication'
+  | 't_frame_fabrication'
+  | 'fabrication'
+  | 'retrofitting'
+  | 'additional_packing'
+  | 'pack_into'
+  | 'poly'
+  | 'dartek'
+  | 'bubble'
+  | 'cling_wrap'
+  | 'cbin_communal'
+  | 'blanket'
+  | 'portfolio'
+  | 'poly_cardboard'
+  | 'bubble_cardboard'
+  | 'rug_rolled'
+  | 'cbin_closed'
+  | 'cbin_open'
+  | 'garment_bag'
+  | 'wardrobe_box'
+  | 'cardboard_box'
+  | 'chandelier_box'
+  | 'chair_box'
+  | 'slipcase'
+  | 'glass_tape'
+  | 'stabilizing_box'
+  | 'shadow_box'
+  | 'foam_lined_box'
+  | 'cavity_box'
+  | 'strongbox'
+  | 'double_box'
+  | 'shipping_tube_small'
+  | 'shipping_tube_large'
+  | 'sonotube'
+  | 'alcohol_case'
+  | 'lay_flat_wine_box'
+  | 'lockbox'
+  | 'travel_frame'
+  | 'travel_frame_art'
+  | 'travel_frame_other'
+  | 'a_frame'
+  | 'slat_crate'
+  | 'tri_wall_crate'
+  | 'ply_box'
+  | 'fine_art_econo_crate'
+  | 'fine_art_international_crate'
+  | 'econo_crate'
+  | 'international_econo_crate'
+  | 'furniture_crate'
+  | 'international_furniture_crate'
+  | 'parcel_crate'
+  | 'museum_crate'
+  | 'international_museum_crate'
+  | 'pallet'
+  | 'international_pallet'
+  | 'warehouse_handling'
+  | 'receive_in_fee'
+  | 'release_fee'
+  | 'storage'
+  | 'temp_storage'
+  | 'viewing_room'
+  | 'staging'
+  | 'import_customs_formalities'
+  | 'export_customs_formalities'
+  | 'origin_building_coi'
+  | 'destination_building_coi'
+  | 'double_blind_bols'
+  | 'power_of_attorney'
+  | 'administrative'
+  | 'mpf'
+  | 'bond'
+  | 'duties'
+  | 'taxes'
+  | 'disbursement'
+  | 'temporary_customs_entry'
+  | 'fuel_surcharge'
+  | 'tarmac_supervision'
+  | 'courier_onboard'
+  | 'fork_lift'
+  | 'gantry'
+  | 'pallet_jack'
+  | 'scaffolding'
+  | 'rigging'
+  | 'lift_gate'
+  | 'ramp'
+  | 'floor_protection';
+
 export type SupportedCurrency = 'CAD' | 'EUR' | 'GBP' | 'HKD' | 'USD';
+export type QuoteType = 'parcel' | 'premium' | 'select' | 'self_ship';
 
 export interface Contact {
   name: string;
@@ -255,4 +454,42 @@ export interface ArtaObject {
   unit_of_measurement?: string | null;
   weight_unit?: string | null;
   value_currency: SupportedCurrency;
+}
+
+export interface HostedSession {
+  id: string;
+  origin: ArtaLocation;
+  private_token: string;
+}
+
+export interface InsurancePolicy {
+  amount: number;
+  amount_currency: SupportedCurrency;
+  id: string;
+  insured_value: number;
+  insured_value_currency: SupportedCurrency;
+}
+
+export interface ArtaService {
+  amount: number;
+  amount_currency: SupportedCurrency;
+  included_services: ArtaService[];
+  is_requested: boolean;
+  is_required: boolean;
+  name: string;
+  sub_subtype: ArtaTrackingServiceSubSubType;
+  subtype: ArtaTrackingServiceSubType;
+  type: ArtaTrackingServiceType;
+}
+
+
+export interface Quote {
+  id: number;
+  included_services: ArtaService[];
+  included_insurance_policy?: InsurancePolicy | null;
+  optional_services: ArtaService[];
+  quote_type: QuoteType;
+  status: string;
+  total: number;
+  total_currency: SupportedCurrency;
 }
