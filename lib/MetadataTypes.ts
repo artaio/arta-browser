@@ -1,3 +1,24 @@
+export type Nullable<T> = T | null;
+export type NullableString = Nullable<string>;
+
+export type AdditionalService =
+  | 'assembly'
+  | 'debris_disposal'
+  | 'deinstallation'
+  | 'destination_additional_labor'
+  | 'destination_building_coi'
+  | 'destination_condition_check'
+  | 'destination_full_condition_report'
+  | 'destination_unpacking'
+  | 'double_blind_bols'
+  | 'installation'
+  | 'origin_building_coi'
+  | 'origin_condition_check'
+  | 'origin_full_condition_report'
+  | 'placement'
+  | 'signature_delivery'
+  | 'tarmac_supervision';
+
 export type AccessRestriction =
   | 'elevator_only'
   | 'freight_elevator'
@@ -7,6 +28,85 @@ export type AccessRestriction =
   | 'non_paved'
   | 'stairs_only'
   | 'steep_gradient';
+
+export type Insurance = 'arta_transit_insurance' | 'no_arta_insurance';
+export type PaymentProcessType = 'checkout' | 'checkout_direct' | 'invoicing';
+export type QuoteType = 'parcel' | 'premium' | 'select' | 'self_ship';
+export type QuoteRequestStatus =
+  | 'cancelled'
+  | 'closed'
+  | 'disqualified'
+  | 'expired'
+  | 'in_progress'
+  | 'pending'
+  | 'quoted';
+
+export type EmailNotificationId =
+  | 'booking'
+  | 'cancelled'
+  | 'collected'
+  | 'collection'
+  | 'complete'
+  | 'custom_quoted_dashboard'
+  | 'in_transit'
+  | 'invoice'
+  | 'self_ship_label'
+  | 'payment'
+  | 'scheduling'
+  | 'eei';
+
+export type Recipients = 'payer' | 'origin' | 'destination';
+
+export type MimeType =
+  | 'application/pdf'
+  | 'application/vnd.ms-excel'
+  | 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+  | 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  | 'image/jpeg'
+  | 'image/png'
+  | 'text/csv'
+  | 'video/mp4'
+  | 'video/quicktime'
+  | 'application/msword';
+
+export type DocumentType =
+  | 'bill_of_lading'
+  | 'certificate_of_insurance'
+  | 'certificate_of_insurance_template'
+  | 'condition_report'
+  | 'condition_check'
+  | 'image'
+  | 'instructions'
+  | 'airway_bill'
+  | 'commercial_invoice'
+  | 'power_of_attorney'
+  | 'proof_of_export'
+  | 'proof_of_delivery'
+  | 'quote'
+  | 'shipping_label'
+  | 'other';
+
+export type PackingType =
+  | 'alcohol_case'
+  | 'blanket'
+  | 'box'
+  | 'cbin_closed'
+  | 'cbin_open'
+  | 'crate'
+  | 'foam_lined_box'
+  | 'frame'
+  | 'lockbox'
+  | 'no_packing'
+  | 'pallet'
+  | 'portfolio'
+  | 'rug_roll'
+  | 'shadow_box'
+  | 'slipcase'
+  | 'soft_packing'
+  | 'soft_wrap'
+  | 'sonotube'
+  | 'stabilizing_box'
+  | 'tube';
 
 export type PackingSubType =
   | 'alcohol_case'
@@ -60,41 +160,16 @@ export type PackingSubType =
   | 'shipping_tube_small'
   | 'shipping_tube_large';
 
-export type ObjectMaterial =
-  | 'stone_marble'
-  | 'precious_stones'
-  | 'fiber_synthetic'
-  | 'fabric_natural'
-  | 'taxidermy'
-  | 'carbon_fiber'
-  | 'live_animal'
-  | 'paper'
-  | 'glass'
-  | 'presious_metals'
-  | 'particleboard'
-  | 'styrofoam'
-  | 'wood'
-  | 'photo_film'
-  | 'sand'
-  | 'metal'
-  | 'plexiglass'
-  | 'aquatic_life'
-  | 'canvas'
-  | 'drywall'
-  | 'hard_plastic'
-  | 'vinyl'
-  | 'soft_plastic'
-  | 'leather'
-  | 'rubber'
-  | 'concreate'
-  | 'paint'
-  | 'electronics'
-  | 'fiber_natural'
-  | 'gas'
-  | 'fabric_synthetic'
-  | 'CITES'
-  | 'liquids'
-  | 'salts';
+export type ObjectType =
+  | 'art'
+  | 'furniture'
+  | 'jewelry'
+  | 'decorative_arts'
+  | 'collectibles'
+  | 'alcohol'
+  | 'automotive'
+  | 'fashion'
+  | 'other';
 
 export type ObjectSubType =
   | 'painting_unframed'
@@ -209,8 +284,63 @@ export type ObjectSubType =
   | 'medical_equipment'
   | 'other';
 
+export type ParcelTransportServices =
+  | 'economy'
+  | 'economy_freight'
+  | 'ground'
+  | 'next_day_air'
+  | 'priority'
+  | 'priority_freight'
+  | 'second_day_air'
+  | 'standard';
 
-  export type ArtaTrackingServiceType =
+export type WebhookDeliveryType =
+  | 'request.created'
+  | 'request.status.updated'
+  | 'shipment.created'
+  | 'shipment.eei_form_status.updated'
+  | 'shipment.schedule.updated'
+  | 'shipment.status.updated'
+  | 'shipment.tracking.updated'
+  | 'ping';
+
+export type ObjectMaterial =
+  | 'stone_marble'
+  | 'precious_stones'
+  | 'fiber_synthetic'
+  | 'fabric_natural'
+  | 'taxidermy'
+  | 'carbon_fiber'
+  | 'live_animal'
+  | 'paper'
+  | 'glass'
+  | 'presious_metals'
+  | 'particleboard'
+  | 'styrofoam'
+  | 'wood'
+  | 'photo_film'
+  | 'sand'
+  | 'metal'
+  | 'plexiglass'
+  | 'aquatic_life'
+  | 'canvas'
+  | 'drywall'
+  | 'hard_plastic'
+  | 'vinyl'
+  | 'soft_plastic'
+  | 'leather'
+  | 'rubber'
+  | 'concreate'
+  | 'paint'
+  | 'electronics'
+  | 'fiber_natural'
+  | 'gas'
+  | 'fabric_synthetic'
+  | 'CITES'
+  | 'liquids'
+  | 'salts';
+
+export type ArtaTrackingServiceType =
   | 'transport'
   | 'location'
   | 'handling'
@@ -407,59 +537,100 @@ export type ArtaTrackingServiceSubSubType =
   | 'ramp'
   | 'floor_protection';
 
+export type DisqualificationReasonCode =
+  | 'external_service_unavailable'
+  | 'client_timeout_reached';
+
+export type PackageStatus =
+  | 'pending'
+  | 'transit'
+  | 'out_for_delivery'
+  | 'delivered'
+  | 'unknown'
+  | 'notfound'
+  | 'undelivered'
+  | 'exception'
+  | 'expired';
+
+export type EEIFormStatus =
+  | 'pending'
+  | 'cleared'
+  | 'approved'
+  | 'rejected'
+  | 'submitted';
+
+export type ShipmentStatus =
+  | 'pending'
+  | 'confirmed'
+  | 'collected'
+  | 'in_transit'
+  | 'completed';
+
+export type WebhookResourceType = 'ping' | 'request' | 'shipment';
+
+export type WebhookDeliveryStatus = 'delivered' | 'failed';
+
+export type PaymentContext = 'hosted_checkout' | 'invoiced';
+
 export type SupportedCurrency = 'CAD' | 'EUR' | 'GBP' | 'HKD' | 'USD';
-export type QuoteType = 'parcel' | 'premium' | 'select' | 'self_ship';
+
+export type AuthTypes = 'api_key';
+
+export type APIStatus = 'active' | 'beta' | 'deprecated';
 
 export interface Contact {
   name: string;
-  email_address?: string | null;
-  phone_number?: string | null;
+  email_address?: NullableString;
+  phone_number?: NullableString;
 }
 
 export interface ArtaLocation {
-  access_restrictions?: AccessRestriction[] | null;
-  address_line_1?: string | null;
-  address_line_2?: string | null;
-  address_line_3?: string | null;
-  city?: string | null;
-  region?: string | null;
-  postal_code?: string | null;
+  access_restrictions?: Nullable<AccessRestriction[]>;
+  address_line_1?: NullableString;
+  address_line_2?: NullableString;
+  address_line_3?: NullableString;
+  city?: NullableString;
+  region?: NullableString;
+  postal_code?: NullableString;
   country: string;
-  title?: string | null;
-  contacts?: Contact[] | null;
+  title?: NullableString;
+  contacts?: Nullable<Contact[]>;
+  estimated_country?: string;
+  estimated_region?: string;
+  estimated_city?: string;
 }
 
 export type Details = {
-  materials?: ObjectMaterial[] | null;
-  creation_date?: string | null;
-  creator?: string | null;
-  notes?: string | null;
-  title?: string | null;
-  is_fragile?: boolean | null;
-  is_cites?: boolean | null;
+  materials?: Nullable<ObjectMaterial[]>;
+  creation_date?: NullableString;
+  creator?: NullableString;
+  notes?: NullableString;
+  title?: NullableString;
+  is_fragile?: Nullable<boolean>;
+  is_cites?: Nullable<boolean>;
 };
 
 export interface ArtaObject {
-  internal_reference?: string | null;
-  current_packing?: PackingSubType[] | null;
-  details?: Details | null;
+  internal_reference?: NullableString;
+  current_packing?: Nullable<PackingSubType[]>;
+  details?: Nullable<Details>;
   height: number | string;
   width: number | string;
-  weight?: number | string | null;
+  weight?: Nullable<number | string>;
   value: number | string;
-  depth?: number | string | null;
-  images?: string[] | null;
+  depth?: Nullable<number | string>;
+  images?: Nullable<string[]>;
   public_reference?: string;
   subtype: ObjectSubType;
-  unit_of_measurement?: string | null;
-  weight_unit?: string | null;
+  unit_of_measurement?: NullableString;
+  weight_unit?: NullableString;
   value_currency: SupportedCurrency;
 }
 
-export interface HostedSession {
-  id: string;
-  origin: ArtaLocation;
-  private_token: string;
+export interface Disqualification {
+  quote_types: QuoteType[];
+  reason?: NullableString;
+  reason_code: DisqualificationReasonCode;
 }
 
 export interface InsurancePolicy {
@@ -482,11 +653,10 @@ export interface ArtaService {
   type: ArtaTrackingServiceType;
 }
 
-
 export interface Quote {
   id: number;
   included_services: ArtaService[];
-  included_insurance_policy?: InsurancePolicy | null;
+  included_insurance_policy?: Nullable<InsurancePolicy>;
   optional_services: ArtaService[];
   quote_type: QuoteType;
   status: string;

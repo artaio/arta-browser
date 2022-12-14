@@ -4,9 +4,19 @@ import { Footer } from '../Footer';
 
 import { useEffect, useState } from 'preact/hooks';
 import './index.css';
-import { ArtaObject, ArtaLocation, HostedSession, Quote } from '../../types';
+import { ArtaLocation } from '../../MetadataTypes';
 import { ArtaJsConfig } from '../../arta';
 import { Loading } from '../Loading';
+import { Quotes } from '../Quotes';
+import { parseEstimatedLocation } from '../../helper';
+import {
+  HostedSession,
+  loadHostedSessions,
+  loadQuoteRequests,
+  QuoteRequest,
+} from '../../requests';
+import { EstimateBody } from '../../estimate';
+import { Disqualified } from '../Disqualified';
 
 export enum ModalStatus {
   CLOSED,
@@ -16,76 +26,50 @@ export enum ModalStatus {
   QUOTED,
 }
 interface ModalOpts {
-  origin: ArtaLocation;
-  objects: ArtaObject[];
+  estimateBody: EstimateBody;
   config: ArtaJsConfig;
 }
 
-export const Modal = ({ origin, objects, config }: ModalOpts) => {
+export const Modal = ({ estimateBody, config }: ModalOpts) => {
   const position = config.position;
   const [destination, setDestination] = useState<ArtaLocation>();
   const [parsedOrigin, setParsedOrigin] = useState('');
   const [status, setStatus] = useState(ModalStatus.LOADING);
   const [hostedSession, setHostedSession] = useState<HostedSession>();
-  const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [quoteRequest, setQuoteRequest] = useState<QuoteRequest>();
 
   useEffect(() => {
-    const loadHostedSession = async () => {
+    (async () => {
       setStatus(ModalStatus.LOADING);
-      const req = await fetch('https://api.arta.io/estimate/hosted_sessions', {
-        method: 'POST',
-        body: JSON.stringify({
-          hosted_session: { objects, origin },
-        }),
-        headers: {
-          Authorization: `ARTA_APIKey ${config.apiKey}`,
-          'Content-Type': 'application/json',
-        },
-      });
-      const res = await req.json();
-
-      setHostedSession(res);
-
-      const region =
-        res.origin.estimated_country === 'US' && res.origin.estimated_region
-          ? res.origin.estimated_region
-          : '';
-      setParsedOrigin(
-        `${res.origin.estimated_city.toLowerCase()}, ${region}, ${
-          res.origin.estimated_country
-        }`
-      );
+      const session = await loadHostedSessions(config, estimateBody);
+      setHostedSession(session);
+      setParsedOrigin(parseEstimatedLocation(session.origin));
       setStatus(ModalStatus.OPEN);
-    };
-
-    loadHostedSession();
-  }, [origin, objects]);
+    })();
+  }, [estimateBody.origin, estimateBody.objects]);
 
   useEffect(() => {
-    const fetchQuotes = async () => {
-      if(!destination) {
+    (async () => {
+      if (!destination) {
         return;
       }
       setStatus(ModalStatus.LOADING);
+      const esimate = { ...estimateBody, destination };
 
-      const req = await fetch('https://api.arta.io/estimate/requests', {
-        method: "POST",
-        body: JSON.stringify({
-          request: { destination, objects, origin,},
-        }),
-        headers: {
-          Authorization: `ARTA_APIKey ${config.apiKey}`,
-          "Content-Type": "application/json",
-          "hosted-session-id": hostedSession ? hostedSession.id : '',
-          "hosted-session-private-token": hostedSession ? hostedSession.private_token : '',
-        },
-      });
-      const res = await req.json();
-      setQuotes(res.quotes);
-      setStatus(ModalStatus.QUOTED);
-    };
+      const sess = hostedSession
+        ? hostedSession
+        : { id: '', private_token: '', origin: estimateBody.origin };
 
-    fetchQuotes();
+      const req = await loadQuoteRequests(config, sess, esimate);
+      setQuoteRequest(req);
+
+      if(!req.disqualifications || req.disqualifications.length > 0) {
+        setStatus(ModalStatus.DISQUALIFIED);
+      } else {
+        setStatus(ModalStatus.QUOTED);
+      }
+
+    })();
   }, [destination]);
 
   return (
@@ -94,14 +78,19 @@ export const Modal = ({ origin, objects, config }: ModalOpts) => {
       <div class={`artajs__modal artajs__modal__${position}`}>
         <Header />
         {status === ModalStatus.LOADING && <Loading />}
-
         {status === ModalStatus.OPEN && (
           <Destination
             parsedOrigin={parsedOrigin}
             setDestination={setDestination}
-            setStatus={setStatus}
           />
         )}
+        {status === ModalStatus.QUOTED && quoteRequest && (
+          <Quotes quoteRequest={quoteRequest} setStatus={setStatus} />
+        )}
+
+        {status === ModalStatus.DISQUALIFIED && quoteRequest &&
+          <Disqualified quoteRequest={quoteRequest} setStatus={setStatus} />
+        }
 
         <Footer />
       </div>

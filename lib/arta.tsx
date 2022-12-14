@@ -1,7 +1,7 @@
-import Estimate from './estimate';
-import { ArtaObject, ArtaLocation } from './types';
+import Estimate, { EstimateBody } from './estimate';
 
 export interface ArtaJsConfig {
+  host?: string;
   position?: 'center' | 'left' | 'right';
   apiKey: string;
 }
@@ -15,6 +15,7 @@ export type ValidateResult = any;
 
 const defaultConfig: Partial<ArtaJsConfig> = {
   position: 'right',
+  host: 'api.arta.io',
 };
 
 export default class Arta implements IArta {
@@ -34,9 +35,9 @@ export default class Arta implements IArta {
     document.body.appendChild(this.el);
   }
 
-  public estimate(artaOrigin: ArtaLocation, artaObjects: ArtaObject[]) {
+  public estimate(estimateBody: EstimateBody) {
     if (this.config && this.el) {
-      return new Estimate(artaOrigin, artaObjects, this.config, this.el);
+      return new Estimate(estimateBody, this.config, this.el);
     } else {
       throw new Error(
         'Please initialize the SDK with Arta.init before creating estimates'

@@ -1,19 +1,16 @@
 import { useState } from 'preact/hooks';
-import { ArtaLocation } from '../../types';
-import { Modal, ModalStatus } from '../Modal';
+import { ArtaLocation } from '../../MetadataTypes';
 import { withoutPostal } from './countriesWithoutPostalCode';
 import { countries } from '../../fixtures/countries';
 
 interface DestinationOpts {
   parsedOrigin: string;
   setDestination: (location: ArtaLocation) => void;
-  setStatus: (status: ModalStatus) => void;
 }
 
 export const Destination = ({
   parsedOrigin,
   setDestination,
-  setStatus,
 }: DestinationOpts) => {
   const [country, setCountry] = useState('US');
   const [isWithoutPostal, setIsWithoutPostal] = useState(false);
@@ -25,7 +22,7 @@ export const Destination = ({
   const onCountryChange = (e: any) => {
     setCountry(e.target.value);
 
-    if (!withoutPostal.has(e.target.value)) {
+    if (withoutPostal.has(e.target.value)) {
       setIsWithoutPostal(true);
       setPostalCode('');
     }

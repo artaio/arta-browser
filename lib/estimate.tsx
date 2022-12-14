@@ -1,42 +1,45 @@
 import { render } from 'preact';
 import { ArtaJsConfig } from './arta';
 import { Modal } from './components/Modal';
-import { ArtaLocation, ArtaObject } from './types';
+import {
+  AdditionalService,
+  ArtaLocation,
+  ArtaObject,
+  Insurance,
+  QuoteType,
+  SupportedCurrency,
+} from './MetadataTypes';
+import { validateEstimateBody } from './requests';
+
+export interface EstimateBody {
+  origin: ArtaLocation;
+  objects: ArtaObject[];
+  additional_services?: AdditionalService[];
+  currency?: SupportedCurrency;
+  destination?: ArtaLocation;
+  insurance?: Insurance;
+  internal_reference?: string;
+  public_reference?: string;
+  preferred_quote_types?: QuoteType[];
+}
 
 export default class Estimate {
   public ready = false;
   constructor(
-    private readonly artaOrigin: ArtaLocation,
-    private readonly artaObjects: ArtaObject[],
+    private readonly estimateBody: EstimateBody,
     private readonly config: ArtaJsConfig,
     private readonly el: HTMLDivElement
   ) {}
 
   public open() {
     render(
-      <Modal
-        origin={this.artaOrigin}
-        objects={this.artaObjects}
-        config={this.config}
-      />,
+      <Modal estimateBody={this.estimateBody} config={this.config} />,
       this.el
     );
   }
 
   public async validate() {
-    await fetch('https://api.arta.io/estimate/validate', {
-      method: 'POST',
-      body: JSON.stringify({
-        estimate: {
-          objects: this.artaObjects,
-          origin: this.artaOrigin,
-        },
-      }),
-      headers: {
-        Authorization: `ARTA_APIKey ${this.config.apiKey}`,
-        'Content-Type': 'application/json',
-      },
-    });
+    await validateEstimateBody(this.config, this.estimateBody);
     this.ready = true;
   }
 }
