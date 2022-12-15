@@ -33,9 +33,18 @@ export default class Estimate {
 
   public open() {
     render(
-      <Modal estimateBody={this.estimateBody} config={this.config} />,
+      <Modal
+        onClose={this.onClose.bind(this)}
+        estimateBody={this.estimateBody}
+        config={this.config}
+      />,
       this.el
     );
+  }
+
+  public onClose(e: any) {
+    e.preventDefault();
+    render(<div></div>, this.el);
   }
 
   public async validate() {

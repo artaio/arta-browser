@@ -6,10 +6,15 @@ import currencies from './currencies';
 
 interface QuotesOps {
   quoteRequest: QuoteRequest;
+  showCostRange: boolean;
   setStatus: (status: ModalStatus) => void;
 }
 
-export const Quotes = ({ quoteRequest, setStatus }: QuotesOps) => {
+export const Quotes = ({
+  quoteRequest,
+  showCostRange,
+  setStatus,
+}: QuotesOps) => {
   const onChangeDestination = (e: any) => {
     e.preventDefault();
     setStatus(ModalStatus.OPEN);
@@ -17,7 +22,6 @@ export const Quotes = ({ quoteRequest, setStatus }: QuotesOps) => {
 
   const quotes = quoteRequest.quotes;
   if (quotes && quotes.length > 0) {
-    console.log(quotes);
     quotes.sort((a: Quote, b: Quote) => {
       return a.total - b.total;
     });
@@ -32,10 +36,6 @@ export const Quotes = ({ quoteRequest, setStatus }: QuotesOps) => {
 
   const parsedOrigin = parseEstimatedLocation(quoteRequest.origin);
   const parsedDestination = parseEstimatedLocation(quoteRequest.destination);
-
-  // configuration setting - show low/high cost range or starts_at
-  // TODO
-  const showCostRange = 'range';
 
   return (
     <div class="artajs__modal__quotes">

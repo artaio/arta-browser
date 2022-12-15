@@ -1,8 +1,7 @@
 import { ArtaLocation } from './MetadataTypes';
 
 export const parseEstimatedLocation = (loc: ArtaLocation): string => {
-
-  if(!loc.estimated_country || !loc.estimated_city) {
+  if (!loc.estimated_country || !loc.estimated_city) {
     return `${loc.postal_code}, ${loc.country}`;
   }
 
@@ -12,6 +11,5 @@ export const parseEstimatedLocation = (loc: ArtaLocation): string => {
       : '';
 
   const city = loc.estimated_city.toLowerCase();
-  
   return `${city}, ${region}, ${loc.estimated_country}`;
 };

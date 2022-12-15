@@ -2,7 +2,6 @@ import { ArtaJsConfig } from './arta';
 import { EstimateBody } from './estimate';
 import {
   ArtaLocation,
-  Disqualification,
   Insurance,
   Quote,
   SupportedCurrency,
@@ -20,7 +19,6 @@ export interface QuoteRequest {
   destination: ArtaLocation;
   origin: ArtaLocation;
   insurance: Insurance | null;
-  disqualifications: Disqualification[] | null;
 }
 
 const AUTH_KEY = 'ARTA_APIKey';

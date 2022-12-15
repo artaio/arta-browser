@@ -1,6 +1,6 @@
-import { parseEstimatedLocation } from "../../helper";
-import { QuoteRequest } from "../../requests";
-import { ModalStatus } from "../Modal";
+import { parseEstimatedLocation } from '../../helper';
+import { QuoteRequest } from '../../requests';
+import { ModalStatus } from '../Modal';
 
 interface DisqualifiedOpts {
   quoteRequest: QuoteRequest;
@@ -8,7 +8,6 @@ interface DisqualifiedOpts {
 }
 
 export const Disqualified = ({ quoteRequest, setStatus }: DisqualifiedOpts) => {
-
   const onChangeDestination = (e: any) => {
     e.preventDefault();
     setStatus(ModalStatus.OPEN);
@@ -20,8 +19,7 @@ export const Disqualified = ({ quoteRequest, setStatus }: DisqualifiedOpts) => {
   return (
     <div class="artajs__modal__quotes">
       <p class="artajs__modal__quotes__context">
-        Unfortunately we could not retrieve costs for shipping these goods
-        from:
+        Unfortunately we could not retrieve costs for shipping these goods from:
       </p>
       <p class="artajs__modal__quotes__origin">
         <span>
@@ -31,14 +29,10 @@ export const Disqualified = ({ quoteRequest, setStatus }: DisqualifiedOpts) => {
       </p>
       <p class="artajs__modal__quotes__destination">
         <span class="artajs__modal__quotes__small">To:</span>{' '}
-
         <span>
-          <strong class="artajs__modal__capitalize">
-            {parsedDestination}
-          </strong>{' '}
+          <strong class="artajs__modal__capitalize">{parsedDestination}</strong>{' '}
           <span class="artajs__modal__quotes__light">(destination)</span>
         </span>
-
       </p>
       <div class="artajs__modal__quotes__box">
         <p class="artajs__modal__quotes__disqualified">

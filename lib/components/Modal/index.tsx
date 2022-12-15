@@ -28,9 +28,10 @@ export enum ModalStatus {
 interface ModalOpts {
   estimateBody: EstimateBody;
   config: ArtaJsConfig;
+  onClose: (e: any) => void;
 }
 
-export const Modal = ({ estimateBody, config }: ModalOpts) => {
+export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
   const position = config.position;
   const [destination, setDestination] = useState<ArtaLocation>();
   const [parsedOrigin, setParsedOrigin] = useState('');
@@ -62,13 +63,11 @@ export const Modal = ({ estimateBody, config }: ModalOpts) => {
 
       const req = await loadQuoteRequests(config, sess, esimate);
       setQuoteRequest(req);
-
-      if(!req.disqualifications || req.disqualifications.length > 0) {
-        setStatus(ModalStatus.DISQUALIFIED);
-      } else {
+      if (req.quotes && req.quotes.length > 0) {
         setStatus(ModalStatus.QUOTED);
+      } else {
+        setStatus(ModalStatus.DISQUALIFIED);
       }
-
     })();
   }, [destination]);
 
@@ -76,7 +75,7 @@ export const Modal = ({ estimateBody, config }: ModalOpts) => {
     <div class="artajs">
       {position === 'center' && <div class="artajs__modal__backdrop" />}
       <div class={`artajs__modal artajs__modal__${position}`}>
-        <Header />
+        <Header onClose={onClose} />
         {status === ModalStatus.LOADING && <Loading />}
         {status === ModalStatus.OPEN && (
           <Destination
@@ -85,12 +84,16 @@ export const Modal = ({ estimateBody, config }: ModalOpts) => {
           />
         )}
         {status === ModalStatus.QUOTED && quoteRequest && (
-          <Quotes quoteRequest={quoteRequest} setStatus={setStatus} />
+          <Quotes
+            quoteRequest={quoteRequest}
+            showCostRange={config.pricing_display === 'range'}
+            setStatus={setStatus}
+          />
         )}
 
-        {status === ModalStatus.DISQUALIFIED && quoteRequest &&
+        {status === ModalStatus.DISQUALIFIED && quoteRequest && (
           <Disqualified quoteRequest={quoteRequest} setStatus={setStatus} />
-        }
+        )}
 
         <Footer />
       </div>

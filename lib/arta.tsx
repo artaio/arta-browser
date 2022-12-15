@@ -3,6 +3,7 @@ import Estimate, { EstimateBody } from './estimate';
 export interface ArtaJsConfig {
   host?: string;
   position?: 'center' | 'left' | 'right';
+  pricing_display?: 'starts_at' | 'range';
   apiKey: string;
 }
 
@@ -15,6 +16,7 @@ export type ValidateResult = any;
 
 const defaultConfig: Partial<ArtaJsConfig> = {
   position: 'right',
+  pricing_display: 'starts_at',
   host: 'api.arta.io',
 };
 

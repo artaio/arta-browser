@@ -1,9 +1,9 @@
-export const Header = () => {
+export const Header = ({ onClose }: { onClose: (e: any) => void }) => {
   return (
     <div class="artajs__modal__header">
       <div className="artajs__modal__header__cta">Estimate Shipping Costs</div>
       <div className="artajs__modal__header__close">
-        <a onClick={(e) => console.log('hey', e)} href="#">
+        <a onClick={onClose} href="#">
           <svg
             width="24"
             height="24"
