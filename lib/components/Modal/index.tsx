@@ -8,7 +8,7 @@ import { ArtaLocation } from '../../MetadataTypes';
 import { ArtaJsConfig } from '../../arta';
 import { Loading } from '../Loading';
 import { Quotes } from '../Quotes';
-import { parseEstimatedLocation } from '../../helper';
+import { parseErrors, parseEstimatedLocation } from '../../helper';
 import {
   HostedSession,
   loadHostedSessions,
@@ -38,6 +38,7 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
   const [status, setStatus] = useState(ModalStatus.LOADING);
   const [hostedSession, setHostedSession] = useState<HostedSession>();
   const [quoteRequest, setQuoteRequest] = useState<QuoteRequest>();
+  const [errors, setErrors] = useState<string[]>();
 
   useEffect(() => {
     (async () => {
@@ -62,11 +63,16 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
         : { id: '', private_token: '', origin: estimateBody.origin };
 
       const req = await loadQuoteRequests(config, sess, esimate);
-      setQuoteRequest(req);
-      if (req.quotes && req.quotes.length > 0) {
-        setStatus(ModalStatus.QUOTED);
+      if (req.err) {
+        const errorMessages = parseErrors(req.err.errors);
+        setErrors(errorMessages);
       } else {
-        setStatus(ModalStatus.DISQUALIFIED);
+        setQuoteRequest(req);
+        if (req.quotes && req.quotes.length > 0) {
+          setStatus(ModalStatus.QUOTED);
+        } else {
+          setStatus(ModalStatus.DISQUALIFIED);
+        }
       }
     })();
   }, [destination]);
@@ -96,6 +102,15 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
         )}
 
         <Footer />
+        {errors && errors.length > 0 && (
+          <div class="artajs__modal__error__container">
+            <div class="artajs__modal__error">
+              {errors.map((error: string, i: number) => {
+                return <span key={`arta-error-${i}`}>{error}</span>;
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
