@@ -5,11 +5,13 @@ import { countries } from '../../fixtures/countries';
 
 interface DestinationOpts {
   parsedOrigin: string;
+  destinationLabel: string;
   setDestination: (location: ArtaLocation) => void;
 }
 
 export const Destination = ({
   parsedOrigin,
+  destinationLabel,
   setDestination,
 }: DestinationOpts) => {
   const [country, setCountry] = useState('US');
@@ -43,7 +45,7 @@ export const Destination = ({
   return (
     <div className="artajs__modal__form">
       <p class="artajs__modal__form__row__context">
-        Get a cost estimate to ship these goods from:
+        {destinationLabel}
       </p>
       <p class="artajs__modal__form__row__location">
         {parsedOrigin ? (

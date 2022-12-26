@@ -1,32 +1,27 @@
-import Estimate, { EstimateBody } from './estimate';
+import Estimate, {
+  defaultEstimateConfig,
+  EstimateBody,
+  EstimateConfig,
+  EstimateFullConfig,
+} from './estimate';
 
 export interface ArtaJsConfig {
-  host?: string;
-  position?: 'center' | 'left' | 'right';
-  pricing_display?: 'starts_at' | 'range';
+  host: string;
+}
+
+export interface ArtaJsFullConfig extends ArtaJsConfig {
   apiKey: string;
 }
 
-export interface IArta {
-  ready: boolean;
-  init: (apiKey: string, config?: ArtaJsConfig) => void;
-}
-
-export type ValidateResult = any;
-
-const defaultConfig: Partial<ArtaJsConfig> = {
-  position: 'right',
-  pricing_display: 'starts_at',
+const defaultConfig: ArtaJsConfig = {
   host: 'api.arta.io',
 };
 
-export default class Arta implements IArta {
+export default class Arta {
   private el: HTMLDivElement | undefined;
-  private config: ArtaJsConfig | undefined;
+  private config: ArtaJsFullConfig | undefined;
 
-  constructor(public ready = false) {}
-
-  public init(apiKey: string, config?: ArtaJsConfig): void {
+  public init(apiKey: string, config?: Partial<ArtaJsConfig>): void {
     this.config = Object.assign({ ...defaultConfig, apiKey }, config);
 
     if (document.querySelectorAll('#arta-widget').length) {
@@ -37,9 +32,16 @@ export default class Arta implements IArta {
     document.body.appendChild(this.el);
   }
 
-  public estimate(estimateBody: EstimateBody) {
+  public estimate(
+    estimateBody: EstimateBody,
+    esimateConfig?: Partial<EstimateConfig>
+  ) {
     if (this.config && this.el) {
-      return new Estimate(estimateBody, this.config, this.el);
+      const fullEstimateConfig: EstimateFullConfig = Object.assign(
+        { ...defaultEstimateConfig, ...this.config },
+        esimateConfig
+      );
+      return new Estimate(estimateBody, fullEstimateConfig, this.el);
     } else {
       throw new Error(
         'Please initialize the SDK with Arta.init before creating estimates'

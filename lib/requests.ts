@@ -1,4 +1,4 @@
-import { ArtaJsConfig } from './arta';
+import { ArtaJsFullConfig } from './arta';
 import { EstimateBody } from './estimate';
 import {
   ArtaLocation,
@@ -50,7 +50,7 @@ const logError = ({ status, errors }: ArtaError): void => {
 
 const artaRequest = async (
   path: string,
-  config: ArtaJsConfig,
+  config: ArtaJsFullConfig,
   body?: string,
   headers?: any
 ) => {
@@ -81,7 +81,7 @@ const artaRequest = async (
 };
 
 export const loadHostedSessions = async (
-  config: ArtaJsConfig,
+  config: ArtaJsFullConfig,
   estimateBody: EstimateBody
 ) => {
   const path = '/estimate/hosted_sessions';
@@ -91,7 +91,7 @@ export const loadHostedSessions = async (
 };
 
 export const loadQuoteRequests = async (
-  config: ArtaJsConfig,
+  config: ArtaJsFullConfig,
   hostedSession: HostedSession,
   estimateBody: EstimateBody
 ) => {
@@ -102,12 +102,12 @@ export const loadQuoteRequests = async (
     'hosted-session-private-token': hostedSession.private_token,
   };
   const res = await artaRequest(path, config, body, headers);
-  res.quotes.forEach((q: any) => (q.total = parseFloat(q.total)));
+  res.quotes && res.quotes.forEach((q: any) => (q.total = parseFloat(q.total)));
   return res as QuoteRequest;
 };
 
 export const validateEstimateBody = async (
-  config: ArtaJsConfig,
+  config: ArtaJsFullConfig,
   estimateBody: EstimateBody
 ) => {
   const path = '/estimate/validate';

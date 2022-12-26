@@ -5,7 +5,6 @@ import { Footer } from '../Footer';
 import { useEffect, useState } from 'preact/hooks';
 import './index.css';
 import { ArtaLocation } from '../../MetadataTypes';
-import { ArtaJsConfig } from '../../arta';
 import { Loading } from '../Loading';
 import { Quotes } from '../Quotes';
 import { parseErrors, parseEstimatedLocation } from '../../helper';
@@ -15,7 +14,7 @@ import {
   loadQuoteRequests,
   QuoteRequest,
 } from '../../requests';
-import { EstimateBody } from '../../estimate';
+import { EstimateBody, EstimateFullConfig } from '../../estimate';
 import { Disqualified } from '../Disqualified';
 
 export enum ModalStatus {
@@ -27,7 +26,7 @@ export enum ModalStatus {
 }
 interface ModalOpts {
   estimateBody: EstimateBody;
-  config: ArtaJsConfig;
+  config: EstimateFullConfig;
   onClose: (e: any) => void;
 }
 
@@ -81,18 +80,19 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
     <div class="artajs">
       {position === 'center' && <div class="artajs__modal__backdrop" />}
       <div class={`artajs__modal artajs__modal__${position}`}>
-        <Header onClose={onClose} />
+        <Header onClose={onClose} title={config.title} />
         {status === ModalStatus.LOADING && <Loading />}
         {status === ModalStatus.OPEN && (
           <Destination
             parsedOrigin={parsedOrigin}
             setDestination={setDestination}
+            destinationLabel={config.destinationLabel}
           />
         )}
         {status === ModalStatus.QUOTED && quoteRequest && (
           <Quotes
             quoteRequest={quoteRequest}
-            showCostRange={config.pricing_display === 'range'}
+            showCostRange={config.pricingDisplay === 'range'}
             setStatus={setStatus}
           />
         )}
