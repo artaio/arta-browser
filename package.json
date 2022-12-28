@@ -1,0 +1,47 @@
+{
+  "name": "arta-browser",
+  "version": "2.0.0",
+  "description": "",
+  "source": "lib/index.ts",
+  "exports": "./dist/arta.modern.js",
+  "main": "./dist/index.js",
+  "module": "./dist/arta.module.js",
+  "unpkg": "./dist/arta.umd.js",
+  "files": ["dist/**/*"],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:npm && npm run build:cdn",
+    "build:npm": "tsc -p tsconfig-build.json && copyfiles -u 1 \"./lib/**/*.css\" \"./dist/\"",
+    "build:cdn": "microbundle -i lib/index.ts -o dist/bundle.js --external none --no-pkg-main -f umd --no-sourcemap",
+    "lint": "eslint .",
+    "lint:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|tsx|jsx|json)\""
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.40.1",
+    "copyfiles": "^2.4.1",
+    "eslint": "^8.24.0",
+    "eslint-config-preact": "^1.3.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "microbundle": "^0.15.1",
+    "prettier": "2.7.1",
+    "typescript": "^4.8.4",
+    "typescript-plugin-css-modules": "^4.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artaio/arta-browser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artaio/arta-browser/issues"
+  },
+  "homepage": "https://github.com/artaio/arta-browser#readme",
+  "dependencies": {
+    "preact": "^10.11.3"
+  }
+}
