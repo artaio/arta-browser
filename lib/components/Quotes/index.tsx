@@ -1,8 +1,8 @@
 import { Quote } from '../../MetadataTypes';
 import { QuoteRequest } from '../../requests';
 import { parseEstimatedLocation } from '../../helper';
-import { ModalStatus } from '../Modal';
 import currencies from './currencies';
+import { ModalStatus } from '../../ModalStatus';
 
 interface QuotesOps {
   quoteRequest: QuoteRequest;

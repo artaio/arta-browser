@@ -16,14 +16,8 @@ import {
 } from '../../requests';
 import { EstimateBody, EstimateFullConfig } from '../../estimate';
 import { Disqualified } from '../Disqualified';
+import { ModalStatus } from '../../ModalStatus';
 
-export enum ModalStatus {
-  CLOSED,
-  DISQUALIFIED,
-  LOADING,
-  OPEN,
-  QUOTED,
-}
 interface ModalOpts {
   estimateBody: EstimateBody;
   config: EstimateFullConfig;
@@ -85,8 +79,9 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
         {status === ModalStatus.OPEN && (
           <Destination
             parsedOrigin={parsedOrigin}
-            setDestination={setDestination}
             destinationLabel={config.destinationLabel}
+            destinationButtonText={config.destinationButtonText}
+            setDestination={setDestination}
           />
         )}
         {status === ModalStatus.QUOTED && quoteRequest && (

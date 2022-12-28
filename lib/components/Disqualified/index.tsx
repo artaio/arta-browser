@@ -1,6 +1,6 @@
 import { parseEstimatedLocation } from '../../helper';
 import { QuoteRequest } from '../../requests';
-import { ModalStatus } from '../Modal';
+import { ModalStatus } from '../../ModalStatus';
 
 interface DisqualifiedOpts {
   quoteRequest: QuoteRequest;

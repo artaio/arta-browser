@@ -6,12 +6,14 @@ import { countries } from '../../fixtures/countries';
 interface DestinationOpts {
   parsedOrigin: string;
   destinationLabel: string;
+  destinationButtonText: string;
   setDestination: (location: ArtaLocation) => void;
 }
 
 export const Destination = ({
   parsedOrigin,
   destinationLabel,
+  destinationButtonText,
   setDestination,
 }: DestinationOpts) => {
   const [country, setCountry] = useState('US');
@@ -112,7 +114,7 @@ export const Destination = ({
             disabled={!enabled || postalCode === '' ? true : false}
             type="submit"
           >
-            Get Costs
+            {destinationButtonText}
             <div class="artajs__modal__form__arrow__container">
               <svg
                 width="20"

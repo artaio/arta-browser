@@ -4,14 +4,14 @@
   "description": "",
   "source": "lib/index.ts",
   "exports": "./dist/arta.modern.js",
-  "main": "./dist/arta.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/arta.module.js",
   "unpkg": "./dist/arta.umd.js",
-  "files": ["dist/"],
+  "files": ["dist/**/*"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:npm && npm run build:cdn",
-    "build:npm": "tsc -p tsconfig-build.json && cp package.json dist/package.json && copyfiles -u 1 \"./lib/**/*.css\" \"./dist/\"",
+    "build:npm": "tsc -p tsconfig-build.json && copyfiles -u 1 \"./lib/**/*.css\" \"./dist/\"",
     "build:cdn": "microbundle -i lib/index.ts -o dist/bundle.js --external none --no-pkg-main -f umd --no-sourcemap",
     "lint": "eslint .",
     "lint:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|tsx|jsx|json)\""

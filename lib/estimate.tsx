@@ -28,6 +28,7 @@ export interface EstimateConfig {
   pricingDisplay: 'starts_at' | 'range';
   title: string;
   destinationLabel: string;
+  destinationButtonText: string;
 }
 
 export interface EstimateFullConfig extends EstimateConfig, ArtaJsFullConfig {}
@@ -37,6 +38,7 @@ export const defaultEstimateConfig: EstimateConfig = {
   pricingDisplay: 'starts_at',
   title: 'Estimate Shipping Costs',
   destinationLabel: 'Get a cost estimate to ship these goods from:',
+  destinationButtonText: 'Get Costs'
 };
 
 export default class Estimate {
