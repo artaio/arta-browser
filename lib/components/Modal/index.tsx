@@ -75,25 +75,25 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
       {position === 'center' && <div class="artajs__modal__backdrop" />}
       <div class={`artajs__modal artajs__modal__${position}`}>
         <Header onClose={onClose} title={config.title} />
-        {status === ModalStatus.LOADING && <Loading />}
+        {status === ModalStatus.LOADING && <Loading textConfig={config} />}
         {status === ModalStatus.OPEN && (
           <Destination
             parsedOrigin={parsedOrigin}
-            destinationLabel={config.destinationLabel}
-            destinationButtonText={config.destinationButtonText}
+            textConfig={config}
             setDestination={setDestination}
           />
         )}
-        {status === ModalStatus.QUOTED && quoteRequest && (
+        {status === ModalStatus.DISQUALIFIED && quoteRequest && (
           <Quotes
             quoteRequest={quoteRequest}
             showCostRange={config.pricingDisplay === 'range'}
+            textConfig={config}
             setStatus={setStatus}
           />
         )}
 
-        {status === ModalStatus.DISQUALIFIED && quoteRequest && (
-          <Disqualified quoteRequest={quoteRequest} setStatus={setStatus} />
+        {status === ModalStatus.QUOTED && quoteRequest && (
+          <Disqualified textConfig={config} quoteRequest={quoteRequest} setStatus={setStatus} />
         )}
 
         <Footer />

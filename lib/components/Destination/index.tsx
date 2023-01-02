@@ -3,17 +3,24 @@ import { ArtaLocation } from '../../MetadataTypes';
 import { withoutPostal } from './countriesWithoutPostalCode';
 import { countries } from '../../fixtures/countries';
 
+interface DestinationTextConfig {
+  destinationDescriptionLabel: string;
+  destinationButtonText: string;
+  destinationCountryLabel: string;
+  destinationZipLabel: string;
+  destinationCityLabel: string;
+  detailOriginLabel: string;
+}
+
 interface DestinationOpts {
   parsedOrigin: string;
-  destinationLabel: string;
-  destinationButtonText: string;
+  textConfig: DestinationTextConfig;
   setDestination: (location: ArtaLocation) => void;
 }
 
 export const Destination = ({
   parsedOrigin,
-  destinationLabel,
-  destinationButtonText,
+  textConfig,
   setDestination,
 }: DestinationOpts) => {
   const [country, setCountry] = useState('US');
@@ -47,13 +54,13 @@ export const Destination = ({
   return (
     <div className="artajs__modal__form">
       <p class="artajs__modal__form__row__context">
-        {destinationLabel}
+        {textConfig.destinationDescriptionLabel}
       </p>
       <p class="artajs__modal__form__row__location">
         {parsedOrigin ? (
           <span>
             <span class="artajs__modal__capitalize">{parsedOrigin}</span>{' '}
-            <span class="artajs__modal__form__light">(origin)</span>
+            <span class="artajs__modal__form__light">{textConfig.detailOriginLabel}</span>
           </span>
         ) : (
           <span>...</span>
@@ -81,7 +88,7 @@ export const Destination = ({
                 </option>
               ))}
             </select>
-            <span>Country</span>
+            <span>{textConfig.destinationCountryLabel}</span>
           </label>
         </div>
 
@@ -103,8 +110,8 @@ export const Destination = ({
             />
             <span>
               {isWithoutPostal
-                ? 'Destination City'
-                : 'Destination Postal/Zip Code'}
+                ? textConfig.destinationCityLabel
+                : textConfig.destinationZipLabel}
             </span>
           </label>
         </div>
@@ -114,7 +121,7 @@ export const Destination = ({
             disabled={!enabled || postalCode === '' ? true : false}
             type="submit"
           >
-            {destinationButtonText}
+            {textConfig.destinationButtonText}
             <div class="artajs__modal__form__arrow__container">
               <svg
                 width="20"
