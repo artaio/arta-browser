@@ -1,5 +1,5 @@
 import { ArtaJsFullConfig } from './arta';
-import { EstimateBody } from './estimate';
+import { EstimateBody } from './estimateConfig';
 import {
   ArtaLocation,
   Insurance,
@@ -30,6 +30,8 @@ export interface ArtaError {
 const AUTH_KEY = 'ARTA_APIKey';
 
 const logError = ({ status, errors }: ArtaError): void => {
+
+  console.log(errors);
   const keys = Object.keys(errors);
   if (status === 403) {
     console.error('Invalid API Key');
@@ -75,7 +77,7 @@ const artaRequest = async (
       }
     );
     logError(err);
-    return err;
+    return { err: err };
   }
   return resBody;
 };

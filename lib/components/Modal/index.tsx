@@ -7,14 +7,14 @@ import './index.css';
 import { ArtaLocation } from '../../MetadataTypes';
 import { Loading } from '../Loading';
 import { Quotes } from '../Quotes';
-import { parseErrors, parseEstimatedLocation } from '../../helper';
+import { getDestinationConfig, getDisqualifiedConfig, getQuoteConfig, getStyle, parseErrors, parseEstimatedLocation } from '../../helper';
 import {
   HostedSession,
   loadHostedSessions,
   loadQuoteRequests,
   QuoteRequest,
 } from '../../requests';
-import { EstimateBody, EstimateFullConfig } from '../../estimate';
+import { EstimateBody, EstimateFullConfig } from '../../estimateConfig';
 import { Disqualified } from '../Disqualified';
 import { ModalStatus } from '../../ModalStatus';
 
@@ -25,7 +25,7 @@ interface ModalOpts {
 }
 
 export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
-  const position = config.position;
+  const position = config.style.position;
   const [destination, setDestination] = useState<ArtaLocation>();
   const [parsedOrigin, setParsedOrigin] = useState('');
   const [status, setStatus] = useState(ModalStatus.LOADING);
@@ -33,8 +33,11 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
   const [quoteRequest, setQuoteRequest] = useState<QuoteRequest>();
   const [errors, setErrors] = useState<string[]>();
 
+  const style = getStyle(config);
+
   useEffect(() => {
     (async () => {
+      setErrors([]);
       setStatus(ModalStatus.LOADING);
       const session = await loadHostedSessions(config, estimateBody);
       setHostedSession(session);
@@ -45,6 +48,7 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
 
   useEffect(() => {
     (async () => {
+      setErrors([]);
       if (!destination) {
         return;
       }
@@ -56,9 +60,11 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
         : { id: '', private_token: '', origin: estimateBody.origin };
 
       const req = await loadQuoteRequests(config, sess, esimate);
+
       if (req.err) {
         const errorMessages = parseErrors(req.err.errors);
         setErrors(errorMessages);
+        setStatus(ModalStatus.OPEN);
       } else {
         setQuoteRequest(req);
         if (req.quotes && req.quotes.length > 0) {
@@ -73,27 +79,30 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
   return (
     <div class="artajs">
       {position === 'center' && <div class="artajs__modal__backdrop" />}
-      <div class={`artajs__modal artajs__modal__${position}`}>
-        <Header onClose={onClose} title={config.title} />
-        {status === ModalStatus.LOADING && <Loading textConfig={config} />}
+      <div class={`artajs__modal artajs__modal__${position}`} style={style}>
+        <Header onClose={onClose} title={config.text.header.title} />
+        {status === ModalStatus.LOADING && <Loading message={config.text.loading.message} />}
         {status === ModalStatus.OPEN && (
           <Destination
             parsedOrigin={parsedOrigin}
-            textConfig={config}
+            textConfig={getDestinationConfig(config)}
             setDestination={setDestination}
           />
         )}
-        {status === ModalStatus.DISQUALIFIED && quoteRequest && (
+        {status === ModalStatus.QUOTED && quoteRequest && (
           <Quotes
             quoteRequest={quoteRequest}
-            showCostRange={config.pricingDisplay === 'range'}
-            textConfig={config}
+            showCostRange={config.style.pricingDisplay === 'range'}
+            textConfig={getQuoteConfig(config)}
             setStatus={setStatus}
           />
         )}
 
-        {status === ModalStatus.QUOTED && quoteRequest && (
-          <Disqualified textConfig={config} quoteRequest={quoteRequest} setStatus={setStatus} />
+        {status === ModalStatus.DISQUALIFIED && quoteRequest && (
+          <Disqualified 
+            quoteRequest={quoteRequest} 
+            textConfig={getDisqualifiedConfig(config)} 
+            setStatus={setStatus} />
         )}
 
         <Footer />

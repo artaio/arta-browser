@@ -1,15 +1,12 @@
-interface LoadingTextConfig {
-  loadingTextMessage: string;
-}
 interface LoadingOpts {
-  textConfig: LoadingTextConfig;
+  message: string;
 }
 
-export const Loading = ({ textConfig }: LoadingOpts) => {
+export const Loading = ({ message }: LoadingOpts) => {
   return (
     <div class="artajs__modal__loading__wrapper">
       <div class="artajs__modal__loading__text">
-        {textConfig.loadingTextMessage}
+        {message}
       </div>
       <div class="artajs__modal__loading">
         <svg
