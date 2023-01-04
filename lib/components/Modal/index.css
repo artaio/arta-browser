@@ -6,6 +6,10 @@
   --secondary-color: #99A5B2;
   --error-color: #D84242;
   --background-color: white;
+  --font-family: "Arial, Helvetica, sans-serif";
+  --font-size: 12px;
+  --width: 300px;
+  --height: 432px;
 }
 
 .artajs__modal,
@@ -47,7 +51,7 @@
 .artajs__modal div,
 .artajs__modal p {
   display: block;
-  font-family: Helvetica, sans-serif;
+  font-family: var(--font-family);
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -70,11 +74,11 @@
   background-clip: padding-box;
   bottom: 30px;
   color: var(--primary-color);
-  height: 432px;
+  height: var(--height);
   padding: 0;
   position: fixed;
   right: 30px;
-  width: 300px;
+  width: var(--width);
   z-index: 2001;
 }
 
@@ -119,7 +123,7 @@
 }
 
 .artajs__modal .artajs__modal__header .artajs__modal__header__cta {
-  font-size: 14px;
+  font-size: calc(var(--font-size) + 2px);
   font-weight: bold;
 }
 
@@ -142,19 +146,19 @@
 
 .artajs__modal .artajs__modal__form__light {
   color: var(--secondary-color);
-  font-size: 12px;
+  font-size: var(--font-size);
 }
 
 .artajs__modal p.artajs__modal__form__row__context {
   display: block;
-  font-size: 12px;
+  font-size: var(--font-size);
   line-height: 18px;
   padding-bottom: 4px;
 }
 
 .artajs__modal p.artajs__modal__form__row__location {
   display: block;
-  font-size: 14px;
+  font-size: calc(var(--font-size) + 2px);
   font-style: italic;
   line-height: 18px;
   padding-bottom: 20px;
@@ -184,7 +188,7 @@
   color: var(--background-color);
   cursor: pointer;
   display: block;
-  font-size: 11px;
+  font-size: calc(var(--font-size) - 1px);
   font-weight: bold;
   padding: 16px 32px;
   position: relative;
@@ -230,24 +234,24 @@
 
 .artajs__modal .artajs__modal__quotes__light {
   color: var(--secondary-color);
-  font-size: 12px;
+  font-size: var(--font-size);
 }
 
 .artajs__modal .artajs__modal__quotes__small {
-  font-size: 12px;
+  font-size: var(--font-size);
   font-style: normal;
 }
 
 .artajs__modal p.artajs__modal__quotes__context {
   display: block;
-  font-size: 12px;
+  font-size: var(--font-size);
   line-height: 18px;
   padding-bottom: 4px;
 }
 
 .artajs__modal p.artajs__modal__quotes__origin {
   display: block;
-  font-size: 14px;
+  font-size: calc(var(--font-size) + 2px);
   font-style: italic;
   line-height: 18px;
   padding-bottom: 4px;
@@ -255,7 +259,7 @@
 
 .artajs__modal p.artajs__modal__quotes__destination {
   display: block;
-  font-size: 14px;
+  font-size: calc(var(--font-size) + 2px);
   font-style: italic;
   line-height: 18px;
   padding-bottom: 20px;
@@ -276,25 +280,25 @@
 
 .artajs__modal p.artajs__modal__quotes__context {
   display: block;
-  font-size: 12px;
+  font-size: var(--font-size);
   line-height: 18px;
 }
 
 .artajs__modal .artajs__modal__quotes__price {
   align-items: baseline;
   display: flex;
-  font-size: 24px;
+  font-size: calc(var(--font-size) + 12px);
   line-height: 24px;
   margin-bottom: 15px;
 }
 
 .artajs__modal .artajs__modal__quotes__price__amount {
-  font-size: 24px;
+  font-size: calc(var(--font-size) + 12px);
   line-height: 24px;
 }
 
 .artajs__modal .artajs__modal__quotes__price__currency_code {
-  font-size: 12px;
+  font-size: var(--font-size);
   line-height: 24px;
   padding-left: 5px;
   text-transform: uppercase;
@@ -302,7 +306,7 @@
 
 .artajs__modal p.artajs__modal__quotes__exclusions {
   display: block;
-  font-size: 10px;
+  font-size: calc(var(--font-size) - 2px);
   font-style: italic;
   line-height: 10px;
 }
@@ -318,13 +322,13 @@
 }
 
 .artajs__modal div.artajs__modal__quotes__insurance p {
-  font-size: 10px;
+  font-size: calc(var(--font-size) - 2px);
   font-style: italic;
   line-height: 10px;
 }
 
 .artajs__modal p.artajs__modal__quotes__disqualified {
-  font-size: 16px;
+  font-size: calc(var(--font-size) + 4px);
   line-height: 24px;
 }
 
@@ -340,14 +344,14 @@
 
 .artajs__modal p.artajs__modal__quotes__checkout {
   display: block;
-  font-size: 12px;
+  font-size: var(--font-size);
   line-height: 18px;
   padding-right: 50px;
 }
 
 .artajs__modal p.artajs__modal__quotes__change {
   display: block;
-  font-size: 13px;
+  font-size: calc(var(--font-size) + 1px);
   line-height: 18px;
   padding-top: 15px;
 }
@@ -357,7 +361,7 @@
   color: var(--secondary-color);
   cursor: pointer;
   display: flex;
-  font-size: 14px;
+  font-size: calc(var(--font-size) + 2px);
   font-style: italic;
   text-decoration: underline;
 }
@@ -395,7 +399,7 @@
   background-color: #FBECEC;
   bottom: 0;
   color: #822828;
-  font-size: 11px;
+  font-size: calc(var(--font-size) - 1px);
   left: 0;
   min-height: 56px;
   right: 0;
@@ -410,8 +414,8 @@
 /* outlined input */
 .artajs__modal .artajs__modal__textfield__outlined {
   display: block;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) + 4px);
   line-height: 1.5;
   overflow: hidden;
   padding-top: 6px;
@@ -438,6 +442,7 @@
   padding: 15px 13px 15px;
   transition: border 0.2s, box-shadow 0.2s;
   width: 100%;
+  background: var(--background-color);
 }
 
 .artajs__modal .artajs__modal__textfield__outlined > select {
@@ -692,7 +697,7 @@
 
 /* Loading */
 .artajs__modal .artajs__modal__loading__text {
-  font-size: 12px;
+  font-size: var(--font-size);
   padding: 10px 20px;
 }
 .artajs__modal .artajs__modal__loading {

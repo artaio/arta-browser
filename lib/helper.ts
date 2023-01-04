@@ -77,5 +77,9 @@ export const getStyle = (config: EstimateFullConfig) => {
     '--secondary-color': config.style.color.secondaryColor,
     '--error-color': config.style.color.errorColor,
     '--background-color': config.style.color.backgroundColor,
+    '--font-family': config.style.fontFamily,
+    '--font-size': `${config.style.fontSize}px`,
+    '--width': `${config.style.width}px`,
+    '--height': `${config.style.height}px`,
   };
 };

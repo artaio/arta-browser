@@ -105,7 +105,7 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
             setStatus={setStatus} />
         )}
 
-        <Footer />
+        <Footer primaryColor={config.style.color.primaryColor} poweredByButtonColor={config.style.color.poweredByButtonColor}/>
         {errors && errors.length > 0 && (
           <div class="artajs__modal__error__container">
             <div class="artajs__modal__error">

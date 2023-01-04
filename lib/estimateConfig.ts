@@ -31,9 +31,14 @@ export interface EstimateBody {
         secondaryColor: string;
         errorColor: string;
         backgroundColor: string;
+        poweredByButtonColor: string;
       };
       position: 'center' | 'left' | 'right';
       pricingDisplay: 'starts_at' | 'range';
+      fontFamily: string;
+      fontSize: number;
+      width: number;
+      height: number;
     };
     text: {
       detailOriginLabel: string;
@@ -61,9 +66,14 @@ export interface EstimateBody {
         secondaryColor: '#99A5B2',
         errorColor: '#D84242',
         backgroundColor: 'white',
+        poweredByButtonColor: '#F5F6F7',
       },
       position: 'right',
       pricingDisplay: 'starts_at',
+      fontFamily: 'Arial, Helvetica, sans-serif',
+      fontSize: 12,
+      width: 300,
+      height: 432,
     },
     text: {
       detailOriginLabel: '(origin)',
