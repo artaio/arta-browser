@@ -1,8 +1,12 @@
-export const Loading = () => {
+interface LoadingOpts {
+  message: string;
+}
+
+export const Loading = ({ message }: LoadingOpts) => {
   return (
     <div class="artajs__modal__loading__wrapper">
       <div class="artajs__modal__loading__text">
-        Retrieving shipping costs...
+        {message}
       </div>
       <div class="artajs__modal__loading">
         <svg

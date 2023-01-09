@@ -4,15 +4,44 @@ import { parseEstimatedLocation } from '../../helper';
 import currencies from './currencies';
 import { ModalStatus } from '../../ModalStatus';
 
+
+export const defaultQuoteConfig = {
+  shipFromLabel: 'These goods ship from:',
+  shipToLabel: 'To:',
+  disclaimerLabel: 'Actual shipping costs will be provided at checkout.',
+  excludeDisclaimerLabel: 'Excludes duties & taxes',
+  rangeLabel: 'Shipping estimated between',
+  startsAtLabel: 'Shipping Starts at',
+  artaInsuranceLabel: 'This estimate includes ARTA Full Risk Insurance',
+};
+
+export interface QuoteTextConfig {
+  shipFromLabel: string;
+  shipToLabel: string;
+  disclaimerLabel: string;
+  excludeDisclaimerLabel: string;
+  rangeLabel: string;
+  startsAtLabel: string;
+  artaInsuranceLabel: string;
+}
+
+export interface QuoteFullTextConfig extends QuoteTextConfig {
+  detailOriginLabel: string;
+  detailDestinationLabel: string;
+  returnLinkLabel: string;
+}
+
 interface QuotesOps {
   quoteRequest: QuoteRequest;
   showCostRange: boolean;
+  textConfig: QuoteFullTextConfig;
   setStatus: (status: ModalStatus) => void;
 }
 
 export const Quotes = ({
   quoteRequest,
   showCostRange,
+  textConfig,
   setStatus,
 }: QuotesOps) => {
   const onChangeDestination = (e: any) => {
@@ -39,21 +68,21 @@ export const Quotes = ({
 
   return (
     <div class="artajs__modal__quotes">
-      <p class="artajs__modal__quotes__context">These goods ship from:</p>
+      <p class="artajs__modal__quotes__context">{textConfig.shipFromLabel}</p>
       <p class="artajs__modal__quotes__origin">
         <span>
           <span class="artajs__modal__capitalize">{parsedOrigin}</span>{' '}
-          <span class="artajs__modal__quotes__light">(origin)</span>
+          <span class="artajs__modal__quotes__light">{textConfig.detailOriginLabel}</span>
         </span>
       </p>
       <p class="artajs__modal__quotes__destination">
-        <span class="artajs__modal__quotes__small">To:</span>{' '}
+        <span class="artajs__modal__quotes__small">{textConfig.shipToLabel}</span>{' '}
         {parsedDestination ? (
           <span>
             <strong class="artajs__modal__capitalize">
               {parsedDestination}
             </strong>{' '}
-            <span class="artajs__modal__quotes__light">(destination)</span>
+            <span class="artajs__modal__quotes__light">{textConfig.detailDestinationLabel}</span>
           </span>
         ) : (
           <span>...</span>
@@ -67,7 +96,7 @@ export const Quotes = ({
           }`}
         >
           <p class="artajs__modal__quotes__context">
-            Shipping estimated between
+            {textConfig.rangeLabel}
           </p>
           <div class="artajs__modal__quotes__price">
             <div class="artajs__modal__quotes__price__amount">
@@ -81,7 +110,7 @@ export const Quotes = ({
           </div>
           {isInternational && (
             <p class="artajs__modal__quotes__exclusions">
-              Excludes duties &amp; taxes
+              {textConfig.excludeDisclaimerLabel}
             </p>
           )}
           {hasInsurance && (
@@ -100,7 +129,7 @@ export const Quotes = ({
                   fill="white"
                 />
               </svg>
-              <p>This estimate includes ARTA Full Risk Insurance</p>
+              <p>{textConfig.artaInsuranceLabel}</p>
             </div>
           )}
         </div>
@@ -110,7 +139,7 @@ export const Quotes = ({
             !isInternational ? 'artajs__modal__quotes__box__padding__y' : ''
           }`}
         >
-          <p class="artajs__modal__quotes__context">Shipping Starts at</p>
+          <p class="artajs__modal__quotes__context">{textConfig.startsAtLabel}</p>
           <div class="artajs__modal__quotes__price">
             <div class="artajs__modal__quotes__price__amount">
               {currencySymbol}
@@ -122,7 +151,7 @@ export const Quotes = ({
           </div>
           {isInternational && (
             <p class="artajs__modal__quotes__exclusions">
-              Excludes duties &amp; taxes
+              {textConfig.excludeDisclaimerLabel}
             </p>
           )}
           {hasInsurance && (
@@ -141,14 +170,14 @@ export const Quotes = ({
                   fill="white"
                 />
               </svg>
-              <p>This estimate includes ARTA Full Risk Insurance</p>
+              <p>{textConfig.artaInsuranceLabel}</p>
             </div>
           )}
         </div>
       )}
 
       <p class="artajs__modal__quotes__checkout">
-        Actual shipping costs will be provided at checkout.
+        {textConfig.disclaimerLabel}
       </p>
 
       <p class="artajs__modal__quotes__change">
@@ -167,7 +196,7 @@ export const Quotes = ({
               fill="#99A5B2"
             />
           </svg>
-          Change Destination
+          {textConfig.returnLinkLabel}
         </a>
       </p>
     </div>

@@ -1,3 +1,7 @@
+import { DestinationFullTextConfig } from './components/Destination';
+import { DisqualifiedFullTextConfig } from './components/Disqualified';
+import { QuoteFullTextConfig } from './components/Quotes';
+import { EstimateFullConfig } from './estimateConfig';
 import { ArtaLocation } from './MetadataTypes';
 
 export const parseEstimatedLocation = (loc: ArtaLocation): string => {
@@ -38,4 +42,44 @@ export const parseErrors = (errors: { [key: string]: string }): string[] => {
   }
 
   return errorMessages;
+};
+
+export const getQuoteConfig = (config: EstimateFullConfig): QuoteFullTextConfig => {
+  return {
+    ...config.text.quoted,
+    detailOriginLabel: config.text.detailOriginLabel,
+    detailDestinationLabel: config.text.detailDestinationLabel,
+    returnLinkLabel: config.text.returnLinkLabel
+  };
+};
+
+export const getDisqualifiedConfig = (config: EstimateFullConfig): DisqualifiedFullTextConfig => { 
+  return {
+    ...config.text.disqualified,
+    detailOriginLabel: config.text.detailOriginLabel,
+    detailDestinationLabel: config.text.detailDestinationLabel,
+    returnLinkLabel: config.text.returnLinkLabel
+  };
+};
+
+export const getDestinationConfig = (config: EstimateFullConfig): DestinationFullTextConfig => {
+  return {
+    ...config.text.destination,
+    detailOriginLabel: config.text.detailOriginLabel,
+    backgroundColor: config.style.color.backgroundColor,
+  };
+};
+
+export const getStyle = (config: EstimateFullConfig) => {
+  return {
+    '--primary-color': config.style.color.primaryColor,
+    '--primary-unfocused-color': config.style.color.primaryUnfocusedColor,
+    '--secondary-color': config.style.color.secondaryColor,
+    '--error-color': config.style.color.errorColor,
+    '--background-color': config.style.color.backgroundColor,
+    '--font-family': config.style.fontFamily,
+    '--font-size': `${config.style.fontSize}px`,
+    '--width': `${config.style.width}px`,
+    '--height': `${config.style.height}px`,
+  };
 };

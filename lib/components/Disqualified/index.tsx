@@ -2,12 +2,35 @@ import { parseEstimatedLocation } from '../../helper';
 import { QuoteRequest } from '../../requests';
 import { ModalStatus } from '../../ModalStatus';
 
+export interface DisqualifiedTextConfig {
+  shipFromLabel: string;
+  shipToLabel: string;
+  contactEmail: string;
+  emailHeaderLabel: string;
+  emailFooterLabel: string;
+}
+
+export interface DisqualifiedFullTextConfig extends DisqualifiedTextConfig {
+  detailOriginLabel: string;
+  detailDestinationLabel: string;
+  returnLinkLabel: string;
+}
+
+export const defaultDisqualifiedConfig = {
+  shipFromLabel: 'Unfortunately we could not retrieve costs for shipping these goods from:',
+  shipToLabel: 'To:',
+  contactEmail: 'hello@arta.io',
+  emailHeaderLabel: 'Please contact',
+  emailFooterLabel: 'to request a custom quote',
+};
+
 interface DisqualifiedOpts {
   quoteRequest: QuoteRequest;
+  textConfig: DisqualifiedFullTextConfig;
   setStatus: (status: ModalStatus) => void;
 }
 
-export const Disqualified = ({ quoteRequest, setStatus }: DisqualifiedOpts) => {
+export const Disqualified = ({ quoteRequest, textConfig, setStatus }: DisqualifiedOpts) => {
   const onChangeDestination = (e: any) => {
     e.preventDefault();
     setStatus(ModalStatus.OPEN);
@@ -19,33 +42,33 @@ export const Disqualified = ({ quoteRequest, setStatus }: DisqualifiedOpts) => {
   return (
     <div class="artajs__modal__quotes">
       <p class="artajs__modal__quotes__context">
-        Unfortunately we could not retrieve costs for shipping these goods from:
+        {textConfig.shipFromLabel}
       </p>
       <p class="artajs__modal__quotes__origin">
         <span>
           <span class="artajs__modal__capitalize">{parsedOrigin}</span>{' '}
-          <span class="artajs__modal__quotes__light">(origin)</span>
+          <span class="artajs__modal__quotes__light">{textConfig.detailOriginLabel}</span>
         </span>
       </p>
       <p class="artajs__modal__quotes__destination">
-        <span class="artajs__modal__quotes__small">To:</span>{' '}
+        <span class="artajs__modal__quotes__small">{textConfig.shipToLabel}</span>{' '}
         <span>
           <strong class="artajs__modal__capitalize">{parsedDestination}</strong>{' '}
-          <span class="artajs__modal__quotes__light">(destination)</span>
+          <span class="artajs__modal__quotes__light">{textConfig.detailDestinationLabel}</span>
         </span>
       </p>
       <div class="artajs__modal__quotes__box">
         <p class="artajs__modal__quotes__disqualified">
-          Please contact
+          {textConfig.emailHeaderLabel}
           <br />
           <a
             class="artajs__modal__quotes__box__link"
-            href="mailto:hello@arta.io"
+            href={`mailto:${textConfig.contactEmail}`} 
           >
-            hello@arta.io
+            {textConfig.contactEmail}
           </a>
           <br />
-          to request a custom quote
+          {textConfig.emailFooterLabel}
         </p>
       </div>
       <p class="artajs__modal__quotes__change">
@@ -64,7 +87,7 @@ export const Disqualified = ({ quoteRequest, setStatus }: DisqualifiedOpts) => {
               fill="#99A5B2"
             />
           </svg>
-          Change Destination
+          {textConfig.returnLinkLabel}
         </a>
       </p>
     </div>

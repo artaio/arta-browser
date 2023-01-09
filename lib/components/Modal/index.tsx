@@ -7,14 +7,14 @@ import './index.css';
 import { ArtaLocation } from '../../MetadataTypes';
 import { Loading } from '../Loading';
 import { Quotes } from '../Quotes';
-import { parseErrors, parseEstimatedLocation } from '../../helper';
+import { getDestinationConfig, getDisqualifiedConfig, getQuoteConfig, getStyle, parseErrors, parseEstimatedLocation } from '../../helper';
 import {
   HostedSession,
   loadHostedSessions,
   loadQuoteRequests,
   QuoteRequest,
 } from '../../requests';
-import { EstimateBody, EstimateFullConfig } from '../../estimate';
+import { EstimateBody, EstimateFullConfig } from '../../estimateConfig';
 import { Disqualified } from '../Disqualified';
 import { ModalStatus } from '../../ModalStatus';
 
@@ -25,7 +25,7 @@ interface ModalOpts {
 }
 
 export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
-  const position = config.position;
+  const position = config.style.position;
   const [destination, setDestination] = useState<ArtaLocation>();
   const [parsedOrigin, setParsedOrigin] = useState('');
   const [status, setStatus] = useState(ModalStatus.LOADING);
@@ -33,8 +33,11 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
   const [quoteRequest, setQuoteRequest] = useState<QuoteRequest>();
   const [errors, setErrors] = useState<string[]>();
 
+  const style = getStyle(config);
+
   useEffect(() => {
     (async () => {
+      setErrors([]);
       setStatus(ModalStatus.LOADING);
       const session = await loadHostedSessions(config, estimateBody);
       setHostedSession(session);
@@ -45,6 +48,7 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
 
   useEffect(() => {
     (async () => {
+      setErrors([]);
       if (!destination) {
         return;
       }
@@ -56,9 +60,11 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
         : { id: '', private_token: '', origin: estimateBody.origin };
 
       const req = await loadQuoteRequests(config, sess, esimate);
+
       if (req.err) {
         const errorMessages = parseErrors(req.err.errors);
         setErrors(errorMessages);
+        setStatus(ModalStatus.OPEN);
       } else {
         setQuoteRequest(req);
         if (req.quotes && req.quotes.length > 0) {
@@ -73,30 +79,33 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
   return (
     <div class="artajs">
       {position === 'center' && <div class="artajs__modal__backdrop" />}
-      <div class={`artajs__modal artajs__modal__${position}`}>
-        <Header onClose={onClose} title={config.title} />
-        {status === ModalStatus.LOADING && <Loading />}
+      <div class={`artajs__modal artajs__modal__${position}`} style={style}>
+        <Header onClose={onClose} title={config.text.header.title} />
+        {status === ModalStatus.LOADING && <Loading message={config.text.loading.message} />}
         {status === ModalStatus.OPEN && (
           <Destination
             parsedOrigin={parsedOrigin}
-            destinationLabel={config.destinationLabel}
-            destinationButtonText={config.destinationButtonText}
+            textConfig={getDestinationConfig(config)}
             setDestination={setDestination}
           />
         )}
         {status === ModalStatus.QUOTED && quoteRequest && (
           <Quotes
             quoteRequest={quoteRequest}
-            showCostRange={config.pricingDisplay === 'range'}
+            showCostRange={config.style.pricingDisplay === 'range'}
+            textConfig={getQuoteConfig(config)}
             setStatus={setStatus}
           />
         )}
 
         {status === ModalStatus.DISQUALIFIED && quoteRequest && (
-          <Disqualified quoteRequest={quoteRequest} setStatus={setStatus} />
+          <Disqualified 
+            quoteRequest={quoteRequest} 
+            textConfig={getDisqualifiedConfig(config)} 
+            setStatus={setStatus} />
         )}
 
-        <Footer />
+        <Footer primaryColor={config.style.color.primaryColor} poweredByButtonColor={config.style.color.poweredByButtonColor}/>
         {errors && errors.length > 0 && (
           <div class="artajs__modal__error__container">
             <div class="artajs__modal__error">
