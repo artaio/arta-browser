@@ -93,13 +93,15 @@ export interface EstimateBody {
 
 function nestedObjectAssign (target:any, ...sources: any[]) {
   sources.forEach(source => {
-    Object.keys(source).forEach(key => {
-      const s_val = source[key];
-      const t_val = target[key];
-      target[key] = t_val && s_val && typeof t_val === 'object' && typeof s_val === 'object'
-                  ? nestedObjectAssign(t_val, s_val)
-                  : s_val;
-    });
+    if(source) {
+      Object.keys(source).forEach(key => {
+        const s_val = source[key];
+        const t_val = target[key];
+        target[key] = t_val && s_val && typeof t_val === 'object' && typeof s_val === 'object'
+                    ? nestedObjectAssign(t_val, s_val)
+                    : s_val;
+      });
+    }
   });
   return target;
 }
