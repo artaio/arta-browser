@@ -17,7 +17,8 @@ export interface DisqualifiedFullTextConfig extends DisqualifiedTextConfig {
 }
 
 export const defaultDisqualifiedConfig = {
-  shipFromLabel: 'Unfortunately we could not retrieve costs for shipping these goods from:',
+  shipFromLabel:
+    'Unfortunately we could not retrieve costs for shipping these goods from:',
   shipToLabel: 'To:',
   contactEmail: 'hello@arta.io',
   emailHeaderLabel: 'Please contact',
@@ -30,7 +31,11 @@ interface DisqualifiedOpts {
   setStatus: (status: ModalStatus) => void;
 }
 
-export const Disqualified = ({ quoteRequest, textConfig, setStatus }: DisqualifiedOpts) => {
+export const Disqualified = ({
+  quoteRequest,
+  textConfig,
+  setStatus,
+}: DisqualifiedOpts) => {
   const onChangeDestination = (e: any) => {
     e.preventDefault();
     setStatus(ModalStatus.OPEN);
@@ -41,20 +46,24 @@ export const Disqualified = ({ quoteRequest, textConfig, setStatus }: Disqualifi
 
   return (
     <div class="artajs__modal__quotes">
-      <p class="artajs__modal__quotes__context">
-        {textConfig.shipFromLabel}
-      </p>
+      <p class="artajs__modal__quotes__context">{textConfig.shipFromLabel}</p>
       <p class="artajs__modal__quotes__origin">
         <span>
           <span class="artajs__modal__capitalize">{parsedOrigin}</span>{' '}
-          <span class="artajs__modal__quotes__light">{textConfig.detailOriginLabel}</span>
+          <span class="artajs__modal__quotes__light">
+            {textConfig.detailOriginLabel}
+          </span>
         </span>
       </p>
       <p class="artajs__modal__quotes__destination">
-        <span class="artajs__modal__quotes__small">{textConfig.shipToLabel}</span>{' '}
+        <span class="artajs__modal__quotes__small">
+          {textConfig.shipToLabel}
+        </span>{' '}
         <span>
           <strong class="artajs__modal__capitalize">{parsedDestination}</strong>{' '}
-          <span class="artajs__modal__quotes__light">{textConfig.detailDestinationLabel}</span>
+          <span class="artajs__modal__quotes__light">
+            {textConfig.detailDestinationLabel}
+          </span>
         </span>
       </p>
       <div class="artajs__modal__quotes__box">
@@ -63,7 +72,7 @@ export const Disqualified = ({ quoteRequest, textConfig, setStatus }: Disqualifi
           <br />
           <a
             class="artajs__modal__quotes__box__link"
-            href={`mailto:${textConfig.contactEmail}`} 
+            href={`mailto:${textConfig.contactEmail}`}
           >
             {textConfig.contactEmail}
           </a>

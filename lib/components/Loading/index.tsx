@@ -5,9 +5,7 @@ interface LoadingOpts {
 export const Loading = ({ message }: LoadingOpts) => {
   return (
     <div class="artajs__modal__loading__wrapper">
-      <div class="artajs__modal__loading__text">
-        {message}
-      </div>
+      <div class="artajs__modal__loading__text">{message}</div>
       <div class="artajs__modal__loading">
         <svg
           version="1.1"

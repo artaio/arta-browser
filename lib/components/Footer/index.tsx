@@ -3,7 +3,7 @@ interface FooterOpts {
   poweredByButtonColor: string;
 }
 
-export const Footer = ({primaryColor, poweredByButtonColor}: FooterOpts) => {
+export const Footer = ({ primaryColor, poweredByButtonColor }: FooterOpts) => {
   return (
     <div class="artajs__modal__footer">
       <a class="artajs__modal__footer__link" href="https://arta.io/">

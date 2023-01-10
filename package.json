@@ -1,5 +1,5 @@
 {
-  "name": "arta-browser",
+  "name": "@artaio/arta-browser",
   "version": "2.0.0",
   "description": "",
   "source": "lib/index.ts",
@@ -7,9 +7,11 @@
   "main": "./dist/index.js",
   "module": "./dist/arta.module.js",
   "unpkg": "./dist/arta.umd.js",
-  "files": ["dist/**/*"],
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run lint",
     "build": "npm run build:cdn && npm run build:npm",
     "build:npm": "./build-npm.sh && copyfiles -u 1 \"./lib/**/*.css\" \"./dist/\"",
     "build:cdn": "microbundle -i lib/index.ts -o dist/bundle.js --external none --no-pkg-main -f umd --no-sourcemap --css inline",

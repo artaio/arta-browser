@@ -7,7 +7,14 @@ import css from './index.css';
 import { ArtaLocation } from '../../MetadataTypes';
 import { Loading } from '../Loading';
 import { Quotes } from '../Quotes';
-import { getDestinationConfig, getDisqualifiedConfig, getQuoteConfig, getStyle, parseErrors, parseEstimatedLocation } from '../../helper';
+import {
+  getDestinationConfig,
+  getDisqualifiedConfig,
+  getQuoteConfig,
+  getStyle,
+  parseErrors,
+  parseEstimatedLocation,
+} from '../../helper';
 import {
   HostedSession,
   loadHostedSessions,
@@ -78,48 +85,53 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
 
   return (
     <div>
-    <style>{css}</style>
-    <div class="artajs">
-      {position === 'center' && <div class="artajs__modal__backdrop" />}
-      <div class={`artajs__modal artajs__modal__${position}`} style={style}>
-        <Header onClose={onClose} title={config.text.header.title} />
-        {status === ModalStatus.LOADING && <Loading message={config.text.loading.message} />}
-        {status === ModalStatus.OPEN && (
-          <Destination
-            parsedOrigin={parsedOrigin}
-            textConfig={getDestinationConfig(config)}
-            setDestination={setDestination}
-          />
-        )}
-        {status === ModalStatus.QUOTED && quoteRequest && (
-          <Quotes
-            quoteRequest={quoteRequest}
-            showCostRange={config.style.pricingDisplay === 'range'}
-            textConfig={getQuoteConfig(config)}
-            setStatus={setStatus}
-          />
-        )}
+      <style>{css}</style>
+      <div class="artajs">
+        {position === 'center' && <div class="artajs__modal__backdrop" />}
+        <div class={`artajs__modal artajs__modal__${position}`} style={style}>
+          <Header onClose={onClose} title={config.text.header.title} />
+          {status === ModalStatus.LOADING && (
+            <Loading message={config.text.loading.message} />
+          )}
+          {status === ModalStatus.OPEN && (
+            <Destination
+              parsedOrigin={parsedOrigin}
+              textConfig={getDestinationConfig(config)}
+              setDestination={setDestination}
+            />
+          )}
+          {status === ModalStatus.QUOTED && quoteRequest && (
+            <Quotes
+              quoteRequest={quoteRequest}
+              showCostRange={config.style.pricingDisplay === 'range'}
+              textConfig={getQuoteConfig(config)}
+              setStatus={setStatus}
+            />
+          )}
 
-        {status === ModalStatus.DISQUALIFIED && quoteRequest && (
-          <Disqualified 
-            quoteRequest={quoteRequest} 
-            textConfig={getDisqualifiedConfig(config)} 
-            setStatus={setStatus} />
-        )}
+          {status === ModalStatus.DISQUALIFIED && quoteRequest && (
+            <Disqualified
+              quoteRequest={quoteRequest}
+              textConfig={getDisqualifiedConfig(config)}
+              setStatus={setStatus}
+            />
+          )}
 
-        <Footer primaryColor={config.style.color.primaryColor} poweredByButtonColor={config.style.color.poweredByButtonColor}/>
-        {errors && errors.length > 0 && (
-          <div class="artajs__modal__error__container">
-            <div class="artajs__modal__error">
-              {errors.map((error: string, i: number) => {
-                return <span key={`arta-error-${i}`}>{error}</span>;
-              })}
+          <Footer
+            primaryColor={config.style.color.primaryColor}
+            poweredByButtonColor={config.style.color.poweredByButtonColor}
+          />
+          {errors && errors.length > 0 && (
+            <div class="artajs__modal__error__container">
+              <div class="artajs__modal__error">
+                {errors.map((error: string, i: number) => {
+                  return <span key={`arta-error-${i}`}>{error}</span>;
+                })}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
-    </div>
-
   );
 };

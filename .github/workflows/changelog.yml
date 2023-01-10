@@ -1,0 +1,19 @@
+name: Changelog
+on:
+  push:
+    branches:
+      - main
+jobs:
+  changelog:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Conventional Changelog Action
+      uses: TriPSs/conventional-changelog-action@v3
+      with:
+        github-token: ${{ secrets.github_token }}
+        skip-git-pull: "true"
