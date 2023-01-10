@@ -17,3 +17,17 @@ jobs:
       with:
         github-token: ${{ secrets.github_token }}
         skip-git-pull: "true"
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js latest
+      uses: actions/setup-node@v3
+      with:
+        node-version: latest
+
+    - run: npm install
+    - run: npm run build
+    - run: npm publish --access public
+        NODE_AUTH_TOKENM: ${{ secrets.NPM_TOKEN }}
