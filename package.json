@@ -3,10 +3,7 @@
   "version": "2.0.0",
   "description": "",
   "source": "lib/index.ts",
-  "exports": "./dist/arta.modern.js",
   "main": "./dist/index.js",
-  "module": "./dist/arta.module.js",
-  "unpkg": "./dist/arta.umd.js",
   "files": [
     "dist/**/*"
   ],
