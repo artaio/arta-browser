@@ -29,6 +29,7 @@ jobs:
 
     - run: npm install
     - run: npm run build
+    - run: npm config set registry https://registry.npmjs.org 
     - run: npm config set _authToken=${{ secrets.NPM_TOKEN }}
     - run: npm publish --access public
       env:
