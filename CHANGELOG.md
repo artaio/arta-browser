@@ -1,4 +1,13 @@
-# 2.1.0 (2023-01-10)
+# [2.2.0](https://github.com/artaio/arta-browser/compare/v2.1.0...v2.2.0) (2023-01-10)
+
+
+### Features
+
+* adds npm deployment ([#5](https://github.com/artaio/arta-browser/issues/5)) ([b699705](https://github.com/artaio/arta-browser/commit/b6997051c04de6d58318448bf4d019b2bc888ff1))
+
+
+
+# [2.1.0](https://github.com/artaio/arta-browser/compare/f4312b3cfac5460daa19440b0c536e8e223a5cd9...v2.1.0) (2023-01-10)
 
 
 ### Bug Fixes
