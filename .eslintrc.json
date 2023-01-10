@@ -23,7 +23,9 @@
     "**/dist/**",
     "**/coverage/**",
     "jest.config.js",
-    "**/example/**"
+    "**/example/**",
+    "**/example_html/**"
+
   ],
   "rules": {
     "semi": "off",

@@ -74,7 +74,9 @@ export const Destination = ({
         {parsedOrigin ? (
           <span>
             <span class="artajs__modal__capitalize">{parsedOrigin}</span>{' '}
-            <span class="artajs__modal__form__light">{textConfig.detailOriginLabel}</span>
+            <span class="artajs__modal__form__light">
+              {textConfig.detailOriginLabel}
+            </span>
           </span>
         ) : (
           <span>...</span>
@@ -123,9 +125,7 @@ export const Destination = ({
               value={postalCode}
             />
             <span>
-              {isWithoutPostal
-                ? textConfig.cityLabel
-                : textConfig.zipLabel}
+              {isWithoutPostal ? textConfig.cityLabel : textConfig.zipLabel}
             </span>
           </label>
         </div>

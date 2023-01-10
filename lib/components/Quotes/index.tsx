@@ -4,7 +4,6 @@ import { parseEstimatedLocation } from '../../helper';
 import currencies from './currencies';
 import { ModalStatus } from '../../ModalStatus';
 
-
 export const defaultQuoteConfig = {
   shipFromLabel: 'These goods ship from:',
   shipToLabel: 'To:',
@@ -72,17 +71,23 @@ export const Quotes = ({
       <p class="artajs__modal__quotes__origin">
         <span>
           <span class="artajs__modal__capitalize">{parsedOrigin}</span>{' '}
-          <span class="artajs__modal__quotes__light">{textConfig.detailOriginLabel}</span>
+          <span class="artajs__modal__quotes__light">
+            {textConfig.detailOriginLabel}
+          </span>
         </span>
       </p>
       <p class="artajs__modal__quotes__destination">
-        <span class="artajs__modal__quotes__small">{textConfig.shipToLabel}</span>{' '}
+        <span class="artajs__modal__quotes__small">
+          {textConfig.shipToLabel}
+        </span>{' '}
         {parsedDestination ? (
           <span>
             <strong class="artajs__modal__capitalize">
               {parsedDestination}
             </strong>{' '}
-            <span class="artajs__modal__quotes__light">{textConfig.detailDestinationLabel}</span>
+            <span class="artajs__modal__quotes__light">
+              {textConfig.detailDestinationLabel}
+            </span>
           </span>
         ) : (
           <span>...</span>
@@ -95,9 +100,7 @@ export const Quotes = ({
             !isInternational ? 'artajs__modal__quotes__box__padding__y' : ''
           }`}
         >
-          <p class="artajs__modal__quotes__context">
-            {textConfig.rangeLabel}
-          </p>
+          <p class="artajs__modal__quotes__context">{textConfig.rangeLabel}</p>
           <div class="artajs__modal__quotes__price">
             <div class="artajs__modal__quotes__price__amount">
               {currencySymbol}
@@ -139,7 +142,9 @@ export const Quotes = ({
             !isInternational ? 'artajs__modal__quotes__box__padding__y' : ''
           }`}
         >
-          <p class="artajs__modal__quotes__context">{textConfig.startsAtLabel}</p>
+          <p class="artajs__modal__quotes__context">
+            {textConfig.startsAtLabel}
+          </p>
           <div class="artajs__modal__quotes__price">
             <div class="artajs__modal__quotes__price__amount">
               {currencySymbol}

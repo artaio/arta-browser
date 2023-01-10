@@ -44,25 +44,31 @@ export const parseErrors = (errors: { [key: string]: string }): string[] => {
   return errorMessages;
 };
 
-export const getQuoteConfig = (config: EstimateFullConfig): QuoteFullTextConfig => {
+export const getQuoteConfig = (
+  config: EstimateFullConfig
+): QuoteFullTextConfig => {
   return {
     ...config.text.quoted,
     detailOriginLabel: config.text.detailOriginLabel,
     detailDestinationLabel: config.text.detailDestinationLabel,
-    returnLinkLabel: config.text.returnLinkLabel
+    returnLinkLabel: config.text.returnLinkLabel,
   };
 };
 
-export const getDisqualifiedConfig = (config: EstimateFullConfig): DisqualifiedFullTextConfig => { 
+export const getDisqualifiedConfig = (
+  config: EstimateFullConfig
+): DisqualifiedFullTextConfig => {
   return {
     ...config.text.disqualified,
     detailOriginLabel: config.text.detailOriginLabel,
     detailDestinationLabel: config.text.detailDestinationLabel,
-    returnLinkLabel: config.text.returnLinkLabel
+    returnLinkLabel: config.text.returnLinkLabel,
   };
 };
 
-export const getDestinationConfig = (config: EstimateFullConfig): DestinationFullTextConfig => {
+export const getDestinationConfig = (
+  config: EstimateFullConfig
+): DestinationFullTextConfig => {
   return {
     ...config.text.destination,
     detailOriginLabel: config.text.detailOriginLabel,
