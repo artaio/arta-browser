@@ -1,3 +1,12 @@
+## [2.2.1](https://github.com/artaio/arta-browser/compare/v2.2.0...v2.2.1) (2023-01-11)
+
+
+### Bug Fixes
+
+* allows for empty config parameter ([#6](https://github.com/artaio/arta-browser/issues/6)) ([67673f8](https://github.com/artaio/arta-browser/commit/67673f83ab1e5d300b6f7b1aeab929261315811d))
+
+
+
 # [2.2.0](https://github.com/artaio/arta-browser/compare/v2.1.0...v2.2.0) (2023-01-10)
 
 
