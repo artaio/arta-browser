@@ -30,7 +30,7 @@ export default class Arta {
 
   public estimate(
     estimateBody: EstimateBody,
-    esimateConfig?: Partial<EstimateConfig>
+    esimateConfig: Partial<EstimateConfig> = {}
   ) {
     if (this.config && this.el) {
       const fullEstimateConfig = getFullConfig(this.config, esimateConfig);
