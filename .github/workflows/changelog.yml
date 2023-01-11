@@ -25,6 +25,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Sleep for 30 seconds
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '15s'
+
     - uses: actions/checkout@v3
     - name: Use Node.js latest
       uses: actions/setup-node@v3
