@@ -18,6 +18,7 @@ jobs:
         github-token: ${{ secrets.github_token }}
         skip-git-pull: "true"
   publish:
+    needs: changelog
     runs-on: ubuntu-latest
 
     steps:
