@@ -28,7 +28,7 @@ jobs:
     - name: Sleep for 30 seconds
       uses: jakejarvis/wait-action@master
       with:
-        time: '15s'
+        time: '120s'
 
     - uses: actions/checkout@v3
     - name: Use Node.js latest
