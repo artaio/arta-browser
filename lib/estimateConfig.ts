@@ -127,8 +127,5 @@ export const getFullConfig = (
     },
     estimateConfig
   );
-
-  console.log('final config', finalConfig);
-
   return finalConfig;
 };

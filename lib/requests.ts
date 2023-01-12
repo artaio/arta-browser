@@ -114,5 +114,5 @@ export const validateEstimateBody = async (
   const path = '/estimate/validate';
   const body = JSON.stringify({ estimate: estimateBody });
   const res = await artaRequest(path, config, body);
-  return !res.errors || res.errors.length === 0;
+  return res.err?.errors;
 };
