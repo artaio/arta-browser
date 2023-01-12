@@ -1,3 +1,12 @@
+## [2.2.6](https://github.com/artaio/arta-browser/compare/v2.2.5...v2.2.6) (2023-01-12)
+
+
+### Bug Fixes
+
+* validate throws on error ([#13](https://github.com/artaio/arta-browser/issues/13)) ([48b6603](https://github.com/artaio/arta-browser/commit/48b6603dcb4274c480c1682467344c2379e5c80d))
+
+
+
 ## [2.2.5](https://github.com/artaio/arta-browser/compare/v2.2.4...v2.2.5) (2023-01-11)
 
 
