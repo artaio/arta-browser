@@ -28,7 +28,10 @@ export default class Estimate {
   }
 
   public async validate() {
-    await validateEstimateBody(this.config, this.estimateBody);
+    const errors = await validateEstimateBody(this.config, this.estimateBody);
+    if(errors && Object.keys(errors).length > 0) {
+      return Promise.reject(errors);
+    };
     this.ready = true;
   }
 }
