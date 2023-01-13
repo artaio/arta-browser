@@ -1,3 +1,12 @@
+## [2.3.1](https://github.com/artaio/arta-browser/compare/v2.3.0...v2.3.1) (2023-01-13)
+
+
+### Bug Fixes
+
+* fixes missing deep copy on default config ([#15](https://github.com/artaio/arta-browser/issues/15)) ([2d58a8b](https://github.com/artaio/arta-browser/commit/2d58a8bac91d924d2b50cd1fabb96c2de4a79de9))
+
+
+
 # [2.3.0](https://github.com/artaio/arta-browser/compare/v2.2.6...v2.3.0) (2023-01-13)
 
 
