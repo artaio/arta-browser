@@ -4,7 +4,8 @@ import { EstimateBody, EstimateFullConfig } from './estimateConfig';
 import { validateEstimateBody } from './requests';
 
 export default class Estimate {
-  public ready = false;
+  public isReady = false;
+  public isOpen = false;
   constructor(
     private readonly estimateBody: EstimateBody,
     private readonly config: EstimateFullConfig,
@@ -20,11 +21,18 @@ export default class Estimate {
       />,
       this.el
     );
+    this.isOpen = true;
+  }
+
+  public close() {
+    render(<div></div>, this.el);
+    this.isOpen = false;
   }
 
   public onClose(e: any) {
     e.preventDefault();
-    render(<div></div>, this.el);
+    this.close();
+    this.isOpen = false;
   }
 
   public async validate() {
@@ -32,6 +40,6 @@ export default class Estimate {
     if(errors && Object.keys(errors).length > 0) {
       return Promise.reject(errors);
     };
-    this.ready = true;
+    this.isReady = true;
   }
 }
