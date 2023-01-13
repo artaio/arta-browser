@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/artaio/arta-browser/compare/v2.2.6...v2.3.0) (2023-01-13)
+
+
+### Features
+
+* adds close function and isOpen state ([#14](https://github.com/artaio/arta-browser/issues/14)) ([e855419](https://github.com/artaio/arta-browser/commit/e855419b10655e64f34f66770ac2060d51979354))
+
+
+
 ## [2.2.6](https://github.com/artaio/arta-browser/compare/v2.2.5...v2.2.6) (2023-01-12)
 
 
