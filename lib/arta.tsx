@@ -34,7 +34,6 @@ export default class Arta {
   ) {
     if (this.config && this.el) {
       const fullEstimateConfig = getFullConfig(this.config, esimateConfig);
-
       return new Estimate(estimateBody, fullEstimateConfig, this.el);
     } else {
       throw new Error(
