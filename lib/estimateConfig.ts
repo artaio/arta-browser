@@ -120,7 +120,6 @@ export const getFullConfig = (
   artaConfig: ArtaJsFullConfig,
   estimateConfig?: Partial<EstimateConfig>
 ): EstimateFullConfig => {
-  console.log('the default', defaultEstimateConfig);
   const defaultClone = JSON.parse(JSON.stringify(defaultEstimateConfig));
   const finalConfig = nestedObjectAssign(
     defaultClone,

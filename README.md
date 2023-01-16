@@ -1,3 +1,7 @@
+### Pre-release notice
+
+arta-browser is in a pre-release beta. The package's API is unstable and expected to change prior to public release. Please only make use of the package in coordination with ARTA during this period.
+
 # arta-browser
 
 Our Estimates widget allows you to display non-bookable shipping estimates to your customers during the product discovery phase, in order to give your customers the all-in cost insights they’re looking for. Our mobile-friendly javascript widget is easy to set up and is designed to reduce drop-offs, caused by surprise shipping costs, further down the conversion funnel.
