@@ -34,3 +34,29 @@ And you can then import `Arta` object for example:
 ```js
 import Arta from '@artaio/arta-browser';
 ```
+
+### Basic Usage
+```jsx
+import Arta from '@artaio/arta-browser';
+
+// On load
+Arta.init('<YOUR_API_KEY>');
+... // Your code
+
+// On widget display
+const estimate = Arta.estimate({origin, objects}, config); // check types for more details
+await esimate.validate(); // mandatory for setting estimate.isReady
+
+// estimate.open() will render the widget
+esimate.isRead && <Button onClick={() => estimate.open()}> 
+```
+For more details and examples using different frontend frameworks please check https://github.com/artaio/arta-browser-examples .
+
+## Contributing
+
+Please ensure that all the examples available on https://github.com/artaio/arta-browser-examples are still working before opening a PR.
+
+### Development
+To develop a new function on the SDK, run `npm install` to install all the dependencies and then run `npm run build` and the compiled JS code will be stored in the `dist/` folder which is the folder with the content published to NPM.
+
+Please be aware that the current CI setup publishes both the compiled JS code and the bundled version. Then, we use https://www.jsdelivr.com/ to distribute the bundled version stored in NPM.
