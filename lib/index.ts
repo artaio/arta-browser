@@ -9,5 +9,6 @@ init();
 
 export * from './arta';
 export * from './estimate';
+export type { EstimateConfig, EstimateBody } from './estimateConfig';
 
 export default (<any>window).Arta as Arta;
