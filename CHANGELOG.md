@@ -1,3 +1,12 @@
+## [2.3.5](https://github.com/artaio/arta-browser/compare/v2.3.4...v2.3.5) (2023-11-15)
+
+
+### Bug Fixes
+
+* expose Arta object typings ([#18](https://github.com/artaio/arta-browser/issues/18)) ([bd42392](https://github.com/artaio/arta-browser/commit/bd4239214957e2f8ae6836fc74a61c80532bbb2b))
+
+
+
 ## [2.3.4](https://github.com/artaio/arta-browser/compare/v2.3.3...v2.3.4) (2023-01-19)
 
 
