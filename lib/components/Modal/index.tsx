@@ -89,9 +89,9 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
       <div class="artajs">
         {position === 'center' && <div class="artajs__modal__backdrop" />}
         <div class={`artajs__modal artajs__modal__${position}`} style={style}>
-          <Header onClose={onClose} title={config.text.header.title} />
+          <Header onClose={onClose} title={config.text.header.title} lineColor={config.style.color.border} />
           {status === ModalStatus.LOADING && (
-            <Loading message={config.text.loading.message} />
+            <Loading />
           )}
           {status === ModalStatus.OPEN && (
             <Destination
@@ -117,10 +117,7 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
             />
           )}
 
-          <Footer
-            primaryColor={config.style.color.primaryColor}
-            poweredByButtonColor={config.style.color.poweredByButtonColor}
-          />
+          <Footer />
           {errors && errors.length > 0 && (
             <div class="artajs__modal__error__container">
               <div class="artajs__modal__error">

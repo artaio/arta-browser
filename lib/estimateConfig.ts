@@ -32,12 +32,20 @@ export interface EstimateBody {
 export interface EstimateConfig {
   style: {
     color: {
-      primaryColor: string;
-      primaryUnfocusedColor: string;
-      secondaryColor: string;
+      background: string;
+      textPrimary: string;
+      textSecondary: string;
+      border: string;
+      borderHover: string;
+      borderFocused: string;
+      buttonBackground: string;
+      buttonBackgroundHover: string;
+      buttonBackgroundDisabled: string;
+      buttonText: string;
+      buttonTextHover: string;
+      buttonTextDisabled: string;
+      quoteBackground: string;
       errorColor: string;
-      backgroundColor: string;
-      poweredByButtonColor: string;
     };
     position: 'center' | 'left' | 'right';
     pricingDisplay: 'starts_at' | 'range';
@@ -53,9 +61,6 @@ export interface EstimateConfig {
     header: {
       title: string;
     };
-    loading: {
-      message: string;
-    };
     destination: DestinationTextConfig;
     quoted: QuoteTextConfig;
     disqualified: DisqualifiedTextConfig;
@@ -67,27 +72,32 @@ export interface EstimateFullConfig extends EstimateConfig, ArtaJsFullConfig {}
 export const defaultEstimateConfig: EstimateConfig = {
   style: {
     color: {
-      primaryColor: '#001F3F',
-      primaryUnfocusedColor: '#4d6279',
-      secondaryColor: '#99A5B2',
-      errorColor: '#D84242',
-      backgroundColor: 'white',
-      poweredByButtonColor: '#F5F6F7',
+      background: '#FFFFFF',
+      textPrimary: '#110F10',
+      textSecondary: '#6F6C65',
+      border: '#D7D6D0',
+      borderHover: '#6F6C65',
+      borderFocused: '#110F10',
+      buttonBackground: '#110F10',
+      buttonBackgroundHover: '#6F6C65',
+      buttonBackgroundDisabled: '#F2F2F2',
+      buttonText: '#FFFFFF',
+      buttonTextHover: '#FFFFFF',
+      buttonTextDisabled: '#9D9D9D',
+      quoteBackground: '#F2F2F2',
+      errorColor: 'red',
     },
     position: 'right',
     pricingDisplay: 'starts_at',
-    fontFamily: 'Arial, Helvetica, sans-serif',
-    fontSize: 12,
-    width: 300,
-    height: 432,
+    fontFamily: 'Neue Haas Grotesk Text Pro, Arial, Helvetica, sans-serif',
+    fontSize: 14,
+    width: 320,
+    height: 467,
   },
   text: {
     detailOriginLabel: '(origin)',
     detailDestinationLabel: '(destination)',
     returnLinkLabel: 'Change Destination',
-    loading: {
-      message: 'Retrieving shipping costs...',
-    },
     header: {
       title: 'Estimate Shipping Costs',
     },

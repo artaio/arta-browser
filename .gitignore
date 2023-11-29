@@ -2,3 +2,4 @@ node_modules/
 dist/
 example/
 example_html
+watch.js
