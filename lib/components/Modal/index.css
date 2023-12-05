@@ -334,10 +334,11 @@
 .artajs__modal p.artajs__modal__quotes__disqualified {
   font-size: calc(var(--font-size) + 4px);
   line-height: 24px;
+  color: var(--text-primary);
 }
 
 .artajs__modal a.artajs__modal__quotes__box__link {
-  color: #fff;
+  color: var(--text-secondary);
   cursor: pointer;
   text-decoration: underline;
 }
