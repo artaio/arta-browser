@@ -82,20 +82,9 @@ export const Disqualified = ({
       </div>
       <p class="artajs__modal__quotes__change">
         <a onClick={onChangeDestination} href="#">
-          <svg
-            width="20"
-            height="8"
-            viewBox="0 0 20 8"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M3.58562 7.46419C3.97614 7.85471 4.60931 7.85471 4.99983 7.46419C5.39036 7.07366 5.39036 6.4405 4.99983 6.04997L3.80697 4.85706L18.9999 4.85706C19.5522 4.85706 19.9999 4.40934 19.9999 3.85706C19.9999 3.30477 19.5522 2.85706 18.9999 2.85706L3.84988 2.85706L4.99993 1.70705C5.39045 1.31653 5.39045 0.683363 4.99993 0.292839C4.6094 -0.0976858 3.97624 -0.0976858 3.58571 0.292839L4.62519e-08 3.87847L3.58562 7.46419Z"
-              fill="#99A5B2"
-            />
-          </svg>
+
+          <svg height="32" id="chevron-left" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z"/></svg>
+
           {textConfig.returnLinkLabel}
         </a>
       </p>

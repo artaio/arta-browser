@@ -72,17 +72,27 @@ export const getDestinationConfig = (
   return {
     ...config.text.destination,
     detailOriginLabel: config.text.detailOriginLabel,
-    backgroundColor: config.style.color.backgroundColor,
+    background: config.style.color.background,
   };
 };
 
 export const getStyle = (config: EstimateFullConfig) => {
   return {
-    '--primary-color': config.style.color.primaryColor,
-    '--primary-unfocused-color': config.style.color.primaryUnfocusedColor,
-    '--secondary-color': config.style.color.secondaryColor,
+    '--background': config.style.color.background,
+    '--text-primary': config.style.color.textPrimary,
+    '--text-secondary': config.style.color.textSecondary,
+    '--border': config.style.color.border,
+    '--border-hover': config.style.color.borderHover,
+    '--border-focused': config.style.color.borderFocused,
+    '--button-background': config.style.color.buttonBackground,
+    '--button-background-hover': config.style.color.buttonBackgroundHover,
+    '--button-background-disabled': config.style.color.buttonBackgroundDisabled,
+    '--button-text': config.style.color.buttonText,
+    '--button-text-hover': config.style.color.buttonTextHover,
+    '--button-text-disabled': config.style.color.buttonTextDisabled,
+    '--quote-background': config.style.color.quoteBackground,
+
     '--error-color': config.style.color.errorColor,
-    '--background-color': config.style.color.backgroundColor,
     '--font-family': config.style.fontFamily,
     '--font-size': `${config.style.fontSize}px`,
     '--width': `${config.style.width}px`,
