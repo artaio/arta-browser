@@ -311,24 +311,9 @@
 
 .artajs__modal p.artajs__modal__quotes__disclaimer {
   display: block;
-  font-size: calc(var(--font-size) - 3px);
-  line-height: 10px;
-}
-
-.artajs__modal div.artajs__modal__quotes__insurance {
-  align-items: baseline;
-  display: flex;
-  padding-top: 5px;
-}
-
-.artajs__modal div.artajs__modal__quotes__insurance svg {
-  margin-right: 2px;
-}
-
-.artajs__modal div.artajs__modal__quotes__insurance p {
   font-size: calc(var(--font-size) - 2px);
   font-style: italic;
-  line-height: 10px;
+  line-height: 15px;
 }
 
 .artajs__modal p.artajs__modal__quotes__disqualified {

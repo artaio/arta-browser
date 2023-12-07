@@ -10,7 +10,7 @@ export const defaultQuoteConfig = {
   disclaimerLabel: 'Actual shipping costs will be provided at checkout.',
   rangeLabel: 'Shipping estimated between',
   startsAtLabel: 'Shipping Starts at',
-  artaInsuranceLabel: 'This estimate includes ARTA Full Risk Insurance',
+  artaInsuranceLabel: 'This estimate includes ARTA Transit Insurance.',
 };
 
 export interface QuoteTextConfig {
@@ -110,27 +110,8 @@ export const Quotes = ({
           </div>
           {isInternational && (
             <p class="artajs__modal__quotes__disclaimer">
-              {textConfig.disclaimerLabel}
+              {hasInsurance ? `${textConfig.artaInsuranceLabel} ${textConfig.disclaimerLabel}` : textConfig.disclaimerLabel}
             </p>
-          )}
-          {hasInsurance && (
-            <div class="artajs__modal__quotes__insurance">
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 11 11"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M9.48465 2.79298C9.87517 3.1835 9.87518 3.81666 9.48465 4.20719L4.56126 9.13062C4.37166 9.32022 4.11386 9.42574 3.84574 9.42348C3.57761 9.42123 3.32163 9.31139 3.13525 9.11863L1.10866 7.02269C0.72476 6.62566 0.73541 5.99258 1.13245 5.60868C1.52948 5.22478 2.16256 5.23543 2.54646 5.63247L3.86614 6.99731L8.07043 2.79298C8.46096 2.40246 9.09412 2.40245 9.48465 2.79298Z"
-                  fill="white"
-                />
-              </svg>
-              <p>{textConfig.artaInsuranceLabel}</p>
-            </div>
           )}
         </div>
       ) : (
@@ -152,27 +133,8 @@ export const Quotes = ({
           </div>
           {isInternational && (
             <p class="artajs__modal__quotes__disclaimer">
-              {textConfig.disclaimerLabel}
+              {hasInsurance ? `${textConfig.artaInsuranceLabel} ${textConfig.disclaimerLabel}` : textConfig.disclaimerLabel}
             </p>
-          )}
-          {hasInsurance && (
-            <div class="artajs__modal__quotes__insurance">
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 11 11"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M9.48465 2.79298C9.87517 3.1835 9.87518 3.81666 9.48465 4.20719L4.56126 9.13062C4.37166 9.32022 4.11386 9.42574 3.84574 9.42348C3.57761 9.42123 3.32163 9.31139 3.13525 9.11863L1.10866 7.02269C0.72476 6.62566 0.73541 5.99258 1.13245 5.60868C1.52948 5.22478 2.16256 5.23543 2.54646 5.63247L3.86614 6.99731L8.07043 2.79298C8.46096 2.40246 9.09412 2.40245 9.48465 2.79298Z"
-                  fill="white"
-                />
-              </svg>
-              <p>{textConfig.artaInsuranceLabel}</p>
-            </div>
           )}
         </div>
       )}
