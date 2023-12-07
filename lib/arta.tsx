@@ -1,4 +1,4 @@
-import { EstimateBody, EstimateConfig, getFullConfig } from './estimateConfig';
+import { EstimateBody, PartialEstimateConfig, getFullConfig } from './estimateConfig';
 import Estimate from './estimate';
 
 export interface ArtaJsConfig {
@@ -30,7 +30,7 @@ export default class Arta {
 
   public estimate(
     estimateBody: EstimateBody,
-    esimateConfig: Partial<EstimateConfig> = {}
+    esimateConfig: PartialEstimateConfig = {}
   ) {
     if (this.config && this.el) {
       const fullEstimateConfig = getFullConfig(this.config, esimateConfig);

@@ -67,6 +67,12 @@ export interface EstimateConfig {
   };
 }
 
+type DeepPartial<T> = T extends object ? {
+  [P in keyof T]?: DeepPartial<T[P]>;
+} : T;
+
+export type PartialEstimateConfig = DeepPartial<EstimateConfig>;
+
 export interface EstimateFullConfig extends EstimateConfig, ArtaJsFullConfig {}
 
 export const defaultEstimateConfig: EstimateConfig = {
@@ -85,7 +91,7 @@ export const defaultEstimateConfig: EstimateConfig = {
       buttonTextHover: '#FFFFFF',
       buttonTextDisabled: '#9D9D9D',
       quoteBackground: '#F2F2F2',
-      errorColor: 'red',
+      errorColor: '#E90707',
     },
     position: 'right',
     pricingDisplay: 'starts_at',
@@ -128,9 +134,9 @@ function nestedObjectAssign(target: any, ...sources: any[]) {
 
 export const getFullConfig = (
   artaConfig: ArtaJsFullConfig,
-  estimateConfig?: Partial<EstimateConfig>
+  estimateConfig?: PartialEstimateConfig
 ): EstimateFullConfig => {
-  const defaultClone = JSON.parse(JSON.stringify(defaultEstimateConfig));
+  const defaultClone: EstimateConfig = JSON.parse(JSON.stringify(defaultEstimateConfig));
   const finalConfig = nestedObjectAssign(
     defaultClone,
     artaConfig,
