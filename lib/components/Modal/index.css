@@ -317,7 +317,7 @@
 }
 
 .artajs__modal p.artajs__modal__quotes__disqualified {
-  font-size: calc(var(--font-size) + 4px);
+  font-size: calc(var(--font-size) + 2px);
   line-height: 24px;
   color: var(--text-primary);
 }

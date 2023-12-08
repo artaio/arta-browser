@@ -68,16 +68,14 @@ export const Disqualified = ({
       </p>
       <div class="artajs__modal__quotes__box">
         <p class="artajs__modal__quotes__disqualified">
-          {textConfig.emailHeaderLabel}
-          <br />
+          {textConfig.emailHeaderLabel + ' '}
           <a
             class="artajs__modal__quotes__box__link"
             href={`mailto:${textConfig.contactEmail}`}
           >
             {textConfig.contactEmail}
           </a>
-          <br />
-          {textConfig.emailFooterLabel}
+          {' ' + textConfig.emailFooterLabel}
         </p>
       </div>
       <p class="artajs__modal__quotes__change">

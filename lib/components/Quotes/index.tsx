@@ -99,11 +99,11 @@ export const Quotes = ({
         >
           <p class="artajs__modal__quotes__context">{textConfig.rangeLabel}</p>
           <div class="artajs__modal__quotes__price">
-            <div class="artajs__modal__quotes__price__amount">
+            <strong class="artajs__modal__quotes__price__amount">
               {currencySymbol}
               {Math.round(quotes[0].total)} - {currencySymbol}
               {Math.round(quotes[quotes.length - 1].total)}
-            </div>
+            </strong>
             <div class="artajs__modal__quotes__price__currency_code">
               {quoteRequest.currency}
             </div>
@@ -123,10 +123,10 @@ export const Quotes = ({
             {textConfig.startsAtLabel}
           </p>
           <div class="artajs__modal__quotes__price">
-            <div class="artajs__modal__quotes__price__amount">
+            <strong class="artajs__modal__quotes__price__amount">
               {currencySymbol}
               {Math.round(quotes[0].total)}
-            </div>
+            </strong>
             <div class="artajs__modal__quotes__price__currency_code">
               {quoteRequest.currency}
             </div>
