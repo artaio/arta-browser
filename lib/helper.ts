@@ -91,8 +91,8 @@ export const getStyle = (config: EstimateFullConfig) => {
     '--button-text-hover': config.style.color.buttonTextHover,
     '--button-text-disabled': config.style.color.buttonTextDisabled,
     '--quote-background': config.style.color.quoteBackground,
-
-    '--error-color': config.style.color.errorColor,
+    '--error-text': config.style.color.errorText,
+    '--error-background': config.style.color.errorBackground,
     '--font-family': config.style.fontFamily,
     '--font-size': `${config.style.fontSize}px`,
     '--width': `${config.style.width}px`,

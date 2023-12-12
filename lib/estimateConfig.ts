@@ -45,7 +45,8 @@ export interface EstimateConfig {
       buttonTextHover: string;
       buttonTextDisabled: string;
       quoteBackground: string;
-      errorColor: string;
+      errorText: string;
+      errorBackground: string;
     };
     position: 'center' | 'left' | 'right';
     pricingDisplay: 'starts_at' | 'range';
@@ -91,7 +92,8 @@ export const defaultEstimateConfig: EstimateConfig = {
       buttonTextHover: '#FFFFFF',
       buttonTextDisabled: '#9D9D9D',
       quoteBackground: '#F2F2F2',
-      errorColor: '#E90707',
+      errorText: '#822828',
+      errorBackground: '#FBECEC',
     },
     position: 'right',
     pricingDisplay: 'starts_at',
