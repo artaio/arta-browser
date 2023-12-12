@@ -1,3 +1,12 @@
+## [2.3.11](https://github.com/artaio/arta-browser/compare/v2.3.10...v2.3.11) (2023-12-12)
+
+
+### Bug Fixes
+
+* improve error form ([#24](https://github.com/artaio/arta-browser/issues/24)) ([b74f513](https://github.com/artaio/arta-browser/commit/b74f513cac543f7f921c59b5be04b4243aa849dd))
+
+
+
 ## [2.3.10](https://github.com/artaio/arta-browser/compare/v2.3.9...v2.3.10) (2023-12-08)
 
 
