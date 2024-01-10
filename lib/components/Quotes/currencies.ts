@@ -15,6 +15,11 @@ const currencies = [
     symbol: '£',
   },
   {
+    id: 'HKD',
+    name: 'Hong Kong Dollar',
+    symbol: '$',
+  },
+  {
     id: 'USD',
     name: 'US Dollar',
     symbol: '$',
