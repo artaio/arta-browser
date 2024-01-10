@@ -1,3 +1,12 @@
+## [2.3.12](https://github.com/artaio/arta-browser/compare/v2.3.11...v2.3.12) (2024-01-10)
+
+
+### Bug Fixes
+
+* add HKD to currencies dictionary ([#25](https://github.com/artaio/arta-browser/issues/25)) ([547574e](https://github.com/artaio/arta-browser/commit/547574e09336f2f067cbe607c266e06d09f9ff5d))
+
+
+
 ## [2.3.11](https://github.com/artaio/arta-browser/compare/v2.3.10...v2.3.11) (2023-12-12)
 
 
