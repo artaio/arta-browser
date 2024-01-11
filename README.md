@@ -1,27 +1,21 @@
-### Pre-release notice
-
-arta-browser is in a pre-release beta. The package's API is unstable and expected to change prior to public release. Please only make use of the package in coordination with ARTA during this period.
-
 # arta-browser
 
-Our Estimates widget allows you to display non-bookable shipping estimates to your customers during the product discovery phase, in order to give your customers the all-in cost insights they’re looking for. Our mobile-friendly javascript widget is easy to set up and is designed to reduce drop-offs, caused by surprise shipping costs, further down the conversion funnel.
+arta-browser is a TypeScript SDK providing easy setup for Arta's Estimates widget.
 
-- Quick setup
-- Performant - ARTA provides estimates across all service tiers in under two seconds on average.
-- Works across devices - mobile friendly layout works well across a wide variety of view ports.
-- Insurance & White Glove Services - estimates will reflect Insurance and white glove services if requested.
-- Global - get cost estimates for shipping across the globe.
+[Arta Estimates](https://manual.arta.io/guides/solutions/no-code/estimates/estimates-widget) enables Arta's clients to dynamically generate shipping estimates (non-bookable) for their customers.
 
 ## Installation
 
-### With `<script>` tag 
+### With `<script>` tag
 
 Copy and paste the following snippet before the closing `</body>` HTML tag wherever you want the Estimates widget available for your users (typically on your product pages):
 
 ```
 <script src="https://cdn.jsdelivr.net/npm/@artaio/arta-browser@latest/dist/bundle.js"></script>
 ```
+
 And once the above script is loaded the `Arta` object should be available.
+
 ### With `npm`
 
 In your project run
@@ -48,15 +42,17 @@ const estimate = Arta.estimate({origin, objects}, config); // check types for mo
 await esimate.validate(); // mandatory for setting estimate.isReady
 
 // estimate.open() will render the widget
-esimate.isRead && <Button onClick={() => estimate.open()}> 
+esimate.isRead && <Button onClick={() => estimate.open()}>
 ```
-For more details and examples using different frontend frameworks please check https://github.com/artaio/arta-browser-examples .
+
+For more details and examples using different frontend frameworks please check https://github.com/artaio/arta-browser-examples.
 
 ## Contributing
 
 Please ensure that all the examples available on https://github.com/artaio/arta-browser-examples are still working before opening a PR.
 
 ### Development
+
 To develop a new function on the SDK, run `npm install` to install all the dependencies and then run `npm run build` and the compiled JS code will be stored in the `dist/` folder which is the folder with the content published to NPM.
 
 Please be aware that the current CI setup publishes both the compiled JS code and the bundled version. Then, we use https://www.jsdelivr.com/ to distribute the bundled version stored in NPM.

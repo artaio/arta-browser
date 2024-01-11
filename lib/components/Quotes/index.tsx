@@ -10,7 +10,7 @@ export const defaultQuoteConfig = {
   disclaimerLabel: 'Actual shipping costs will be provided at checkout.',
   rangeLabel: 'Shipping estimated between',
   startsAtLabel: 'Shipping Starts at',
-  artaInsuranceLabel: 'This estimate includes ARTA Transit Insurance.',
+  artaInsuranceLabel: 'This estimate includes Arta Transit Insurance.',
 };
 
 export interface QuoteTextConfig {
@@ -94,8 +94,9 @@ export const Quotes = ({
 
       {showCostRange && quotes.length > 1 ? (
         <div
-          class={`artajs__modal__quotes__box ${!isInternational ? 'artajs__modal__quotes__box__padding__y' : ''
-            }`}
+          class={`artajs__modal__quotes__box ${
+            !isInternational ? 'artajs__modal__quotes__box__padding__y' : ''
+          }`}
         >
           <p class="artajs__modal__quotes__context">{textConfig.rangeLabel}</p>
           <div class="artajs__modal__quotes__price">
@@ -110,14 +111,17 @@ export const Quotes = ({
           </div>
           {isInternational && (
             <p class="artajs__modal__quotes__disclaimer">
-              {hasInsurance ? `${textConfig.artaInsuranceLabel} ${textConfig.disclaimerLabel}` : textConfig.disclaimerLabel}
+              {hasInsurance
+                ? `${textConfig.artaInsuranceLabel} ${textConfig.disclaimerLabel}`
+                : textConfig.disclaimerLabel}
             </p>
           )}
         </div>
       ) : (
         <div
-          class={`artajs__modal__quotes__box ${!isInternational ? 'artajs__modal__quotes__box__padding__y' : ''
-            }`}
+          class={`artajs__modal__quotes__box ${
+            !isInternational ? 'artajs__modal__quotes__box__padding__y' : ''
+          }`}
         >
           <p class="artajs__modal__quotes__context">
             {textConfig.startsAtLabel}
@@ -133,7 +137,9 @@ export const Quotes = ({
           </div>
           {isInternational && (
             <p class="artajs__modal__quotes__disclaimer">
-              {hasInsurance ? `${textConfig.artaInsuranceLabel} ${textConfig.disclaimerLabel}` : textConfig.disclaimerLabel}
+              {hasInsurance
+                ? `${textConfig.artaInsuranceLabel} ${textConfig.disclaimerLabel}`
+                : textConfig.disclaimerLabel}
             </p>
           )}
         </div>
@@ -141,7 +147,15 @@ export const Quotes = ({
 
       <p class="artajs__modal__quotes__change">
         <a onClick={onChangeDestination} href="#">
-          <svg height="12" id="chevron-left" viewBox="0 0 32 32" width="12" xmlns="http://www.w3.org/2000/svg"><path d="M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z" /></svg>
+          <svg
+            height="12"
+            id="chevron-left"
+            viewBox="0 0 32 32"
+            width="12"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z" />
+          </svg>
           {textConfig.returnLinkLabel}
         </a>
       </p>
