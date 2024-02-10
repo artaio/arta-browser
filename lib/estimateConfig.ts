@@ -8,6 +8,7 @@ import {
   DisqualifiedTextConfig,
 } from './components/Disqualified';
 import { defaultQuoteConfig, QuoteTextConfig } from './components/Quotes';
+import { applySmallMobileStyling } from './helper';
 import {
   AdditionalService,
   ArtaLocation,
@@ -144,5 +145,8 @@ export const getFullConfig = (
     artaConfig,
     estimateConfig
   );
+
+  applySmallMobileStyling(finalConfig);
+
   return finalConfig;
 };
