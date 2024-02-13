@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/artaio/arta-browser/compare/v2.3.13...v2.4.0) (2024-02-13)
+
+
+### Features
+
+* improve CI publishing ([#28](https://github.com/artaio/arta-browser/issues/28)) ([2240fb5](https://github.com/artaio/arta-browser/commit/2240fb5341cde12fd5797a7473f2406adca8f6b1))
+
+
+
 ## [2.3.13](https://github.com/artaio/arta-browser/compare/v2.3.12...v2.3.13) (2024-01-11)
 
 
