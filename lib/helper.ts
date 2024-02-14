@@ -99,3 +99,17 @@ export const getStyle = (config: EstimateFullConfig) => {
     '--height': `${config.style.height}px`,
   };
 };
+
+const MINIMUM_RENDERING_HEIGHT = 467;
+
+export function isSmallMobile(): boolean {
+  return ( ( window.innerWidth <= 800 ) && ( window.innerHeight <= 600 ) );
+};
+
+export function applySmallMobileStyling(finalConfig: EstimateFullConfig): void {
+  if (isSmallMobile()) {
+    finalConfig.style.position = 'center';
+    finalConfig.style.width = window.screen.availWidth;
+    finalConfig.style.height = Math.max(window.screen.availHeight, MINIMUM_RENDERING_HEIGHT);
+  }
+};

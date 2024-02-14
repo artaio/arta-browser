@@ -75,7 +75,6 @@
 /* modal styles */
 .artajs__modal {
   background-color: var(--background);
-  border-radius: 8px;
   -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
@@ -106,10 +105,20 @@
 
 .artajs__modal.artajs__modal__center {
   position: absolute;
-  top: 50%;
   left: 50%;
   margin-left: calc(0px - (var(--width) / 2));
-  margin-top: calc(0px - (var(--height) / 2));
+  top: 0;
+}
+
+/* in case of not in mobile */
+@media (min-width: 800px) and (min-height: 600px) {
+  .artajs__modal {
+    border-radius: 8px;
+  }
+  .artajs__modal.artajs__modal__center {
+    top: 50%;
+    margin-top: calc(0px - (var(--height) / 2));
+  }
 }
 
 /* backdrop */
