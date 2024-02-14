@@ -1,6 +1,6 @@
-export const Footer = () => {
+export const Footer = ({absolute}: {absolute?: boolean}) => {
   return (
-    <div class="artajs__modal__footer">
+    <div class="artajs__modal__footer" style={{position: absolute ? 'absolute' : undefined}}>
       <a href="https://arta.io/">
         <button class="artajs__modal__footer__link">
           <p>Powered by</p>

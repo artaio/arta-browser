@@ -2,7 +2,7 @@ import { render } from 'preact';
 import { Modal } from './components/Modal';
 import { EstimateBody, EstimateFullConfig } from './estimateConfig';
 import { validateEstimateBody } from './requests';
-import { applySmallMobileStyling, isSmallMobile } from './helper';
+import { applySmallMobileStyling } from './helper';
 
 export default class Estimate {
   public isReady = false;
@@ -38,10 +38,6 @@ export default class Estimate {
       />,
       this.el
     );
-
-    if (isSmallMobile()) {
-      window.scrollTo({ top: 0 });
-    }
   }
 
   public close() {

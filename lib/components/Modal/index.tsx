@@ -91,7 +91,10 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
         <div class={`artajs__modal artajs__modal__${position}`} style={style}>
           <Header onClose={onClose} title={config.text.header.title} lineColor={config.style.color.border} />
           {status === ModalStatus.LOADING && (
-            <Loading />
+            <div>
+              <Loading />
+              <Footer absolute={true}/>
+            </div>
           )}
           {status === ModalStatus.OPEN && (
             <Destination
@@ -117,7 +120,9 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
             />
           )}
 
-          <Footer />
+          {status !== ModalStatus.LOADING &&
+            <Footer />
+          }
           {errors && errors.length > 0 && (
             <div class="artajs__modal__error__container">
               <div class="artajs__modal__error">
