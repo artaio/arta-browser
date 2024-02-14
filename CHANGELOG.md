@@ -1,3 +1,12 @@
+# [2.6.0](https://github.com/artaio/arta-browser/compare/v2.5.0...v2.6.0) (2024-02-14)
+
+
+### Features
+
+* uses position fixed on small mobile screens ([#29](https://github.com/artaio/arta-browser/issues/29)) ([c290184](https://github.com/artaio/arta-browser/commit/c290184ba5c23e3eaa7c26697f6a72fa073c576c))
+
+
+
 # [2.5.0](https://github.com/artaio/arta-browser/compare/v2.4.0...v2.5.0) (2024-02-14)
 
 
