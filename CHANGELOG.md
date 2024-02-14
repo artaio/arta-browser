@@ -1,3 +1,12 @@
+# [2.5.0](https://github.com/artaio/arta-browser/compare/v2.4.0...v2.5.0) (2024-02-14)
+
+
+### Features
+
+* improve mobile experience ([#27](https://github.com/artaio/arta-browser/issues/27)) ([5e60ac5](https://github.com/artaio/arta-browser/commit/5e60ac510bae8b301caec52288c131086652fd49))
+
+
+
 # [2.4.0](https://github.com/artaio/arta-browser/compare/v2.3.13...v2.4.0) (2024-02-13)
 
 
