@@ -11,7 +11,7 @@ import {
   getDestinationConfig,
   getDisqualifiedConfig,
   getQuoteConfig,
-  getStyle,
+  getEstimateStyle,
   parseErrors,
   parseEstimatedLocation,
 } from '../../helper';
@@ -40,7 +40,7 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
   const [quoteRequest, setQuoteRequest] = useState<QuoteRequest>();
   const [errors, setErrors] = useState<string[]>();
 
-  const style = getStyle(config);
+  const style = getEstimateStyle(config);
 
   useEffect(() => {
     (async () => {
@@ -89,11 +89,15 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
       <div class="artajs">
         {position === 'center' && <div class="artajs__modal__backdrop" />}
         <div class={`artajs__modal artajs__modal__${position}`} style={style}>
-          <Header onClose={onClose} title={config.text.header.title} lineColor={config.style.color.border} />
+          <Header
+            onClose={onClose}
+            title={config.text.header.title}
+            lineColor={config.style.color.border}
+          />
           {status === ModalStatus.LOADING && (
             <div>
               <Loading />
-              <Footer absolute={true}/>
+              <Footer absolute={true} />
             </div>
           )}
           {status === ModalStatus.OPEN && (
@@ -120,9 +124,7 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
             />
           )}
 
-          {status !== ModalStatus.LOADING &&
-            <Footer />
-          }
+          {status !== ModalStatus.LOADING && <Footer />}
           {errors && errors.length > 0 && (
             <div class="artajs__modal__error__container">
               <div class="artajs__modal__error">

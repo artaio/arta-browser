@@ -1,4 +1,5 @@
 import { ArtaJsFullConfig } from './arta';
+import type { Shipment } from './components/TrackingDrawer';
 import { EstimateBody } from './estimateConfig';
 import {
   ArtaLocation,
@@ -53,10 +54,12 @@ const artaRequest = async (
   path: string,
   config: ArtaJsFullConfig,
   body?: string,
-  headers?: any
+  headers?: any,
+  method: 'POST' | 'GET' = 'POST'
 ) => {
-  const res = await fetch(`https://${config.host}${path}`, {
-    method: 'POST',
+  const schema = config.httpSchema ? config.httpSchema : 'https';
+  const res = await fetch(`${schema}://${config.host}${path}`, {
+    method,
     body,
     headers: {
       ...headers,
@@ -115,4 +118,13 @@ export const validateEstimateBody = async (
   const body = JSON.stringify({ estimate: estimateBody });
   const res = await artaRequest(path, config, body);
   return res.err?.errors;
+};
+
+export const loadShipment = async (
+  config: ArtaJsFullConfig,
+  shipmentId: string
+): Promise<Shipment> => {
+  const path = `/embedded_tracking/shipments/${shipmentId}`;
+  const res = await artaRequest(path, config, undefined, undefined, 'GET');
+  return res;
 };

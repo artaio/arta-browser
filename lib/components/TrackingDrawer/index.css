@@ -1,0 +1,197 @@
+/* reset */
+
+:root {
+  --background: #FFFFFF;
+  --text-primary: #110F10;
+  --text-secondary: #6F6C65;
+  --border: #D7D6D0;
+  --border-hover: #6F6C65;
+  --border-focused: #110F10;
+  --width: 540px;
+  --font-family: "Neue Haas Grotesk Text Pro, Arial, Helvetica, sans-serif";
+  --font-size: 14px;
+}
+
+.artajs__drawer,
+.artajs__drawer__backdrop {
+  all: initial;
+}
+
+.artajs__drawer a,
+.artajs__drawer button,
+.artajs__drawer div,
+.artajs__drawer input,
+.artajs__drawer form,
+.artajs__drawer p,
+.artajs__drawer select,
+.artajs__drawer__backdrop div {
+  all: unset;
+}
+
+/* Box sizing rules */
+.artajs__drawer *,
+.artajs__drawer *::before,
+.artajs__drawer *::after,
+.artajs__drawer__backdrop *,
+.artajs__drawer__backdrop *::before,
+.artajs__drawer__backdrop *::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+.artajs__drawer div,
+.artajs__drawer h1,
+.artajs__drawer h2,
+.artajs__drawer h3,
+.artajs__drawer h4,
+.artajs__drawer p {
+  margin: 0;
+}
+
+.artajs__drawer div,
+.artajs__drawer p {
+  display: block;
+  font-family: var(--font-family);
+}
+
+/* Inherit fonts for inputs and buttons */
+.artajs__drawer input,
+.artajs__drawer button,
+.artajs__drawer select {
+  font: inherit;
+  margin: 0
+}
+
+/* drawer styles */
+.artajs__drawer {
+  background-color: var(--background);
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  color: var(--text-primary);
+  height: 100vh;
+  padding: 0;
+  position: fixed;
+  width: var(--width);
+  z-index: 2001;
+}
+
+/* backdrop */
+.artajs__drawer__backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2001;
+}
+
+.artajs__drawer.artajs__drawer__left {
+  left: 0px;
+  bottom: 0px;
+  right: auto;
+}
+
+.artajs__drawer.artajs__drawer__right {
+  left: auto;
+  right: 0px;
+  bottom: 0px;
+}
+
+/* header styles */
+.artajs__drawer .artajs__drawer__header__divider {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.artajs__drawer .artajs__drawer__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 15px 0px 20px;
+  height: 41px;
+}
+
+.artajs__drawer .artajs__drawer__header .artajs__drawer__header__cta {
+  font-size: calc(var(--font-size) + 2px);
+  font-weight: bold;
+}
+
+.artajs__drawer .artajs__drawer__header .artajs__drawer__header__close a {
+  cursor: pointer;
+  display: block;
+  height: 24px;
+  text-decoration: none;
+}
+
+.artajs__drawer .artajs__drawer__header .artajs__drawer__header__close a svg line {
+  stroke: var(--text-secondary);
+}
+
+.artajs__drawer .artajs__drawer__header .artajs__drawer__header__close a:hover svg line {
+  stroke: var(--text-primary);
+}
+
+/* step styles */
+
+.artajs__drawer .artajs__drawer__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+
+  /* TODO border styling */
+  border-bottom: 1px solid #E7E7E7;
+  width: 272px;
+}
+
+.artajs__drawer .artajs__drawer__step__icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.artajs__drawer .artajs__drawer__step__text {
+  font-size: calc(var(--font-size) + 2px);
+  font-weight: bold;
+  margin-top: 10px;
+  line-height: 24px;
+}
+
+.artajs__drawer .artajs__drawer__step__check_back_later {
+  font-size: var(--font-size);
+  font-weight: bold;
+  width: 270px;
+  text-align: center;
+  display: flex;
+  line-height: 21px;
+  letter-spacing: 0.2px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.artajs__drawer .artaja__drawer__date {
+  font-size: calc(var(--font-size) - 2px);
+  text-align: center;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.artajs__drawer .artajs__flex__wraper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.artajs__drawer .artajs__drawer__step__icon__container {
+  border-top: 1px solid #E7E7E7;
+  width: 140px;
+  margin-top: 16px;
+}

@@ -80,7 +80,15 @@ export const Disqualified = ({
       </div>
       <p class="artajs__modal__quotes__change">
         <a onClick={onChangeDestination} href="#">
-          <svg height="12" id="chevron-left" viewBox="0 0 32 32" width="12" xmlns="http://www.w3.org/2000/svg"><path d="M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z" /></svg>
+          <svg
+            height="12"
+            id="chevron-left"
+            viewBox="0 0 32 32"
+            width="12"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z" />
+          </svg>
           {textConfig.returnLinkLabel}
         </a>
       </p>

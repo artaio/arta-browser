@@ -84,7 +84,9 @@ export const Destination = ({
       </p>
       <form onSubmit={onFormSubmit}>
         <div className="artajs__modal__form__row">
-          <strong className="artajs__modal__form__label">{textConfig.countryLabel}</strong>
+          <strong className="artajs__modal__form__label">
+            {textConfig.countryLabel}
+          </strong>
           <label
             class={`artajs__modal__textfield__outlined ${
               isDestinationError
@@ -127,7 +129,6 @@ export const Destination = ({
               type="text"
               value={postalCode}
             />
-
           </label>
         </div>
 
