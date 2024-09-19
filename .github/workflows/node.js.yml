@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [18.x, 20.x, 22.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -45,11 +45,11 @@ jobs:
 
     - run: npm install
     - run: npm run build
-    - run: npm config set registry https://registry.npmjs.org 
-    - run: npm config set _authToken=${{ secrets.NPM_TOKEN }}
-    - run: npm config fix
-    - run: npm version --no-git-tag-version ${{ steps.package-version.outputs.current-version}}-${{ github.head_ref }}${{ github.sha }}
-    - run: npm publish --access public --tag ${{ github.head_ref }}-${{ github.sha }}
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    # - run: npm config set registry https://registry.npmjs.org 
+    # - run: npm config set _authToken=${{ secrets.NPM_TOKEN }}
+    # - run: npm config fix
+    # - run: npm version --no-git-tag-version ${{ steps.package-version.outputs.current-version}}-${{ github.head_ref }}${{ github.sha }}
+    # - run: npm publish --access public --tag ${{ github.head_ref }}-${{ github.sha }}
+    #   env:
+    #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
