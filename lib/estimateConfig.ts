@@ -1,14 +1,19 @@
 import { ArtaJsFullConfig } from './arta';
 import {
   defaultDestinationConfig,
-  DestinationTextConfig,
+  type DestinationTextConfig,
 } from './components/Destination';
 import {
   defaultDisqualifiedConfig,
-  DisqualifiedTextConfig,
+  type DisqualifiedTextConfig,
 } from './components/Disqualified';
-import { defaultQuoteConfig, QuoteTextConfig } from './components/Quotes';
-import { applySmallMobileStyling } from './helper';
+import { defaultQuoteConfig, type QuoteTextConfig } from './components/Quotes';
+import {
+  applySmallMobileStyling,
+  deepClone,
+  nestedObjectAssign,
+  type DeepPartial,
+} from './helper';
 import {
   AdditionalService,
   ArtaLocation,
@@ -69,10 +74,6 @@ export interface EstimateConfig {
   };
 }
 
-type DeepPartial<T> = T extends object ? {
-  [P in keyof T]?: DeepPartial<T[P]>;
-} : T;
-
 export type PartialEstimateConfig = DeepPartial<EstimateConfig>;
 
 export interface EstimateFullConfig extends EstimateConfig, ArtaJsFullConfig {}
@@ -116,32 +117,12 @@ export const defaultEstimateConfig: EstimateConfig = {
   },
 };
 
-function nestedObjectAssign(target: any, ...sources: any[]) {
-  sources.forEach((source) => {
-    if (source) {
-      Object.keys(source).forEach((key) => {
-        const s_val = source[key];
-        const t_val = target[key];
-        target[key] =
-          t_val &&
-          s_val &&
-          typeof t_val === 'object' &&
-          typeof s_val === 'object'
-            ? nestedObjectAssign(t_val, s_val)
-            : s_val;
-      });
-    }
-  });
-  return target;
-}
-
-export const getFullConfig = (
+export const getFullEstimateConfig = (
   artaConfig: ArtaJsFullConfig,
   estimateConfig?: PartialEstimateConfig
 ): EstimateFullConfig => {
-  const defaultClone: EstimateConfig = JSON.parse(JSON.stringify(defaultEstimateConfig));
   const finalConfig = nestedObjectAssign(
-    defaultClone,
+    deepClone(defaultEstimateConfig),
     artaConfig,
     estimateConfig
   );

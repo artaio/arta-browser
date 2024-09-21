@@ -4,12 +4,12 @@ interface HeaderOpts {
   lineColor: string;
 }
 
-export const Header = ({ onClose, title, lineColor }: HeaderOpts) => {
+export const DrawerHeader = ({ onClose, title, lineColor }: HeaderOpts) => {
   return (
     <div>
-      <div class="artajs__modal__header">
-        <div className="artajs__modal__header__cta">{title}</div>
-        <div className="artajs__modal__header__close">
+      <div class="artajs__drawer__header">
+        <div className="artajs__drawer__header__cta">{title}</div>
+        <div className="artajs__drawer__header__close">
           <a onClick={onClose} href="#">
             <svg
               width="24"
@@ -36,7 +36,7 @@ export const Header = ({ onClose, title, lineColor }: HeaderOpts) => {
           </a>
         </div>
       </div>
-      <svg class="artajs__modal__header__divider" width="100%" height="5">
+      <svg class="artajs__drawer__header__divider" width="100%" height="5">
         <line
           x1="0"
           y1="5"

@@ -1,5 +1,3 @@
 export const Loading = () => {
-  return (
-    <div class="artajs__modal__loading"/>
-  );
+  return <div class="artajs__modal__loading" />;
 };

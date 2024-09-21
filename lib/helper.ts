@@ -3,6 +3,7 @@ import { DisqualifiedFullTextConfig } from './components/Disqualified';
 import { QuoteFullTextConfig } from './components/Quotes';
 import { EstimateFullConfig } from './estimateConfig';
 import { ArtaLocation } from './MetadataTypes';
+import { TrackingFullConfig } from './trackingConfig';
 
 export const parseEstimatedLocation = (loc: ArtaLocation): string => {
   if (!loc) {
@@ -76,7 +77,7 @@ export const getDestinationConfig = (
   };
 };
 
-export const getStyle = (config: EstimateFullConfig) => {
+export const getEstimateStyle = (config: EstimateFullConfig) => {
   return {
     '--background': config.style.color.background,
     '--text-primary': config.style.color.textPrimary,
@@ -100,16 +101,62 @@ export const getStyle = (config: EstimateFullConfig) => {
   };
 };
 
+export const getTrackingStyle = (config: TrackingFullConfig) => {
+  return {
+    '--background': config.style.color.background,
+    '--text-primary': config.style.color.textPrimary,
+    '--text-secondary': config.style.color.textSecondary,
+    '--border': config.style.color.border,
+    '--border-hover': config.style.color.borderHover,
+    '--border-focused': config.style.color.borderFocused,
+    '--font-family': config.style.fontFamily,
+    '--font-size': `${config.style.fontSize}px`,
+    '--width': config.style.variant === 'default' ? '540px' : '320px',
+  };
+};
+
 const MINIMUM_RENDERING_HEIGHT = 467;
 
 export function isSmallMobile(): boolean {
-  return ( ( window.innerWidth <= 800 ) && ( window.innerHeight <= 600 ) );
-};
+  return window.innerWidth <= 800 && window.innerHeight <= 600;
+}
 
 export function applySmallMobileStyling(finalConfig: EstimateFullConfig): void {
   if (isSmallMobile()) {
     finalConfig.style.position = 'center';
     finalConfig.style.width = window.screen.availWidth;
-    finalConfig.style.height = Math.max(window.screen.availHeight, MINIMUM_RENDERING_HEIGHT);
+    finalConfig.style.height = Math.max(
+      window.screen.availHeight,
+      MINIMUM_RENDERING_HEIGHT
+    );
   }
-};
+}
+
+export type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;
+
+export function nestedObjectAssign(target: any, ...sources: any[]) {
+  sources.forEach((source) => {
+    if (source) {
+      Object.keys(source).forEach((key) => {
+        const s_val = source[key];
+        const t_val = target[key];
+        target[key] =
+          t_val &&
+          s_val &&
+          typeof t_val === 'object' &&
+          typeof s_val === 'object'
+            ? nestedObjectAssign(t_val, s_val)
+            : s_val;
+      });
+    }
+  });
+  return target;
+}
+
+export function deepClone<T>(obj: T): T {
+  return JSON.parse(JSON.stringify(obj));
+}
