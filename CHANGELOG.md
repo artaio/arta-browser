@@ -1,3 +1,12 @@
+# [2.7.0](https://github.com/artaio/arta-browser/compare/v2.6.1...v2.7.0) (2024-09-21)
+
+
+### Features
+
+* add basic interface for tracking widget ([#31](https://github.com/artaio/arta-browser/issues/31)) ([f7b7f58](https://github.com/artaio/arta-browser/commit/f7b7f582270caf4d19aa5011ff3d31800e592ce6))
+
+
+
 ## [2.6.1](https://github.com/artaio/arta-browser/compare/v2.6.0...v2.6.1) (2024-09-19)
 
 
