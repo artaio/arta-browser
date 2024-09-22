@@ -1,11 +1,11 @@
 import { StepIconProps } from '..';
+import { CollectedIcon } from './icons/CollectedIcon';
 import { StepCTA } from '../StepCTA';
-import { PendingIcon } from './icons/PendingIcon';
 
-export const PendingMinimal = ({ config }: StepIconProps) => {
+export const CollectedDefault = ({ shipment, config }: StepIconProps) => {
   return (
     <div class="artajs__flex__wraper">
-      <PendingIcon text={config.text.pendingLabel} />
+      <CollectedIcon shipment={shipment} config={config} />
       <div class="artajs__drawer__step__icon__container"></div>
       <StepCTA text={config.text.checkBackLater} />
     </div>

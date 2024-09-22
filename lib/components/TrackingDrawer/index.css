@@ -142,11 +142,35 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 20px;
+  padding-bottom: 16px;
 
   /* TODO border styling */
   border-bottom: 1px solid #E7E7E7;
-  width: 272px;
+  width: 270px;
+}
+
+.artajs__drawer .artajs__drawer__step__minimal {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;
+
+  /* TODO border styling */
+  border-bottom: 1px solid #E7E7E7;
+  width: 270px;
+}
+.artajs__drawer .artajs__flex__margin__top {
+  margin-top: 8px;
+}
+
+.artajs__drawer .artajs__drawer__step__large {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 16px;
+
+  /* TODO border styling */
+  border-bottom: 1px solid #E7E7E7;
+  width: 492px;
 }
 
 .artajs__drawer .artajs__drawer__step__icon {
@@ -163,19 +187,26 @@
   line-height: 24px;
 }
 
-.artajs__drawer .artajs__drawer__step__check_back_later {
+.artajs__drawer .artajs__drawer__step__text__cta {
   font-size: var(--font-size);
   font-weight: bold;
-  width: 270px;
   text-align: center;
   display: flex;
   line-height: 21px;
   letter-spacing: 0.2px;
   margin-top: 16px;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
+  justify-content: center;
 }
 
-.artajs__drawer .artaja__drawer__date {
+.artajs__drawer .artajs__in__transit__and {
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(var(--font-size) - 2px);
+}
+
+.artajs__drawer .artajs__drawer__date {
   font-size: calc(var(--font-size) - 2px);
   text-align: center;
   line-height: 18px;
@@ -184,14 +215,122 @@
   flex-direction: column;
 }
 
+.artajs__drawer .artajs__text__bold {
+  font-weight: bold;
+}
+
+.artajs__drawer .artajs__minimal__date {
+  margin-bottom: 2px;
+  margin-top: 8px;
+}
+
+.artajs__drawer .artajs__drawer__text__huge {
+  font-size: calc(var(--font-size) + 42px);
+  font-weight: bold;
+  text-align: center;
+  line-height: 42px;
+}
+
 .artajs__drawer .artajs__flex__wraper {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.artajs__drawer .artajs__location__wraper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.artajs__drawer .artajs__location__wraper__align__left {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.artajs__drawer .artajs__flex__wraper__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.artajs__drawer .artajs__in__transit__date__wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+  justify-content: center;
+}
+
 .artajs__drawer .artajs__drawer__step__icon__container {
   border-top: 1px solid #E7E7E7;
-  width: 140px;
+  max-width: 140px;
+  width: 100%;
   margin-top: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.artajs__drawer .artajs__drawer__timeline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.artajs__drawer .artajs__drawer__large__step__icon {
+  display: flex;
+  padding: 0px 16px;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  width: 430px;
+}
+
+.artajs__drawer .artajs__drawer__triple__dots {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.artajs__drawer .artajs__drawer__dot {
+  display: flex;
+  padding-top: 12px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.artajs__drawer .artajs__text__large {
+  font-size: calc(var(--font-size) + 2px);
+  font-weight: bold;
+}
+
+.artajs__drawer .artajs__text__bold {
+  font-weight: bold;
+}
+.artajs__drawer .artajs__text__small {
+  font-size: calc(var(--font-size) - 2px);
+}
+
+.artajs__drawer .artajs__text {
+  font-size: var(--font-size);
+  color: var(--text-primary);
+  letter-spacing: 0.2px;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.artajs__drawer .artajs__text__light {
+  font-size: var(--font-size);
+  color: var(--text-secondary);
+  letter-spacing: 0.2px;
+  text-align: center;
+  margin-top: 8px;
 }
