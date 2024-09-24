@@ -1,13 +1,11 @@
 import { StepIconProps } from '..';
-import { SimpleDate } from '../../Date/SimpleDate';
 import { StepCTA } from '../StepCTA';
 import { ConfirmedIcon } from './icons/ConfirmedIcon';
 
-export const ConfirmedMinimal = ({ shipment, config }: StepIconProps) => {
+export const ConfirmedDefault = ({ shipment, config }: StepIconProps) => {
   return (
     <div class="artajs__flex__wraper">
-      <ConfirmedIcon text={config.text.confirmedLabel} />
-      <SimpleDate date={shipment.confirmed_at} dateConfig={config.text.dates} />
+      <ConfirmedIcon shipment={shipment} config={config} />
       <div class="artajs__drawer__step__icon__container"></div>
       <StepCTA text={config.text.checkBackLater} />
     </div>

@@ -5,6 +5,7 @@ import { DrawerHeader } from '../DrawerHeader';
 import { StepIcon } from '../StepIcon';
 import css from './index.css';
 import { loadShipment } from '../../requests';
+import { ShipToFrom } from '../ShipToFrom';
 
 interface TrackingDrawerProps {
   shipmentId: string;
@@ -81,15 +82,24 @@ export interface Shipment {
   quote_type: string;
   shortcode: string;
   status:
-    | 'cancelled'
-    | 'collected'
-    | 'completed'
-    | 'confirmed'
-    | 'in_transit'
-    | 'pending';
+  | 'cancelled'
+  | 'collected'
+  | 'completed'
+  | 'confirmed'
+  | 'in_transit'
+  | 'pending';
   total: number;
   total_currency: string;
   updated_at: string;
+
+  cancelled_at: string | null;
+  collected_at: string | null;
+  completed_at: string | null;
+  confirmed_at: string | null;
+  in_transit_at: string | null;
+
+  delivery_start: string | null;
+  delivery_end: string | null;
 }
 
 export const TrackingDrawer = ({
@@ -120,7 +130,10 @@ export const TrackingDrawer = ({
             lineColor={config.style.color.border}
           />
           {/* TODO: proper loading for shipment fetch */}
-          {shipment && <StepIcon config={config} shipment={shipment} />}
+          {shipment && <div>
+            <StepIcon config={config} shipment={shipment} />
+            <ShipToFrom config={config} shipment={shipment} />
+          </div>}
         </div>
       </div>
     </div>

@@ -52,7 +52,15 @@ export interface TrackingConfig {
     confirmedLabel: string;
     collectedLabel: string;
     checkBackLater: string;
+    inTransitCTAOnLabel: string;
+    inTransitCTABetweenLabel: string;
+    inTransitCTABeforeLabel: string;
+    inTransitCTAAfterLabel: string;
+    inTransitCTAAndLabel: string;
+    completedCTA: string;
     dates: DateConfig;
+    shipsFromLabel: string;
+    shipsToLabel: string;
   };
 }
 
@@ -85,6 +93,14 @@ export const defaultTrackingConfig: TrackingConfig = {
     confirmedLabel: 'Confirmed',
     collectedLabel: 'Collected',
     checkBackLater: 'Please check back later for delivery estimate.',
+    inTransitCTAOnLabel: 'Delivery is currently estimated on',
+    inTransitCTABetweenLabel: 'Delivery is currently estimated between',
+    inTransitCTABeforeLabel: 'Delivery is currently estimated before',
+    inTransitCTAAfterLabel: 'Delivery is currently estimated after',
+    inTransitCTAAndLabel: 'and',
+    completedCTA: 'Shipment delivered on',
+    shipsFromLabel: 'Ships from',
+    shipsToLabel: 'Ships to',
     dates: {
       weekdays: {
         sunday: 'Sun',
