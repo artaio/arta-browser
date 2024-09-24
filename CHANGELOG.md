@@ -1,3 +1,12 @@
+# [2.8.0](https://github.com/artaio/arta-browser/compare/v2.7.0...v2.8.0) (2024-09-24)
+
+
+### Features
+
+* add timeline steps and locations ([#32](https://github.com/artaio/arta-browser/issues/32)) ([0f4051c](https://github.com/artaio/arta-browser/commit/0f4051caeddc24bc888ba6e4ffa54cc1a0b10e7c))
+
+
+
 # [2.7.0](https://github.com/artaio/arta-browser/compare/v2.6.1...v2.7.0) (2024-09-21)
 
 
