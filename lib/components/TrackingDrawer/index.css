@@ -231,26 +231,26 @@
   line-height: 42px;
 }
 
-.artajs__drawer .artajs__flex__wraper {
+.artajs__drawer .artajs__flex__wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.artajs__drawer .artajs__location__wraper {
+.artajs__drawer .artajs__location__wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 16px;
 }
 
-.artajs__drawer .artajs__location__wraper__align__left {
+.artajs__drawer .artajs__location__wrapper__align__left {
   display: flex;
   flex-direction: column;
   align-items: left;
 }
 
-.artajs__drawer .artajs__flex__wraper__row {
+.artajs__drawer .artajs__flex__wrapper__row {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -312,9 +312,6 @@
   font-weight: bold;
 }
 
-.artajs__drawer .artajs__text__bold {
-  font-weight: bold;
-}
 .artajs__drawer .artajs__text__small {
   font-size: calc(var(--font-size) - 2px);
 }
@@ -334,3 +331,58 @@
   text-align: center;
   margin-top: 8px;
 }
+
+.artajs__drawer .artajs__trackings__packings__wrapper {
+  display: flex;
+  padding: 16px 16px;
+
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+
+  border-radius: 8px;
+  margin-top: 16px;
+  /* TODO border styling */
+  border: 1px solid  #E7E7E7;
+  background: var(--background);
+
+  /* 1 */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+  /* TODO review fixed widths */
+}
+.artajs__drawer .artajs__wrapper__large {
+  width: 462px;
+}
+
+.artajs__drawer .artajs__wrapper__minimal {
+  width: 242px;
+}
+
+.artajs__drawer .artajs__package__link {
+  font-size: var(--font-size);
+  text-decoration: underline;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+.artajs__drawer .artajs__package__history__link {
+  text-decoration: underline;
+  font-size: calc(var(--font-size) - 2px);
+  cursor: pointer;
+}
+
+.artajs__drawer .artajs__package__divider {
+  width: 460px;
+  height: 1px;
+  background: var(--border);
+  margin-top: 16px;
+}
+
+.artajs__drawer .artajs__package__name {
+  margin-top: 16px;
+  font-size: var(--font-size);
+  font-weight: bold;
+}
+
+

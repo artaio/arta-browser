@@ -13,7 +13,7 @@ export const CollectedIcon = ({ config, shipment }: CollectedIconProps) => {
     <div class="artajs__drawer__timeline">
       <div class="artajs__drawer__large__step__icon">
 
-        <div class="artajs__flex__wraper">
+        <div class="artajs__flex__wrapper">
           <div class="artajs__drawer__dot">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="5.5" fill="#110F10" />
@@ -32,7 +32,7 @@ export const CollectedIcon = ({ config, shipment }: CollectedIconProps) => {
           </svg>
         </div>
 
-        <div class="artajs__flex__wraper">
+        <div class="artajs__flex__wrapper">
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M48 24C48 37.2548 37.2548 48 24 48C10.7452 48 0 37.2548 0 24C0 10.7452 10.7452 0 24 0C37.2548 0 48 10.7452 48 24Z" fill="black" />
             <g clip-path="url(#clip0_2_2564)">
@@ -64,7 +64,7 @@ export const CollectedIcon = ({ config, shipment }: CollectedIconProps) => {
           </svg>
         </div>
 
-        <div class="artajs__flex__wraper">
+        <div class="artajs__flex__wrapper">
           <div class="artajs__drawer__dot">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="5.5" fill="white" stroke="#9D9D9D" />
@@ -84,7 +84,7 @@ export const CollectedIcon = ({ config, shipment }: CollectedIconProps) => {
           </svg>
         </div>
 
-        <div class="artajs__flex__wraper">
+        <div class="artajs__flex__wrapper">
           <div class="artajs__drawer__dot">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="5.5" fill="white" stroke="#9D9D9D" />

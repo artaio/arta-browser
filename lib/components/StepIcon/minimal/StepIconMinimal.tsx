@@ -7,7 +7,7 @@ import { InTransitMinimal } from './InTransitMinimal';
 
 export const StepIconMinimal = ({ shipment, config }: StepIconProps) => {
   return (
-    <div class="artajs__flex__wraper">
+    <div class="artajs__flex__wrapper">
       <div class="artajs__drawer__step">
         {shipment.status === 'pending' && <PendingMinimal config={config} shipment={shipment}/>}
         {shipment.status === 'collected' && <CollectedMinimal config={config} shipment={shipment}/>}

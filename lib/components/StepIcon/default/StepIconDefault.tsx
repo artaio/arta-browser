@@ -7,7 +7,7 @@ import { CompletedDefault } from './CompletedDefault';
 
 export const StepIconDefault = ({ shipment, config }: StepIconProps) => {
   return (
-    <div class="artajs__flex__wraper">
+    <div class="artajs__flex__wrapper">
       <div class="artajs__drawer__step__large">
         {shipment.status === 'pending' && <PendingDefault config={config} shipment={shipment}/>}
         {shipment.status === 'collected' && <CollectedDefault config={config} shipment={shipment}/>}

@@ -6,6 +6,7 @@ import { StepIcon } from '../StepIcon';
 import css from './index.css';
 import { loadShipment } from '../../requests';
 import { ShipToFrom } from '../ShipToFrom';
+import { Packings } from '../Packings';
 
 interface TrackingDrawerProps {
   shipmentId: string;
@@ -133,6 +134,7 @@ export const TrackingDrawer = ({
           {shipment && <div>
             <StepIcon config={config} shipment={shipment} />
             <ShipToFrom config={config} shipment={shipment} />
+            <Packings config={config} shipment={shipment} />
           </div>}
         </div>
       </div>

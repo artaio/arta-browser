@@ -6,7 +6,7 @@ export const PendingIcon = ({ config }: { config: TrackingConfig }) => {
     <div class="artajs__drawer__timeline">
       <div class="artajs__drawer__large__step__icon">
 
-        <div class="artajs__flex__wraper">
+        <div class="artajs__flex__wrapper">
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="24" cy="24" r="24" fill="black" />
             <g clip-path="url(#clip0_41_1004)">
@@ -30,7 +30,7 @@ export const PendingIcon = ({ config }: { config: TrackingConfig }) => {
           </svg>
         </div>
 
-        <div class="artajs__flex__wraper">
+        <div class="artajs__flex__wrapper">
           <div class="artajs__drawer__dot">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="5.5" fill="white" stroke="#9D9D9D" />
@@ -49,7 +49,7 @@ export const PendingIcon = ({ config }: { config: TrackingConfig }) => {
           </svg>
         </div>
 
-        <div class="artajs__flex__wraper">
+        <div class="artajs__flex__wrapper">
           <div class="artajs__drawer__dot">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="5.5" fill="white" stroke="#9D9D9D" />
@@ -69,7 +69,7 @@ export const PendingIcon = ({ config }: { config: TrackingConfig }) => {
           </svg>
         </div>
 
-        <div class="artajs__flex__wraper">
+        <div class="artajs__flex__wrapper">
           <div class="artajs__drawer__dot">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="12" r="5.5" fill="white" stroke="#9D9D9D" />

@@ -61,6 +61,7 @@ export interface TrackingConfig {
     dates: DateConfig;
     shipsFromLabel: string;
     shipsToLabel: string;
+    packageHistoryLabel: string;
   };
 }
 
@@ -101,6 +102,7 @@ export const defaultTrackingConfig: TrackingConfig = {
     completedCTA: 'Shipment delivered on',
     shipsFromLabel: 'Ships from',
     shipsToLabel: 'Ships to',
+    packageHistoryLabel: 'Package history',
     dates: {
       weekdays: {
         sunday: 'Sun',
