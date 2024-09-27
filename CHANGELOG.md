@@ -1,3 +1,12 @@
+# [2.9.0](https://github.com/artaio/arta-browser/compare/v2.8.0...v2.9.0) (2024-09-27)
+
+
+### Features
+
+* add packages tracking ([#33](https://github.com/artaio/arta-browser/issues/33)) ([d9687d3](https://github.com/artaio/arta-browser/commit/d9687d3eba54bf2b6529a81aaf4bab39b7e067a3))
+
+
+
 # [2.8.0](https://github.com/artaio/arta-browser/compare/v2.7.0...v2.8.0) (2024-09-24)
 
 
