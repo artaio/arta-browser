@@ -51,6 +51,7 @@ export interface TrackingConfig {
     inTransitLabel: string;
     confirmedLabel: string;
     collectedLabel: string;
+    cancelledLabel: string;
     checkBackLater: string;
     inTransitCTAOnLabel: string;
     inTransitCTABetweenLabel: string;
@@ -61,6 +62,7 @@ export interface TrackingConfig {
     dates: DateConfig;
     shipsFromLabel: string;
     shipsToLabel: string;
+    packageHistoryLabel: string;
   };
 }
 
@@ -92,6 +94,7 @@ export const defaultTrackingConfig: TrackingConfig = {
     inTransitLabel: 'In Transit',
     confirmedLabel: 'Confirmed',
     collectedLabel: 'Collected',
+    cancelledLabel: 'Cancelled',
     checkBackLater: 'Please check back later for delivery estimate.',
     inTransitCTAOnLabel: 'Delivery is currently estimated on',
     inTransitCTABetweenLabel: 'Delivery is currently estimated between',
@@ -101,6 +104,7 @@ export const defaultTrackingConfig: TrackingConfig = {
     completedCTA: 'Shipment delivered on',
     shipsFromLabel: 'Ships from',
     shipsToLabel: 'Ships to',
+    packageHistoryLabel: 'Package history',
     dates: {
       weekdays: {
         sunday: 'Sun',

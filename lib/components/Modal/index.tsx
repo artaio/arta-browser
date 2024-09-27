@@ -3,7 +3,7 @@ import { Destination } from '../Destination';
 import { Footer } from '../Footer';
 
 import { useEffect, useState } from 'preact/hooks';
-import css from './index.css';
+import './index.css';
 import { ArtaLocation } from '../../MetadataTypes';
 import { Loading } from '../Loading';
 import { Quotes } from '../Quotes';
@@ -85,7 +85,6 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
 
   return (
     <div>
-      <style>{css}</style>
       <div class="artajs">
         {position === 'center' && <div class="artajs__modal__backdrop" />}
         <div class={`artajs__modal artajs__modal__${position}`} style={style}>
