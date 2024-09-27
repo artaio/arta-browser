@@ -101,6 +101,15 @@ export const getEstimateStyle = (config: EstimateFullConfig) => {
   };
 };
 
+const getWidth = (config: TrackingFullConfig) => {
+  if (screen.width < 540) {
+    config.style.variant = 'minimal';
+    return `${screen.width}px`;
+  }
+
+  return config.style.variant === 'default' ? '540px' : '320px';
+};
+
 export const getTrackingStyle = (config: TrackingFullConfig) => {
   return {
     '--background': config.style.color.background,
@@ -111,7 +120,7 @@ export const getTrackingStyle = (config: TrackingFullConfig) => {
     '--border-focused': config.style.color.borderFocused,
     '--font-family': config.style.fontFamily,
     '--font-size': `${config.style.fontSize}px`,
-    '--width': config.style.variant === 'default' ? '540px' : '320px',
+    '--width': getWidth(config)
   };
 };
 

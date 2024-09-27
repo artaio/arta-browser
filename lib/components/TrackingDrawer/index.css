@@ -168,6 +168,9 @@
   align-items: center;
   gap: 16px;
   align-self: stretch;
+  overflow-y: auto;
+  max-height: 100%;
+  flex-grow: 1;
 }
 
 
@@ -316,7 +319,6 @@
   display: flex;
   width: 140px;
   height: 1px;
-  padding: 8px 0px 16px 0px;
   flex-direction: column;
   align-items: center;
   gap: 4px;
@@ -555,6 +557,239 @@
   font-size: calc(var(--font-size) - 2px);
   line-height: 150%;
   /* 18px */
+  letter-spacing: 0.2px;
+  text-decoration-line: underline;
+}
+
+.artajs__drawer .artajs__tracking__title {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-style: normal;
+  font-weight: bold;
+  line-height: 150%;
+  letter-spacing: 0.2px;
+}
+
+.artajs__drawer .artajs__tracking__subtype {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) - 2px);
+  line-height: 150%;
+  /* 18px */
+  letter-spacing: 0.2px;
+}
+
+/* Footer */
+.artajs__drawer .artajs__tracking__footer__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  margin-bottom: 16px;
+}
+
+.artajs__drawer .artajs__tracking__footer__content {
+  display: flex;
+  width: 240px;
+  padding: 8px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.artajs__drawer .artajs__tracking__footer__powered__by__text {
+  color: #6F6C65;
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  /* 18px */
+}
+
+.artajs__drawer .artajs__tracking__footer__powered__by__logo {
+  display: flex;
+  width: 48.32px;
+  height: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Insurance box */
+.artajs__drawer .artajs__tracking__insurance__wrapper {
+  display: flex;
+  padding-top: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+  border-top: 1px solid var(--border);
+}
+
+.artajs__drawer .artajs__tracking__insurance__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2px;
+  align-self: stretch;
+  border-radius: 8px;
+}
+
+.artajs__drawer .artajs__tracking__insurance__title {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) - 2px);
+  font-weight: bold;
+  line-height: 150%;
+  letter-spacing: 0.2px;
+}
+
+.artajs__drawer .artajs__tracking__insurance__body {
+  width: 154px;
+  height: 18px;
+  display: flex;
+  gap: 4px;
+}
+
+.artajs__drawer .artajs__tracking__insurance__body__icon {
+  display: flex;
+  width: 18px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.artajs__drawer .artajs__tracking__insurance__body__icon__text {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) - 2px);
+  font-weight: bold;
+  line-height: 150%;
+  letter-spacing: 0.2px;
+  text-decoration-line: underline;
+}
+
+/* Summary styles */
+.artajs__drawer .artajs__tracking__summary__wrapper {
+  display: flex;
+  padding-top: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+  border-top: 1px solid var(--border);
+}
+
+.artajs__drawer .artajs__tracking__summary__content {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.artajs__drawer .artajs__tracking__summary__date {
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) - 2px);
+  line-height: 150%;
+  letter-spacing: 0.2px;
+}
+
+.artajs__drawer .artajs__tracking__summary__title {
+  color: var(--text-primary);
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: bold;
+  line-height: 150%;
+  letter-spacing: 0.2px;
+}
+
+.artajs__drawer .artajs__tracking__summary__icon {
+  width: 12px;
+  height: 13px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+/* Exceptions */
+.artajs__drawer .artajs__tracking__exception__wrapper {
+  display: flex;
+  padding-bottom: 24px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-bottom: 1px solid var(--border);
+}
+
+.artajs__drawer .artajs__tracking__exception__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  align-self: stretch;
+}
+
+.artajs__drawer .artajs__tracking__exception__title {
+  color: var(--text-primary);
+  text-align: center;
+  align-self: stretch;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-style: normal;
+  font-weight: bold;
+  line-height: 150%;
+  letter-spacing: 0.2px;
+}
+
+.artajs__drawer .artajs__tracking__exception__cta {
+  color: var(--text-primary);
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) - 2px);
+  line-height: 150%;
+  letter-spacing: 0.2px;
+  text-decoration-line: underline;
+  align-self: stretch;
+  cursor: pointer;
+}
+
+/* Shipments Events List */
+
+.artajs__drawer .artajs__tracking__events__wrapper {
+  display: flex;
+  padding: 16px 24px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  flex-grow: 1;
+}
+
+.artajs__drawer .artajs__tracking__events__return {
+  display: flex;
+  padding-bottom: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.artajs__drawer .artajs__tracking__events__return__text {
+  color: var(--text-primary);
+  text-align: center;
+  font-family: var(--font-family);
+  font-style: normal;
+  line-height: 150%;
   letter-spacing: 0.2px;
   text-decoration-line: underline;
 }

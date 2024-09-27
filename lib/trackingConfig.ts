@@ -53,6 +53,8 @@ export interface TrackingConfig {
     collectedLabel: string;
     cancelledLabel: string;
     checkBackLater: string;
+    cancelledMessage: string;
+    noObjectDetailsTitle: string;
     inTransitCTAOnLabel: string;
     inTransitCTABetweenLabel: string;
     inTransitCTABeforeLabel: string;
@@ -63,12 +65,16 @@ export interface TrackingConfig {
     shipsFromLabel: string;
     shipsToLabel: string;
     packageHistoryLabel: string;
+    insuranceTitle: string;
+    bookedLabel: string;
+    shipmentExceptionCTA: string;
+    packageEventsReturnLabel: string;
   };
 }
 
 export type PartialTrackingConfig = DeepPartial<TrackingConfig>;
 
-export interface TrackingFullConfig extends TrackingConfig, ArtaJsFullConfig {}
+export interface TrackingFullConfig extends TrackingConfig, ArtaJsFullConfig { }
 
 export const defaultTrackingConfig: TrackingConfig = {
   style: {
@@ -95,7 +101,9 @@ export const defaultTrackingConfig: TrackingConfig = {
     confirmedLabel: 'Confirmed',
     collectedLabel: 'Collected',
     cancelledLabel: 'Cancelled',
+    cancelledMessage: 'This shipment was cancelled.',
     checkBackLater: 'Please check back later for delivery estimate.',
+    noObjectDetailsTitle: 'Title Not Provided',
     inTransitCTAOnLabel: 'Delivery is currently estimated on',
     inTransitCTABetweenLabel: 'Delivery is currently estimated between',
     inTransitCTABeforeLabel: 'Delivery is currently estimated before',
@@ -105,6 +113,10 @@ export const defaultTrackingConfig: TrackingConfig = {
     shipsFromLabel: 'Ships from',
     shipsToLabel: 'Ships to',
     packageHistoryLabel: 'Package history',
+    insuranceTitle: 'Protected with',
+    bookedLabel: 'Booked: ',
+    shipmentExceptionCTA: 'Contact Arta for more information',
+    packageEventsReturnLabel: '< Back',
     dates: {
       weekdays: {
         sunday: 'Sun',
