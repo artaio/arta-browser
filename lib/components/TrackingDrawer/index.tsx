@@ -2,11 +2,12 @@ import { useEffect, useState } from 'preact/hooks';
 import { getTrackingStyle } from '../../helper';
 import { TrackingFullConfig } from '../../trackingConfig';
 import { DrawerHeader } from '../DrawerHeader';
-import { StepIcon } from '../StepIcon';
-import css from './index.css';
+import './index.css';
 import { loadShipment } from '../../requests';
 import { ShipToFrom } from '../ShipToFrom';
 import { Packings } from '../Packings';
+import { Timeline } from '../Timeline';
+import { TrackingTop } from '../TrackingTop';
 
 interface TrackingDrawerProps {
   shipmentId: string;
@@ -14,7 +15,7 @@ interface TrackingDrawerProps {
   onClose: (e: any) => void;
 }
 
-interface Location {
+export interface ArtaLocation {
   title: string;
   address_line_1: string;
   address_line_2: string;
@@ -71,24 +72,24 @@ interface Package {
 
 export interface Shipment {
   created_at: string;
-  destination: Location;
+  destination: ArtaLocation;
   hosted_session_id: string;
   id: string;
   internal_reference: string;
   object_count: number;
-  origin: Location;
+  origin: ArtaLocation;
   packages: Package[];
   package_count: number;
   public_reference: string;
   quote_type: string;
   shortcode: string;
   status:
-  | 'cancelled'
-  | 'collected'
-  | 'completed'
-  | 'confirmed'
-  | 'in_transit'
-  | 'pending';
+    | 'cancelled'
+    | 'collected'
+    | 'completed'
+    | 'confirmed'
+    | 'in_transit'
+    | 'pending';
   total: number;
   total_currency: string;
   updated_at: string;
@@ -121,21 +122,33 @@ export const TrackingDrawer = ({
 
   return (
     <div>
-      <style>{css}</style>
       <div class="artajs">
-        <div class="artajs__drawer__backdrop" />
-        <div class={`artajs__drawer artajs__drawer__${position}`} style={style}>
-          <DrawerHeader
-            onClose={onClose}
-            title={config.text.header.title}
-            lineColor={config.style.color.border}
-          />
-          {/* TODO: proper loading for shipment fetch */}
-          {shipment && <div>
-            <StepIcon config={config} shipment={shipment} />
-            <ShipToFrom config={config} shipment={shipment} />
-            <Packings config={config} shipment={shipment} />
-          </div>}
+        {/* <div class="artajs__drawer__backdrop" /> */}
+        <div
+          style={style}
+          class={`artajs__drawer ${
+            position === 'left'
+              ? 'artajs__drawer__left'
+              : 'artajs__drawer__right'
+          }`}
+        >
+          <div class="artajs__tracking__out__wrapper">
+            <DrawerHeader title={config.text.header.title} onClose={onClose} />
+            {shipment != null ? (
+              <div class="artajs__tracking__body">
+                <Timeline shipment={shipment} config={config} />
+                {config.style.variant === 'default' && (
+                  <div class="artajs__tracking__timeline__divider" />
+                )}
+                <TrackingTop config={config} shipment={shipment} />
+                <ShipToFrom config={config} shipment={shipment} />
+                <Packings config={config} shipment={shipment} />
+              </div>
+            ) : (
+              // TODO: proper loading
+              <div class="artajs__tracking__body">Loading...</div>
+            )}
+          </div>
         </div>
       </div>
     </div>

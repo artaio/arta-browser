@@ -51,6 +51,7 @@ export interface TrackingConfig {
     inTransitLabel: string;
     confirmedLabel: string;
     collectedLabel: string;
+    cancelledLabel: string;
     checkBackLater: string;
     inTransitCTAOnLabel: string;
     inTransitCTABetweenLabel: string;
@@ -93,6 +94,7 @@ export const defaultTrackingConfig: TrackingConfig = {
     inTransitLabel: 'In Transit',
     confirmedLabel: 'Confirmed',
     collectedLabel: 'Collected',
+    cancelledLabel: 'Cancelled',
     checkBackLater: 'Please check back later for delivery estimate.',
     inTransitCTAOnLabel: 'Delivery is currently estimated on',
     inTransitCTABetweenLabel: 'Delivery is currently estimated between',

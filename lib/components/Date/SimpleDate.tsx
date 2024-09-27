@@ -7,17 +7,18 @@ export interface SimpleDateProps {
 }
 
 export const SimpleDate = ({ date, dateConfig }: SimpleDateProps) => {
+  const parsedDate = date ? parseStringDate(date) : null;
+  const finalDate = parsedDate
+    ? `${dateConfig.weekdays[parsedDate.weekday]}, ${
+        dateConfig.months[parsedDate.month]
+      } ${parsedDate.day}`
+    : '';
 
-  if (date == null) {
-    // TODO: check how we want to handle these
-    return <div class="artajs__drawer__date">N/A</div>;
-  }
-
-  const { weekday, month, day } = parseStringDate(date);
   return (
-    <div class="artajs__drawer__date">
-      {`${dateConfig.weekdays[weekday]}, ${dateConfig.months[month]
-        } ${day}`}
+    <div class="artajs__tracking__timeline__status__date">
+      <div class="artajs__tracking__timeline__status__date__content">
+        {finalDate}
+      </div>
     </div>
   );
 };
