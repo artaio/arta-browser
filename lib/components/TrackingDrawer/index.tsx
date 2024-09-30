@@ -59,12 +59,12 @@ export interface ArtaObject {
   type: string;
 }
 
-interface Package {
+export interface ArtaPackage {
   id: number;
   handle_with_care: boolean;
   is_sufficiently_packed: boolean;
   eta: string;
-  status: string;
+  status: 'unknown' | 'pending' | 'notfound' | 'transit' | 'out_for_delivery' | 'delivered' | 'undelivered' | 'exception' | 'expired';
   objects: ArtaObject[];
   packing_materials: string;
   depth: number;
@@ -77,6 +77,7 @@ interface Package {
 }
 
 interface Tracking {
+  id: number;
   carrier_name: string;
   package_id: number;
   tracking_number: string;
@@ -105,7 +106,7 @@ export interface Shipment {
   internal_reference: string;
   object_count: number;
   origin: ArtaLocation | null;
-  packages: Package[];
+  packages: ArtaPackage[];
   package_count: number;
   public_reference: string;
   quote_type: string;
@@ -143,21 +144,22 @@ export const TrackingDrawer = ({
   const style = getTrackingStyle(config);
 
   const [shipment, setShipment] = useState<Shipment | null>(null);
-  const [packagesWithObjects, setPackagesWithObjects] = useState<Package[]>([]);
-  const [packageEvents, setPackageEvents] = useState<number | null>(null);
+  const [packagesWithObjects, setPackagesWithObjects] = useState<ArtaPackage[]>([]);
+  const [packageId, setPackageId] = useState<number | null>(null);
 
   const hasActiveException = (shipment: Shipment) => {
-    return shipment.shipment_exceptions.some((ex) => ex.status !== 'resolved');
+    // TODO check with Dylan about status here
+    return shipment.shipment_exceptions.some((ex) => ex.status !== 'resolved') && shipment.status !== 'completed';
   };
 
   useEffect(() => {
     (async () => {
       const ship = await loadShipment(config, shipmentId);
       setShipment(ship);
-      setPackagesWithObjects(ship.packages.filter(pkg => pkg.objects?.length));
+      //TODO should we ship.packages.filter(pkg => pkg.objects?.length)); ??
+      setPackagesWithObjects(ship.packages);
     })();
   }, [shipmentId]);
-
 
   return (
     <div>
@@ -175,11 +177,11 @@ export const TrackingDrawer = ({
 
             {shipment != null ? (
 
-              packageEvents ? <PackageEvents
+              packageId ? <PackageEvents
                 shipment={shipment}
                 config={config}
-                packageEvents={packageEvents}
-                setPackageEvents={setPackageEvents}
+                packageId={packageId}
+                setPackageId={setPackageId}
               /> :
 
                 <div class="artajs__tracking__body">
@@ -190,18 +192,21 @@ export const TrackingDrawer = ({
                   {hasActiveException(shipment) && <ShipmentException shipment={shipment} config={config} />}
                   <TrackingTop config={config} shipment={shipment} />
                   <ShipToFrom config={config} shipment={shipment} />
-                  {packagesWithObjects.map((pkg, index) => <Package title={`#${index + 1}`} pkg={pkg} shipment={shipment} config={config} setPackageEvents={setPackageEvents} />)}
+                  {packagesWithObjects.map((pkg, index) => <Package title={`#${index + 1}`} pkg={pkg} shipment={shipment} config={config} setPackageId={setPackageId} />)}
                   {/* TODO: expose if has insurance on the backend and test */}
                   <DrawerInsurance config={config} />
                   <Summary config={config} shipment={shipment} />
+                  <DrawerFooter />
                 </div>
+
             ) : (
-              // TODO: proper loading
-              <div class="artajs__tracking__body">Loading...</div>
+              <div class="artajs__tracking__body">
+                <div class="artajs__drawer__loading" />
+                <DrawerFooter />
+              </div>
             )}
 
 
-            <DrawerFooter />
           </div>
         </div>
       </div>

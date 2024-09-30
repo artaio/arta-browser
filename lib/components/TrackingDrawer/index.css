@@ -588,6 +588,7 @@
   gap: 10px;
   align-self: stretch;
   margin-bottom: 16px;
+  margin-top: auto;
 }
 
 .artajs__drawer .artajs__tracking__footer__content {
@@ -771,6 +772,7 @@
   gap: 16px;
   align-self: stretch;
   flex-grow: 1;
+  overflow-y: auto;
 }
 
 .artajs__drawer .artajs__tracking__events__return {
@@ -792,4 +794,230 @@
   line-height: 150%;
   letter-spacing: 0.2px;
   text-decoration-line: underline;
+}
+
+.artajs__drawer .artajs__tracking__events__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  align-self: stretch;
+}
+
+.artajs__drawer .artajs__tracking__events__header__title {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-style: normal;
+  font-weight: bold;
+  line-height: 150%;
+  /* 21px */
+  letter-spacing: 0.2px;
+}
+
+/* Loading */
+
+.artajs__drawer .artajs__drawer__loading {
+  position: absolute;
+  top: 42%;
+  left: 44%;
+  transform: translate(-50%, -50%);
+  height: 56px;
+  width: 56px;
+  box-sizing: border-box;
+  background: conic-gradient(from 90deg at 50% 50%,
+      rgba(39, 174, 96, 0) 0deg,
+      rgba(31, 144, 255, 0) 0.04deg,
+      var(--text-secondary) 360deg);
+  border-radius: 56px;
+  /* previous code */
+  animation: 1s rotate infinite linear;
+}
+
+.artajs__drawer .artajs__drawer__loading::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 40px;
+  width: 40px;
+  background: var(--background);
+  border-radius: 48px;
+}
+
+.artajs__drawer .artajs__drawer__loading::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 8px;
+  width: 8px;
+  background: var(--text-secondary);
+  border-radius: 8px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pill */
+.artajs__drawer .artajs__tracking__pill__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.artajs__drawer .artajs__tracking__pill__round {
+  display: flex;
+  padding: 4px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+}
+
+.artajs__drawer .artajs__tracking__pill__text {
+  text-align: center;
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) - 3px);
+  font-style: normal;
+  font-weight: bold;
+  line-height: 130%;
+  letter-spacing: 0.2px;
+}
+
+.artajs__drawer .artajs__tracking__events__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  overflow-y: auto;
+  max-height: 100%;
+  flex-grow: 1;
+}
+
+.artajs__drawer .artajs__tracking__events__group {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  margin-left: 6px;
+}
+
+.artajs__drawer .artajs__tracking__events__date {
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) - 2px);
+  font-style: normal;
+  font-weight: bold;
+  line-height: 130%;
+  letter-spacing: 0.2px;
+  margin-bottom: 4px;
+}
+
+.artajs__drawer .artajs__tracking__events__group__content {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+}
+
+.artajs__drawer .artajs__tracking__events__group__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.artajs__drawer .artajs__tracking__events__group__number__primary {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-style: normal;
+  font-weight: bold;
+  line-height: 130%;
+  letter-spacing: 0.2px;
+  margin-top: 6px;
+}
+
+.artajs__drawer .artajs__tracking__events__group__number__secondary {
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-style: normal;
+  font-weight: bold;
+  line-height: 130%;
+  letter-spacing: 0.2px;
+  margin-top: 6px;
+
+}
+
+.artajs__drawer .artajs__tracking__events__group__divider {
+  display: flex;
+  flex-direction: column;
+}
+
+.artajs__drawer .artajs__tracking__events__group__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.artajs__drawer .artajs__tracking__events__vertical {
+  /* border: var(--border); */
+  height: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.artajs__drawer .artajs__tracking__events__round {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 30px;
+  width: 30px;
+}
+
+.artajs__drawer .artajs__tracking__events__group__location {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-style: normal;
+  font-weight: bold;
+  line-height: 130%;
+  letter-spacing: 0.2px;
+}
+
+.artajs__drawer .artajs__tracking__events__group__location__secondary {
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-style: normal;
+  font-weight: bold;
+  line-height: 130%;
+  letter-spacing: 0.2px;
+}
+
+.artajs__drawer .artajs__tracking__events__group__time {
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) - 2px);
+  font-style: normal;
+  line-height: 130%;
+  letter-spacing: 0.2px;
+}
+.artajs__drawer .artajs__tracking__events__group__description {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-style: normal;
+  line-height: 130%;
+  letter-spacing: 0.2px;
+
 }

@@ -1,4 +1,5 @@
 import { ArtaJsFullConfig } from './arta';
+import { ArtaPackageEvent } from './components/PackageEvents';
 import type { Shipment } from './components/TrackingDrawer';
 import { EstimateBody } from './estimateConfig';
 import {
@@ -125,6 +126,16 @@ export const loadShipment = async (
   shipmentId: string
 ): Promise<Shipment> => {
   const path = `/embedded_tracking/shipments/${shipmentId}`;
+  const res = await artaRequest(path, config, undefined, undefined, 'GET');
+  return res;
+};
+
+export const loadPackageEvents = async (
+  config: ArtaJsFullConfig,
+  shipmentId: string,
+  packageId: number
+): Promise<Array<ArtaPackageEvent>> => {
+  const path = `/embedded_tracking/package_events/${shipmentId}/${packageId}`;
   const res = await artaRequest(path, config, undefined, undefined, 'GET');
   return res;
 };

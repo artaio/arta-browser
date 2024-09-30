@@ -1,4 +1,5 @@
 import type { TrackingConfig } from '../../trackingConfig';
+import { Pill } from '../Pill';
 import type { ArtaObject, Shipment } from '../TrackingDrawer';
 
 export interface PackingsProps {
@@ -6,13 +7,12 @@ export interface PackingsProps {
   config: TrackingConfig;
   pkg: Shipment['packages'][number];
   title: string;
-  setPackageEvents: (value: number) => void;
+  setPackageId: (value: number) => void;
 }
 
-export const Package = ({ config, shipment, pkg, title, setPackageEvents }: PackingsProps) => {
+export const Package = ({ config, shipment, pkg, title, setPackageId }: PackingsProps) => {
 
   const pkgTracking = shipment.tracking.find(t => t.package_id === pkg.id);
-
 
   const objectDetailTitle = (obj: ArtaObject) => {
 
@@ -41,6 +41,7 @@ export const Package = ({ config, shipment, pkg, title, setPackageEvents }: Pack
         <div class="artajs__packings__header">
           <div class="artajs__packings__header__top">
             <div class="artajs__tracking__header__text">{title}</div>
+            <Pill config={config} pkg={pkg} />
           </div>
           {pkgTracking?.carrier_name && pkgTracking.tracking_number && <div class="artajs__packings__header__body">
 
@@ -66,7 +67,7 @@ export const Package = ({ config, shipment, pkg, title, setPackageEvents }: Pack
           </div>}
           {pkg.package_events_count > 0 && <div onClick={(e) => {
             e.preventDefault();
-            setPackageEvents(pkg.id);
+            setPackageId(pkg.id);
           }} class="artajs__packings__header__body">
             <div class="artajs__packings__text__small__underline">
               {config.text.packageHistoryLabel}

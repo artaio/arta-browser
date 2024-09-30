@@ -27,6 +27,12 @@ export interface DateConfig {
   };
 }
 
+interface PillConfig {
+  textColor: string;
+  backgroundColor: string;
+  text: string;
+}
+
 export interface TrackingConfig {
   style: {
     color: {
@@ -68,7 +74,21 @@ export interface TrackingConfig {
     insuranceTitle: string;
     bookedLabel: string;
     shipmentExceptionCTA: string;
-    packageEventsReturnLabel: string;
+    packageIdReturnLabel: string;
+    packageLabel: string;
+    historyLabel: string;
+    unknownLocation: string;
+  };
+  pill: {
+    unknown: PillConfig;
+    pending: PillConfig;
+    notfound: PillConfig;
+    transit: PillConfig;
+    out_for_delivery: PillConfig;
+    delivered: PillConfig;
+    undelivered: PillConfig;
+    exception: PillConfig;
+    expired: PillConfig;
   };
 }
 
@@ -116,7 +136,10 @@ export const defaultTrackingConfig: TrackingConfig = {
     insuranceTitle: 'Protected with',
     bookedLabel: 'Booked: ',
     shipmentExceptionCTA: 'Contact Arta for more information',
-    packageEventsReturnLabel: '< Back',
+    packageIdReturnLabel: '< Back',
+    packageLabel: 'Package',
+    historyLabel: 'History',
+    unknownLocation: 'Unknown Location',
     dates: {
       weekdays: {
         sunday: 'Sun',
@@ -141,6 +164,53 @@ export const defaultTrackingConfig: TrackingConfig = {
         november: 'Nov',
         december: 'Dec',
       },
+    },
+  },
+  pill: {
+    unknown: {
+      textColor: '#202020',
+      backgroundColor: '#D2D2D2',
+      text: 'Unknown',
+    },
+    pending: {
+      textColor: '#202020',
+      backgroundColor: '#D2D2D2',
+      text: 'Pending',
+    },
+    notfound: {
+      textColor: '#202020',
+      backgroundColor: '#D2D2D2',
+      text: 'Not Found',
+    },
+    transit: {
+      textColor: '#379464',
+      backgroundColor: '#EFF8F3',
+      text: 'In Transit',
+    },
+    out_for_delivery: {
+      textColor: '#379464',
+      backgroundColor: '#EFF8F3',
+      text: 'Out for Delivery',
+    },
+    delivered: {
+      textColor: '#173E2A',
+      backgroundColor: '#D6EDE1',
+      text: 'Delivered',
+    },
+    undelivered: {
+      textColor: '#772424',
+      backgroundColor: '#FEF9F9',
+      text: 'Undelivered',
+    },
+    exception: {
+      textColor: '#976315',
+      backgroundColor: '#FEF6E9',
+      text: 'Exception',
+    },
+    expired: {
+      textColor: '#772424',
+      backgroundColor: '#FEF9F9',
+      text: 'Expired',
     },
   },
 };
