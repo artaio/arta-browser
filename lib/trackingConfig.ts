@@ -27,6 +27,12 @@ export interface DateConfig {
   };
 }
 
+interface PillConfig {
+  textColor: string;
+  backgroundColor: string;
+  text: string;
+}
+
 export interface TrackingConfig {
   style: {
     color: {
@@ -53,6 +59,8 @@ export interface TrackingConfig {
     collectedLabel: string;
     cancelledLabel: string;
     checkBackLater: string;
+    cancelledMessage: string;
+    noObjectDetailsTitle: string;
     inTransitCTAOnLabel: string;
     inTransitCTABetweenLabel: string;
     inTransitCTABeforeLabel: string;
@@ -63,12 +71,30 @@ export interface TrackingConfig {
     shipsFromLabel: string;
     shipsToLabel: string;
     packageHistoryLabel: string;
+    insuranceTitle: string;
+    bookedLabel: string;
+    shipmentExceptionCTA: string;
+    packageIdReturnLabel: string;
+    packageLabel: string;
+    historyLabel: string;
+    unknownLocation: string;
+  };
+  pill: {
+    unknown: PillConfig;
+    pending: PillConfig;
+    notfound: PillConfig;
+    transit: PillConfig;
+    out_for_delivery: PillConfig;
+    delivered: PillConfig;
+    undelivered: PillConfig;
+    exception: PillConfig;
+    expired: PillConfig;
   };
 }
 
 export type PartialTrackingConfig = DeepPartial<TrackingConfig>;
 
-export interface TrackingFullConfig extends TrackingConfig, ArtaJsFullConfig {}
+export interface TrackingFullConfig extends TrackingConfig, ArtaJsFullConfig { }
 
 export const defaultTrackingConfig: TrackingConfig = {
   style: {
@@ -95,7 +121,9 @@ export const defaultTrackingConfig: TrackingConfig = {
     confirmedLabel: 'Confirmed',
     collectedLabel: 'Collected',
     cancelledLabel: 'Cancelled',
+    cancelledMessage: 'This shipment was cancelled.',
     checkBackLater: 'Please check back later for delivery estimate.',
+    noObjectDetailsTitle: 'Title Not Provided',
     inTransitCTAOnLabel: 'Delivery is currently estimated on',
     inTransitCTABetweenLabel: 'Delivery is currently estimated between',
     inTransitCTABeforeLabel: 'Delivery is currently estimated before',
@@ -105,6 +133,13 @@ export const defaultTrackingConfig: TrackingConfig = {
     shipsFromLabel: 'Ships from',
     shipsToLabel: 'Ships to',
     packageHistoryLabel: 'Package history',
+    insuranceTitle: 'Protected with',
+    bookedLabel: 'Booked: ',
+    shipmentExceptionCTA: 'Contact Arta for more information',
+    packageIdReturnLabel: '< Back',
+    packageLabel: 'Package',
+    historyLabel: 'History',
+    unknownLocation: 'Unknown Location',
     dates: {
       weekdays: {
         sunday: 'Sun',
@@ -129,6 +164,53 @@ export const defaultTrackingConfig: TrackingConfig = {
         november: 'Nov',
         december: 'Dec',
       },
+    },
+  },
+  pill: {
+    unknown: {
+      textColor: '#202020',
+      backgroundColor: '#D2D2D2',
+      text: 'Unknown',
+    },
+    pending: {
+      textColor: '#202020',
+      backgroundColor: '#D2D2D2',
+      text: 'Pending',
+    },
+    notfound: {
+      textColor: '#202020',
+      backgroundColor: '#D2D2D2',
+      text: 'Not Found',
+    },
+    transit: {
+      textColor: '#379464',
+      backgroundColor: '#EFF8F3',
+      text: 'In Transit',
+    },
+    out_for_delivery: {
+      textColor: '#379464',
+      backgroundColor: '#EFF8F3',
+      text: 'Out for Delivery',
+    },
+    delivered: {
+      textColor: '#173E2A',
+      backgroundColor: '#D6EDE1',
+      text: 'Delivered',
+    },
+    undelivered: {
+      textColor: '#772424',
+      backgroundColor: '#FEF9F9',
+      text: 'Undelivered',
+    },
+    exception: {
+      textColor: '#976315',
+      backgroundColor: '#FEF6E9',
+      text: 'Exception',
+    },
+    expired: {
+      textColor: '#772424',
+      backgroundColor: '#FEF9F9',
+      text: 'Expired',
     },
   },
 };

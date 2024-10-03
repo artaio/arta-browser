@@ -7,23 +7,22 @@ export interface ShipToFromProps {
 }
 
 export const ShipToFrom = ({ config, shipment }: ShipToFromProps) => {
-  const formatAddress = (address: ArtaLocation) => {
+  const formatAddress = (address?: ArtaLocation) => {
     const parts = [
-      address.city,
-      address.region,
-      address.postal_code,
-      address.country,
+      address?.city,
+      address?.region,
+      address?.postal_code,
+      address?.country,
     ].filter(Boolean);
 
     return parts.join(', ');
   };
 
-  const style = config.style.variant === 'default' ? 'row' : 'stack';
 
   return (
     <div class="artajas__tracking__location__wrapper">
-      <div class={`artajs__tracking__location__${style}`}>
-        <div class={`artajs__tracking__location__item__${style}`}>
+      <div class="artajs__tracking__location">
+        {shipment.origin && <div class="artajs__tracking__location__item">
           <svg
             width="24"
             height="24"
@@ -48,8 +47,8 @@ export const ShipToFrom = ({ config, shipment }: ShipToFromProps) => {
               {formatAddress(shipment.origin)}
             </div>
           </div>
-        </div>
-        <div class={`artajs__tracking__location__item__${style}`}>
+        </div>}
+        {shipment.destination && <div class="artajs__tracking__location__item">
           <svg
             width="24"
             height="24"
@@ -74,7 +73,7 @@ export const ShipToFrom = ({ config, shipment }: ShipToFromProps) => {
               {formatAddress(shipment.destination)}
             </div>
           </div>
-        </div>
+        </div>}
       </div>
     </div>
   );

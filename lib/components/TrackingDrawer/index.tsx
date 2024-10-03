@@ -5,9 +5,14 @@ import { DrawerHeader } from '../DrawerHeader';
 import './index.css';
 import { loadShipment } from '../../requests';
 import { ShipToFrom } from '../ShipToFrom';
-import { Packings } from '../Packings';
+import { Package } from '../Package';
 import { Timeline } from '../Timeline';
 import { TrackingTop } from '../TrackingTop';
+import { DrawerFooter } from '../DrawerFooter';
+import { DrawerInsurance } from '../DrawerInsurance';
+import { Summary } from '../Summary';
+import { ShipmentException } from '../ShipmentException';
+import { PackageEvents } from '../PackageEvents';
 
 interface TrackingDrawerProps {
   shipmentId: string;
@@ -26,7 +31,7 @@ export interface ArtaLocation {
   postal_code: string;
 }
 
-interface ArtaObject {
+export interface ArtaObject {
   id: string;
   current_packing: string;
   images: string[];
@@ -50,15 +55,16 @@ interface ArtaObject {
   value: number;
   value_currency: string;
   subtype: string;
+  subtype_name: string;
   type: string;
 }
 
-interface Package {
-  id: string;
+export interface ArtaPackage {
+  id: number;
   handle_with_care: boolean;
   is_sufficiently_packed: boolean;
   eta: string;
-  status: string;
+  status: 'unknown' | 'pending' | 'notfound' | 'transit' | 'out_for_delivery' | 'delivered' | 'undelivered' | 'exception' | 'expired';
   objects: ArtaObject[];
   packing_materials: string;
   depth: number;
@@ -70,26 +76,48 @@ interface Package {
   package_events_count: number;
 }
 
+interface Tracking {
+  id: number;
+  carrier_name: string;
+  package_id: number;
+  tracking_number: string;
+  url: string | null;
+}
+
+interface ShipmentException {
+  created_at: string;
+  exception_type_label: string | null;
+  hold_until: string | null;
+  id: string;
+  object_id: string | null;
+  package_id: string | null;
+  resolution: string | null;
+  source: string;
+  status: 'new' | 'in_progress' | 'resolved';
+  type: string;
+  updated_at: string;
+}
+
 export interface Shipment {
   created_at: string;
-  destination: ArtaLocation;
+  destination: ArtaLocation | null;
   hosted_session_id: string;
   id: string;
   internal_reference: string;
   object_count: number;
-  origin: ArtaLocation;
-  packages: Package[];
+  origin: ArtaLocation | null;
+  packages: ArtaPackage[];
   package_count: number;
   public_reference: string;
   quote_type: string;
   shortcode: string;
   status:
-    | 'cancelled'
-    | 'collected'
-    | 'completed'
-    | 'confirmed'
-    | 'in_transit'
-    | 'pending';
+  | 'cancelled'
+  | 'collected'
+  | 'completed'
+  | 'confirmed'
+  | 'in_transit'
+  | 'pending';
   total: number;
   total_currency: string;
   updated_at: string;
@@ -102,6 +130,9 @@ export interface Shipment {
 
   delivery_start: string | null;
   delivery_end: string | null;
+
+  tracking: Tracking[];
+  shipment_exceptions: ShipmentException[];
 }
 
 export const TrackingDrawer = ({
@@ -113,10 +144,20 @@ export const TrackingDrawer = ({
   const style = getTrackingStyle(config);
 
   const [shipment, setShipment] = useState<Shipment | null>(null);
+  const [packagesWithObjects, setPackagesWithObjects] = useState<ArtaPackage[]>([]);
+  const [packageId, setPackageId] = useState<number | null>(null);
+
+  const hasActiveException = (shipment: Shipment) => {
+    // TODO check with Dylan about status here
+    return shipment.shipment_exceptions.some((ex) => ex.status !== 'resolved') && shipment.status !== 'completed';
+  };
 
   useEffect(() => {
     (async () => {
-      setShipment(await loadShipment(config, shipmentId));
+      const ship = await loadShipment(config, shipmentId);
+      setShipment(ship);
+      //TODO should we ship.packages.filter(pkg => pkg.objects?.length)); ??
+      setPackagesWithObjects(ship.packages);
     })();
   }, [shipmentId]);
 
@@ -126,28 +167,44 @@ export const TrackingDrawer = ({
         {/* <div class="artajs__drawer__backdrop" /> */}
         <div
           style={style}
-          class={`artajs__drawer ${
-            position === 'left'
-              ? 'artajs__drawer__left'
-              : 'artajs__drawer__right'
-          }`}
+          class={`artajs__drawer ${position === 'left'
+            ? 'artajs__drawer__left'
+            : 'artajs__drawer__right'
+            }`}
         >
           <div class="artajs__tracking__out__wrapper">
             <DrawerHeader title={config.text.header.title} onClose={onClose} />
+
             {shipment != null ? (
-              <div class="artajs__tracking__body">
-                <Timeline shipment={shipment} config={config} />
-                {config.style.variant === 'default' && (
+
+              packageId ? <PackageEvents
+                shipment={shipment}
+                config={config}
+                packageId={packageId}
+                setPackageId={setPackageId}
+              /> :
+
+                <div class="artajs__tracking__body">
+                  <Timeline shipment={shipment} config={config} />
                   <div class="artajs__tracking__timeline__divider" />
-                )}
-                <TrackingTop config={config} shipment={shipment} />
-                <ShipToFrom config={config} shipment={shipment} />
-                <Packings config={config} shipment={shipment} />
-              </div>
+                  {hasActiveException(shipment) && <ShipmentException shipment={shipment} config={config} />}
+                  <TrackingTop config={config} shipment={shipment} />
+                  <ShipToFrom config={config} shipment={shipment} />
+                  {packagesWithObjects.map((pkg, index) => <Package title={`#${index + 1}`} pkg={pkg} shipment={shipment} config={config} setPackageId={setPackageId} />)}
+                  {/* TODO: expose if has insurance on the backend and test */}
+                  <DrawerInsurance config={config} />
+                  <Summary config={config} shipment={shipment} />
+                  <DrawerFooter />
+                </div>
+
             ) : (
-              // TODO: proper loading
-              <div class="artajs__tracking__body">Loading...</div>
+              <div class="artajs__tracking__body">
+                <div class="artajs__drawer__loading" />
+                <DrawerFooter />
+              </div>
             )}
+
+
           </div>
         </div>
       </div>

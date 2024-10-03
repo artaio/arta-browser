@@ -112,6 +112,13 @@ export const getTrackingStyle = (config: TrackingFullConfig) => {
     '--font-family': config.style.fontFamily,
     '--font-size': `${config.style.fontSize}px`,
     '--width': config.style.variant === 'default' ? '540px' : '320px',
+    '--default-styling': config.style.variant === 'default' ? 'flex' : 'none',
+    '--minimal-styling': config.style.variant === 'default' ? 'none' : 'flex',
+
+    '--location-direction': config.style.variant === 'default' ? 'row' : 'column',
+    '--location-justify': config.style.variant === 'default' ? 'center' : 'flex-start',
+    '--location-align': config.style.variant === 'default' ? 'flex-start' : 'center',
+    '--location-flex': config.style.variant === 'default' ? '1 0 0' : '0 1 auto',
   };
 };
 

@@ -8,51 +8,6 @@ export interface TrackingTopProps {
 }
 export const TrackingTop = ({ shipment, config }: TrackingTopProps) => {
   const getLabelAndDates = (shipment: Shipment, config: TrackingConfig) => {
-    if (
-      shipment.status === 'pending' ||
-      shipment.status === 'confirmed' ||
-      shipment.status === 'collected'
-    ) {
-      return {
-        label: config.text.checkBackLater,
-        dates: null,
-      };
-    }
-    if (shipment.status === 'in_transit') {
-      const start =
-        shipment.delivery_start != null
-          ? new Date(shipment.delivery_start)
-          : null;
-      const end =
-        shipment.delivery_end != null ? new Date(shipment.delivery_end) : null;
-
-      if (start != null && end != null) {
-        if (start.toDateString() === end.toDateString()) {
-          return {
-            label: config.text.inTransitCTAOnLabel,
-            dates: [start],
-          };
-        }
-        return {
-          label: config.text.inTransitCTABetweenLabel,
-          dates: [start, end],
-        };
-      }
-
-      if (start == null && end != null) {
-        return {
-          label: config.text.inTransitCTABeforeLabel,
-          dates: [end],
-        };
-      }
-
-      if (start != null && end == null) {
-        return {
-          label: config.text.inTransitCTAAfterLabel,
-          dates: [start],
-        };
-      }
-    }
 
     if (shipment.status === 'completed') {
       return {
@@ -61,8 +16,57 @@ export const TrackingTop = ({ shipment, config }: TrackingTopProps) => {
       };
     }
 
+    if (shipment.status === 'cancelled') {
+      return {
+        label: config.text.cancelledMessage,
+        // TODO: maybe we want to check for cancelled_at here?
+        dates: null,
+      };
+    }
+
+    const start =
+      shipment.delivery_start != null
+        ? new Date(shipment.delivery_start)
+        : null;
+    const end =
+      shipment.delivery_end != null ? new Date(shipment.delivery_end) : null;
+
+    if (start == null && end == null) {
+      return {
+        label: config.text.checkBackLater,
+        dates: null,
+      };
+    }
+
+    if (start != null && end != null) {
+      if (start.toDateString() === end.toDateString()) {
+        return {
+          label: config.text.inTransitCTAOnLabel,
+          dates: [start],
+        };
+      }
+      return {
+        label: config.text.inTransitCTABetweenLabel,
+        dates: [start, end],
+      };
+    }
+
+    if (start == null && end != null) {
+      return {
+        label: config.text.inTransitCTABeforeLabel,
+        dates: [end],
+      };
+    }
+
+    if (start != null && end == null) {
+      return {
+        label: config.text.inTransitCTAAfterLabel,
+        dates: [start],
+      };
+    }
+
     return {
-      label: '',
+      label: config.text.checkBackLater,
       dates: null,
     };
   };
@@ -82,9 +86,8 @@ export const TrackingTop = ({ shipment, config }: TrackingTopProps) => {
           <div class="artajs__tracking__top__date__wrapper">
             <div class="artajs__tracking__top__date__aligner">
               <div class="artajs__tracking__top__date__day">
-                {`${config.text.dates.weekdays[parsedDates[0].weekday]}, ${
-                  config.text.dates.months[parsedDates[0].month]
-                }`}
+                {`${config.text.dates.weekdays[parsedDates[0].weekday]}, ${config.text.dates.months[parsedDates[0].month]
+                  }`}
               </div>
               <div class="artajs__tracking__top__date__day__numeric">
                 {`${parsedDates[0].day}`.padStart(2, '0')}
@@ -97,9 +100,8 @@ export const TrackingTop = ({ shipment, config }: TrackingTopProps) => {
           <div class="artajs__tracking__top__date__wrapper">
             <div class="artajs__tracking__top__date__aligner">
               <div class="artajs__tracking__top__date__day">
-                {`${config.text.dates.weekdays[parsedDates[0].weekday]}, ${
-                  config.text.dates.months[parsedDates[0].month]
-                }`}
+                {`${config.text.dates.weekdays[parsedDates[0].weekday]}, ${config.text.dates.months[parsedDates[0].month]
+                  }`}
               </div>
               <div class="artajs__tracking__top__date__day__numeric">
                 {`${parsedDates[0].day}`.padStart(2, '0')}
@@ -114,9 +116,8 @@ export const TrackingTop = ({ shipment, config }: TrackingTopProps) => {
 
             <div class="artajs__tracking__top__date__aligner">
               <div class="artajs__tracking__top__date__day">
-                {`${config.text.dates.weekdays[parsedDates[1].weekday]}, ${
-                  config.text.dates.months[parsedDates[1].month]
-                }`}
+                {`${config.text.dates.weekdays[parsedDates[1].weekday]}, ${config.text.dates.months[parsedDates[1].month]
+                  }`}
               </div>
               <div class="artajs__tracking__top__date__day__numeric">
                 {`${parsedDates[1].day}`.padStart(2, '0')}
