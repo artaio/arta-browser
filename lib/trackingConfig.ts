@@ -143,7 +143,7 @@ export const defaultTrackingConfig: TrackingConfig = {
     packageIdReturnLabel: '< Back',
     packageLabel: 'Package',
     historyLabel: 'History',
-    unknownLocation: 'Unknown Location',
+    unknownLocation: '-',
     dates: {
       weekdays: {
         sunday: 'Sun',

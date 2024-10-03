@@ -21,6 +21,13 @@ export interface ArtaPackageEvent {
   summary: string | null;
 }
 
+const cleanLocationString = (input?: string | null) => {
+  if (input == null) {
+    return null;
+  }
+  return input.split(',').map(part => part.trim()).filter(part => part !== '').join(', ');
+};
+
 const groupByDate = (data: ArtaPackageEvent[]): Record<string, ArtaPackageEvent[]> => {
   return data.reduce((groups, item) => {
     const date = item.datetime.split('T')[0]; // Extract the date portion (YYYY-MM-DD)
@@ -138,7 +145,7 @@ export const PackageEvents = ({ shipment, config, setPackageId, packageId }: Pac
                     <div class={idx === 0 && idx2 === 0 ?
                       "artajs__tracking__events__group__location" :
                       "artajs__tracking__events__group__location__secondary"}>
-                      {event.location ?? config.text.unknownLocation}
+                      {cleanLocationString(event.location) ?? config.text.unknownLocation}
                     </div>
                     <div class="artajs__tracking__events__group__time">
                       {new Date(event.datetime).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
