@@ -1,6 +1,6 @@
 {
   "name": "@artaio/arta-browser",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "description": "",
   "source": "lib/index.ts",
   "main": "./dist/index.js",
