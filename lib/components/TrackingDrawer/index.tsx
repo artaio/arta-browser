@@ -133,6 +133,7 @@ export interface Shipment {
 
   tracking: Tracking[];
   shipment_exceptions: ShipmentException[];
+  insurance_policy: 'arta_transit_insurance' | 'no_arta_insurance' | null;
 }
 
 export const TrackingDrawer = ({
@@ -191,8 +192,7 @@ export const TrackingDrawer = ({
                   <TrackingTop config={config} shipment={shipment} />
                   <ShipToFrom config={config} shipment={shipment} />
                   {packagesWithObjects.map((pkg, index) => <Package title={`#${index + 1}`} pkg={pkg} shipment={shipment} config={config} setPackageId={setPackageId} />)}
-                  {/* TODO: expose if has insurance on the backend and test */}
-                  <DrawerInsurance config={config} />
+                  {shipment.insurance_policy != null && <DrawerInsurance />}
                   <Summary config={config} shipment={shipment} />
                   <DrawerFooter />
                 </div>
