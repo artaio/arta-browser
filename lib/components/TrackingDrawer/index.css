@@ -1006,6 +1006,8 @@
   line-height: 130%;
   letter-spacing: 0.2px;
   margin-top: 6px;
+  min-width: 24px;
+  text-align: end;
 }
 
 .artajs__drawer .artajs__tracking__events__group__number__secondary {
@@ -1017,7 +1019,8 @@
   line-height: 130%;
   letter-spacing: 0.2px;
   margin-top: 6px;
-
+  min-width: 24px;
+  text-align: end;
 }
 
 .artajs__drawer .artajs__tracking__events__group__divider {
