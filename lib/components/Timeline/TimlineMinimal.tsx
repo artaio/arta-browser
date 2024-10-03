@@ -29,7 +29,9 @@ export const TimelineMinimal = ({ config, shipment }: TimelineProps) => {
 
   return (
     <div class="artajs__tracking__timeline__minimal__wrapper">
-      {shipment.status === 'cancelled' ? <CancelledIcon config={config} /> :
+      {shipment.status === 'cancelled' ? (
+        <CancelledIcon config={config} />
+      ) : (
         <div class="artajs__tracking__timeline__minimal__divider">
           <div class="artajs__tracking__timeline__minimal__step">
             <div class="artajs__tracking__timeline__minimal__spacing">
@@ -72,7 +74,8 @@ export const TimelineMinimal = ({ config, shipment }: TimelineProps) => {
               />
             )}
           </div>
-        </div>}
+        </div>
+      )}
     </div>
   );
 };

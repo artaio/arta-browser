@@ -64,7 +64,16 @@ export interface ArtaPackage {
   handle_with_care: boolean;
   is_sufficiently_packed: boolean;
   eta: string;
-  status: 'unknown' | 'pending' | 'notfound' | 'transit' | 'out_for_delivery' | 'delivered' | 'undelivered' | 'exception' | 'expired';
+  status:
+    | 'unknown'
+    | 'pending'
+    | 'notfound'
+    | 'transit'
+    | 'out_for_delivery'
+    | 'delivered'
+    | 'undelivered'
+    | 'exception'
+    | 'expired';
   objects: ArtaObject[];
   packing_materials: string;
   depth: number;
@@ -112,12 +121,12 @@ export interface Shipment {
   quote_type: string;
   shortcode: string;
   status:
-  | 'cancelled'
-  | 'collected'
-  | 'completed'
-  | 'confirmed'
-  | 'in_transit'
-  | 'pending';
+    | 'cancelled'
+    | 'collected'
+    | 'completed'
+    | 'confirmed'
+    | 'in_transit'
+    | 'pending';
   total: number;
   total_currency: string;
   updated_at: string;
@@ -145,12 +154,17 @@ export const TrackingDrawer = ({
   const style = getTrackingStyle(config);
 
   const [shipment, setShipment] = useState<Shipment | null>(null);
-  const [packagesWithObjects, setPackagesWithObjects] = useState<ArtaPackage[]>([]);
+  const [packagesWithObjects, setPackagesWithObjects] = useState<ArtaPackage[]>(
+    []
+  );
   const [packageId, setPackageId] = useState<number | null>(null);
 
   const hasActiveException = (shipment: Shipment) => {
     // TODO check with Dylan about status here
-    return shipment.shipment_exceptions.some((ex) => ex.status !== 'resolved') && shipment.status !== 'completed';
+    return (
+      shipment.shipment_exceptions.some((ex) => ex.status !== 'resolved') &&
+      shipment.status !== 'completed'
+    );
   };
 
   useEffect(() => {
@@ -168,43 +182,52 @@ export const TrackingDrawer = ({
         {/* <div class="artajs__drawer__backdrop" /> */}
         <div
           style={style}
-          class={`artajs__drawer ${position === 'left'
-            ? 'artajs__drawer__left'
-            : 'artajs__drawer__right'
-            }`}
+          class={`artajs__drawer ${
+            position === 'left'
+              ? 'artajs__drawer__left'
+              : 'artajs__drawer__right'
+          }`}
         >
           <div class="artajs__tracking__out__wrapper">
             <DrawerHeader title={config.text.header.title} onClose={onClose} />
 
             {shipment != null ? (
-
-              packageId ? <PackageEvents
-                shipment={shipment}
-                config={config}
-                packageId={packageId}
-                setPackageId={setPackageId}
-              /> :
-
+              packageId ? (
+                <PackageEvents
+                  shipment={shipment}
+                  config={config}
+                  packageId={packageId}
+                  setPackageId={setPackageId}
+                />
+              ) : (
                 <div class="artajs__tracking__body">
                   <Timeline shipment={shipment} config={config} />
                   <div class="artajs__tracking__timeline__divider" />
-                  {hasActiveException(shipment) && <ShipmentException shipment={shipment} config={config} />}
+                  {hasActiveException(shipment) && (
+                    <ShipmentException shipment={shipment} config={config} />
+                  )}
                   <TrackingTop config={config} shipment={shipment} />
                   <ShipToFrom config={config} shipment={shipment} />
-                  {packagesWithObjects.map((pkg, index) => <Package title={`#${index + 1}`} pkg={pkg} shipment={shipment} config={config} setPackageId={setPackageId} />)}
+                  {packagesWithObjects.map((pkg, index) => (
+                    <Package
+                      title={`#${index + 1}`}
+                      pkg={pkg}
+                      shipment={shipment}
+                      config={config}
+                      setPackageId={setPackageId}
+                    />
+                  ))}
                   {shipment.insurance_policy != null && <DrawerInsurance />}
                   <Summary config={config} shipment={shipment} />
                   <DrawerFooter />
                 </div>
-
+              )
             ) : (
               <div class="artajs__tracking__body">
                 <div class="artajs__drawer__loading" />
                 <DrawerFooter />
               </div>
             )}
-
-
           </div>
         </div>
       </div>

@@ -36,7 +36,7 @@ interface PillConfig {
 export interface TrackingConfig {
   navigation: {
     shipmentExceptionMailTo: string;
-  }
+  };
   style: {
     color: {
       background: string;
@@ -96,7 +96,7 @@ export interface TrackingConfig {
 
 export type PartialTrackingConfig = DeepPartial<TrackingConfig>;
 
-export interface TrackingFullConfig extends TrackingConfig, ArtaJsFullConfig { }
+export interface TrackingFullConfig extends TrackingConfig, ArtaJsFullConfig {}
 
 export const defaultTrackingConfig: TrackingConfig = {
   navigation: {

@@ -115,10 +115,14 @@ export const getTrackingStyle = (config: TrackingFullConfig) => {
     '--default-styling': config.style.variant === 'default' ? 'flex' : 'none',
     '--minimal-styling': config.style.variant === 'default' ? 'none' : 'flex',
 
-    '--location-direction': config.style.variant === 'default' ? 'row' : 'column',
-    '--location-justify': config.style.variant === 'default' ? 'center' : 'flex-start',
-    '--location-align': config.style.variant === 'default' ? 'flex-start' : 'center',
-    '--location-flex': config.style.variant === 'default' ? '1 0 0' : '0 1 auto',
+    '--location-direction':
+      config.style.variant === 'default' ? 'row' : 'column',
+    '--location-justify':
+      config.style.variant === 'default' ? 'center' : 'flex-start',
+    '--location-align':
+      config.style.variant === 'default' ? 'flex-start' : 'center',
+    '--location-flex':
+      config.style.variant === 'default' ? '1 0 0' : '0 1 auto',
   };
 };
 
