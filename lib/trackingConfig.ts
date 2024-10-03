@@ -34,6 +34,9 @@ interface PillConfig {
 }
 
 export interface TrackingConfig {
+  navigation: {
+    shipmentExceptionMailTo: string;
+  }
   style: {
     color: {
       background: string;
@@ -71,7 +74,6 @@ export interface TrackingConfig {
     shipsFromLabel: string;
     shipsToLabel: string;
     packageHistoryLabel: string;
-    insuranceTitle: string;
     bookedLabel: string;
     shipmentExceptionCTA: string;
     packageIdReturnLabel: string;
@@ -97,6 +99,9 @@ export type PartialTrackingConfig = DeepPartial<TrackingConfig>;
 export interface TrackingFullConfig extends TrackingConfig, ArtaJsFullConfig { }
 
 export const defaultTrackingConfig: TrackingConfig = {
+  navigation: {
+    shipmentExceptionMailTo: 'hello@arta.io',
+  },
   style: {
     color: {
       background: '#FFFFFF',
@@ -133,7 +138,6 @@ export const defaultTrackingConfig: TrackingConfig = {
     shipsFromLabel: 'Ships from',
     shipsToLabel: 'Ships to',
     packageHistoryLabel: 'Package history',
-    insuranceTitle: 'Protected with',
     bookedLabel: 'Booked: ',
     shipmentExceptionCTA: 'Contact Arta for more information',
     packageIdReturnLabel: '< Back',

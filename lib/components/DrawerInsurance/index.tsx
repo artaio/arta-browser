@@ -1,10 +1,8 @@
-import type { TrackingConfig } from "../../trackingConfig";
-
-export const DrawerInsurance = ({ config }: { config: TrackingConfig }) => {
+export const DrawerInsurance = () => {
   return <div class="artajs__tracking__insurance__wrapper">
     <div class="artajs__tracking__insurance__content">
       <div class="artajs__tracking__insurance__title">
-        {config.text.insuranceTitle}
+        Protected with
       </div>
       <div class="artajs__tracking__insurance__body">
         <div class="artajs__tracking__insurance__body__icon">
@@ -14,9 +12,12 @@ export const DrawerInsurance = ({ config }: { config: TrackingConfig }) => {
           </svg>
 
         </div>
-        <div class="artajs__tracking__insurance__body__icon__text">
+        <a
+          href="https://www.arta.io/insurance"
+          target="_blank"
+          class="artajs__tracking__insurance__body__icon__text">
           Arta Transit Insurance
-        </div>
+        </a>
       </div>
     </div>
   </div>;

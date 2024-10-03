@@ -32,10 +32,11 @@ export const ShipmentException = ({ config, shipment }: ShipmentExceptionProps) 
       <div class="artajs__tracking__exception__title">
         {exception.type}
       </div>
-      {/* TODO: ask dylan where to navigate from here */}
-      <div class="artajs__tracking__exception__cta">
+      <a
+        href={`mailto:${config.navigation.shipmentExceptionMailTo}`}
+        class="artajs__tracking__exception__cta">
         {config.text.shipmentExceptionCTA}
-      </div>
+      </a>
 
     </div>
   </div>;

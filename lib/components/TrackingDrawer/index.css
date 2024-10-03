@@ -732,6 +732,7 @@
   line-height: 150%;
   letter-spacing: 0.2px;
   text-decoration-line: underline;
+  cursor: pointer;
 }
 
 /* Summary styles */
