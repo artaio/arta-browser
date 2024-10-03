@@ -18,12 +18,11 @@ export const ShipToFrom = ({ config, shipment }: ShipToFromProps) => {
     return parts.join(', ');
   };
 
-  const style = config.style.variant === 'default' ? 'row' : 'stack';
 
   return (
     <div class="artajas__tracking__location__wrapper">
-      <div class={`artajs__tracking__location__${style}`}>
-        {shipment.origin && <div class={`artajs__tracking__location__item__${style}`}>
+      <div class="artajs__tracking__location">
+        {shipment.origin && <div class="artajs__tracking__location__item">
           <svg
             width="24"
             height="24"
@@ -49,7 +48,7 @@ export const ShipToFrom = ({ config, shipment }: ShipToFromProps) => {
             </div>
           </div>
         </div>}
-        {shipment.destination && <div class={`artajs__tracking__location__item__${style}`}>
+        {shipment.destination && <div class="artajs__tracking__location__item">
           <svg
             width="24"
             height="24"

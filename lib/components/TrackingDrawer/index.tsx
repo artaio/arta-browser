@@ -186,9 +186,7 @@ export const TrackingDrawer = ({
 
                 <div class="artajs__tracking__body">
                   <Timeline shipment={shipment} config={config} />
-                  {config.style.variant === 'default' && (
-                    <div class="artajs__tracking__timeline__divider" />
-                  )}
+                  <div class="artajs__tracking__timeline__divider" />
                   {hasActiveException(shipment) && <ShipmentException shipment={shipment} config={config} />}
                   <TrackingTop config={config} shipment={shipment} />
                   <ShipToFrom config={config} shipment={shipment} />
