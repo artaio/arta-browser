@@ -107,8 +107,6 @@ export const getTrackingStyle = (config: TrackingFullConfig) => {
     '--text-primary': config.style.color.textPrimary,
     '--text-secondary': config.style.color.textSecondary,
     '--border': config.style.color.border,
-    '--border-hover': config.style.color.borderHover,
-    '--border-focused': config.style.color.borderFocused,
     '--font-family': config.style.fontFamily,
     '--font-size': `${config.style.fontSize}px`,
     '--width': config.style.variant === 'default' ? '540px' : '320px',
