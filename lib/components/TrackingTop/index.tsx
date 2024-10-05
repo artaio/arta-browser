@@ -8,7 +8,6 @@ export interface TrackingTopProps {
 }
 export const TrackingTop = ({ shipment, config }: TrackingTopProps) => {
   const getLabelAndDates = (shipment: Shipment, config: TrackingConfig) => {
-
     if (shipment.status === 'completed') {
       return {
         label: config.text.completedCTA,
@@ -86,8 +85,9 @@ export const TrackingTop = ({ shipment, config }: TrackingTopProps) => {
           <div class="artajs__tracking__top__date__wrapper">
             <div class="artajs__tracking__top__date__aligner">
               <div class="artajs__tracking__top__date__day">
-                {`${config.text.dates.weekdays[parsedDates[0].weekday]}, ${config.text.dates.months[parsedDates[0].month]
-                  }`}
+                {`${config.text.dates.weekdays[parsedDates[0].weekday]}, ${
+                  config.text.dates.months[parsedDates[0].month]
+                }`}
               </div>
               <div class="artajs__tracking__top__date__day__numeric">
                 {`${parsedDates[0].day}`.padStart(2, '0')}
@@ -100,8 +100,9 @@ export const TrackingTop = ({ shipment, config }: TrackingTopProps) => {
           <div class="artajs__tracking__top__date__wrapper">
             <div class="artajs__tracking__top__date__aligner">
               <div class="artajs__tracking__top__date__day">
-                {`${config.text.dates.weekdays[parsedDates[0].weekday]}, ${config.text.dates.months[parsedDates[0].month]
-                  }`}
+                {`${config.text.dates.weekdays[parsedDates[0].weekday]}, ${
+                  config.text.dates.months[parsedDates[0].month]
+                }`}
               </div>
               <div class="artajs__tracking__top__date__day__numeric">
                 {`${parsedDates[0].day}`.padStart(2, '0')}
@@ -116,8 +117,9 @@ export const TrackingTop = ({ shipment, config }: TrackingTopProps) => {
 
             <div class="artajs__tracking__top__date__aligner">
               <div class="artajs__tracking__top__date__day">
-                {`${config.text.dates.weekdays[parsedDates[1].weekday]}, ${config.text.dates.months[parsedDates[1].month]
-                  }`}
+                {`${config.text.dates.weekdays[parsedDates[1].weekday]}, ${
+                  config.text.dates.months[parsedDates[1].month]
+                }`}
               </div>
               <div class="artajs__tracking__top__date__day__numeric">
                 {`${parsedDates[1].day}`.padStart(2, '0')}

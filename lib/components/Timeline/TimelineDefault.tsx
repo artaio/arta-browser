@@ -25,7 +25,9 @@ const isSmaller = (a: Shipment['status'], b: Shipment['status']): boolean => {
 export const TimelineDefault = ({ config, shipment }: TimelineProps) => {
   return (
     <div class="artajs__tracking__timeline__default__wrapper">
-      {shipment.status === 'cancelled' ? <CancelledIcon config={config} /> :
+      {shipment.status === 'cancelled' ? (
+        <CancelledIcon config={config} />
+      ) : (
         <div class="artajs__tracking__timeline__default__steps">
           {shipment.status === 'pending' ? (
             <PendingIcon config={config} />
@@ -58,7 +60,7 @@ export const TimelineDefault = ({ config, shipment }: TimelineProps) => {
             ))}
           {shipment.quote_type !== 'self_ship' &&
             (shipment.status === 'collected' ||
-              isSmaller(shipment.status, 'collected') ? (
+            isSmaller(shipment.status, 'collected') ? (
               <SecondarySteps />
             ) : (
               <CheckedSteps />
@@ -75,7 +77,7 @@ export const TimelineDefault = ({ config, shipment }: TimelineProps) => {
             />
           )}
           {shipment.status === 'in_transit' ||
-            isSmaller(shipment.status, 'in_transit') ? (
+          isSmaller(shipment.status, 'in_transit') ? (
             <SecondarySteps />
           ) : (
             <CheckedSteps />
@@ -91,7 +93,8 @@ export const TimelineDefault = ({ config, shipment }: TimelineProps) => {
               config={config}
             />
           )}
-        </div>}
+        </div>
+      )}
     </div>
   );
 };

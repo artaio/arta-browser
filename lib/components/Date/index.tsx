@@ -32,6 +32,6 @@ export const parseStringDate = (date: string | Date) => {
     weekday,
     month,
     day: jsDate.getDate(),
-    year
+    year,
   };
 };
