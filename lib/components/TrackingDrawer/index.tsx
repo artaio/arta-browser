@@ -11,7 +11,7 @@ import { TrackingTop } from '../TrackingTop';
 import { DrawerFooter } from '../DrawerFooter';
 import { DrawerInsurance } from '../DrawerInsurance';
 import { Summary } from '../Summary';
-import { ShipmentException } from '../ShipmentException';
+import { ShipmentException as ArtaShipmentException } from '../ShipmentException';
 import { PackageEvents } from '../PackageEvents';
 
 interface TrackingDrawerProps {
@@ -93,17 +93,21 @@ interface Tracking {
   url: string | null;
 }
 
-interface ShipmentException {
+export interface ArtaShipmentException {
   created_at: string;
   exception_type_label: string | null;
   hold_until: string | null;
   id: string;
   object_id: string | null;
-  package_id: string | null;
+  package_id: number | null;
   resolution: string | null;
   source: string;
   status: 'new' | 'in_progress' | 'resolved';
-  type: string;
+  type: {
+    id: string;
+    name: string;
+    category: string;
+  };
   updated_at: string;
 }
 
@@ -141,7 +145,7 @@ export interface Shipment {
   delivery_end: string | null;
 
   tracking: Tracking[];
-  shipment_exceptions: ShipmentException[];
+  shipment_exceptions: ArtaShipmentException[];
   insurance_policy: 'arta_transit_insurance' | 'no_arta_insurance' | null;
 }
 
@@ -204,7 +208,10 @@ export const TrackingDrawer = ({
                   <Timeline shipment={shipment} config={config} />
                   <div class="artajs__tracking__timeline__divider" />
                   {hasActiveException(shipment) && (
-                    <ShipmentException shipment={shipment} config={config} />
+                    <ArtaShipmentException
+                      shipment={shipment}
+                      config={config}
+                    />
                   )}
                   <TrackingTop config={config} shipment={shipment} />
                   <ShipToFrom config={config} shipment={shipment} />

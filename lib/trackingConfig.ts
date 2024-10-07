@@ -43,8 +43,9 @@ export interface TrackingConfig {
       textPrimary: string;
       textSecondary: string;
       border: string;
-      borderHover: string;
-      borderFocused: string;
+      icon: string;
+      iconBackground: string;
+      exceptionIcon: string;
     };
     variant: 'default' | 'minimal';
     position: 'left' | 'right';
@@ -80,6 +81,12 @@ export interface TrackingConfig {
     packageLabel: string;
     historyLabel: string;
     unknownLocation: string;
+    paymentRequiredLabel: string;
+    holdRequestedLabel: string;
+    multipleShipmentsHeldAtCustomsLabel: string;
+    singleShipmentHeldAtCustomsLabel: string;
+    changeOfAddressRequestLabel: string;
+    shipmentExceptionDefaultLabel: string;
   };
   pill: {
     unknown: PillConfig;
@@ -108,8 +115,9 @@ export const defaultTrackingConfig: TrackingConfig = {
       textPrimary: '#110F10',
       textSecondary: '#6F6C65',
       border: '#D7D6D0',
-      borderHover: '#6F6C65',
-      borderFocused: '#110F10',
+      icon: 'white',
+      iconBackground: 'black',
+      exceptionIcon: '#F59E0B',
     },
     variant: 'default',
     position: 'right',
@@ -144,6 +152,14 @@ export const defaultTrackingConfig: TrackingConfig = {
     packageLabel: 'Package',
     historyLabel: 'History',
     unknownLocation: '-',
+    paymentRequiredLabel: 'Payment required.',
+    holdRequestedLabel: 'This shipment is on hold by request.',
+    singleShipmentHeldAtCustomsLabel: 'This shipment is being held by Customs',
+    multipleShipmentsHeldAtCustomsLabel:
+      'One or more packages are being held by Customs',
+    changeOfAddressRequestLabel:
+      'A change of address was requested which may impact delivery timelines.',
+    shipmentExceptionDefaultLabel: 'There is an exception with this shipment.',
     dates: {
       weekdays: {
         sunday: 'Sun',

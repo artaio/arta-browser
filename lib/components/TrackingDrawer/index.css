@@ -5,8 +5,6 @@
   --text-primary: #110F10;
   --text-secondary: #6F6C65;
   --border: #D7D6D0;
-  --border-hover: #6F6C65;
-  --border-focused: #110F10;
   --width: 540px;
   --font-family: "Neue Haas Grotesk Text Pro, Helvetica, sans-serif, Arial";
   --font-size: 14px;
@@ -135,6 +133,7 @@
   font-size: calc(var(--font-size) + 2px);
   font-weight: bold;
   line-height: 150%;
+  color: var(--text-primary);
 }
 
 .artajs__drawer .artajs__tracking__header__icon {
