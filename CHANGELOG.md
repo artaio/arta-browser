@@ -1,3 +1,12 @@
+## [2.9.4](https://github.com/artaio/arta-browser/compare/v2.9.3...v2.9.4) (2024-10-08)
+
+
+### Bug Fixes
+
+* standalone pending, improved icon colors ([#37](https://github.com/artaio/arta-browser/issues/37)) ([28ea0b5](https://github.com/artaio/arta-browser/commit/28ea0b5fae99a574bfe19206ed9708fef0eb5ab8))
+
+
+
 ## [2.9.3](https://github.com/artaio/arta-browser/compare/v2.9.2...v2.9.3) (2024-10-07)
 
 
