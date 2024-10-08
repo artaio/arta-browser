@@ -43,8 +43,9 @@ export interface TrackingConfig {
       textPrimary: string;
       textSecondary: string;
       border: string;
-      icon: string;
-      iconBackground: string;
+      iconPrimary: string;
+      iconSecondary: string;
+      iconTertiary: string;
       exceptionIcon: string;
     };
     variant: 'default' | 'minimal';
@@ -115,8 +116,9 @@ export const defaultTrackingConfig: TrackingConfig = {
       textPrimary: '#110F10',
       textSecondary: '#6F6C65',
       border: '#D7D6D0',
-      icon: 'white',
-      iconBackground: 'black',
+      iconPrimary: 'black',
+      iconSecondary: 'white',
+      iconTertiary: '#8C8984',
       exceptionIcon: '#F59E0B',
     },
     variant: 'default',

@@ -28,7 +28,7 @@ export const CheckedStep = ({ text, date, config }: BlackStepProps) => {
         viewBox="0 0 24 24"
         fill="none"
       >
-        <circle cx="12" cy="12" r="6" fill="#110F10" />
+        <circle cx="12" cy="12" r="6" fill={config.style.color.iconPrimary} />
       </svg>
       <div class="artajs__tracking__timeline__status__text__wrapper">
         <div class="artajs__tracking__timeline__step__text__primary">

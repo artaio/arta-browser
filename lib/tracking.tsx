@@ -1,6 +1,7 @@
 import { render } from 'preact';
 import type { TrackingFullConfig } from './trackingConfig';
 import { TrackingDrawer } from './components/TrackingDrawer';
+import { validateShipment } from './requests';
 
 export default class Tracking {
   public isReady = false;
@@ -39,7 +40,10 @@ export default class Tracking {
   }
 
   public async validate() {
-    // TODO: Implement validation
+    const errors = await validateShipment(this.config, this.shipmentId);
+    if (errors && Object.keys(errors).length > 0) {
+      return Promise.reject(errors);
+    }
     this.isReady = true;
   }
 }
