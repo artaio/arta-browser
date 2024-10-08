@@ -2,7 +2,7 @@ import { useEffect, useState } from 'preact/hooks';
 import { getTrackingStyle } from '../../helper';
 import { TrackingFullConfig } from '../../trackingConfig';
 import { DrawerHeader } from '../DrawerHeader';
-import './index.css';
+import css from './index.css';
 import { loadShipment } from '../../requests';
 import { ShipToFrom } from '../ShipToFrom';
 import { Package } from '../Package';
@@ -182,6 +182,7 @@ export const TrackingDrawer = ({
 
   return (
     <div>
+      <style>{css}</style>
       <div class="artajs">
         {/* <div class="artajs__drawer__backdrop" /> */}
         <div

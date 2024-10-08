@@ -130,6 +130,15 @@ export const loadShipment = async (
   return res;
 };
 
+export const validateShipment = async (
+  config: ArtaJsFullConfig,
+  shipmentId: string
+) => {
+  const path = `/embedded_tracking/shipments/${shipmentId}/validate`;
+  const res = await artaRequest(path, config, undefined, undefined, 'GET');
+  return res.err?.errors;
+};
+
 export const loadPackageEvents = async (
   config: ArtaJsFullConfig,
   shipmentId: string,

@@ -769,13 +769,6 @@
   letter-spacing: 0.2px;
 }
 
-.artajs__drawer .artajs__tracking__summary__icon {
-  width: 12px;
-  height: 13px;
-  cursor: pointer;
-  margin-bottom: 5px;
-}
-
 /* Exceptions */
 .artajs__drawer .artajs__tracking__exception__wrapper {
   display: flex;

@@ -1,11 +1,11 @@
 import type { TimelineProps } from '.';
 import { SimpleDate } from '../Date/SimpleDate';
 import { CancelledIcon } from './defaultIcons/CancelledIcon';
+import { PendingIcon } from './defaultIcons/PendingIcon';
 import { CollectedIconBase } from './icons/CollectedIconBase';
 import { CompletedIconBase } from './icons/CompletedIconBase';
 import { ConfirmedIconBase } from './icons/ConfirmedIconBase';
 import { InTransitIconBase } from './icons/InTransitIconBase';
-import { PendingIconBase } from './icons/PendingIconBase';
 import { SecondaryStep } from './SecondaryStep';
 
 export const TimelineMinimal = ({ config, shipment }: TimelineProps) => {
@@ -29,15 +29,17 @@ export const TimelineMinimal = ({ config, shipment }: TimelineProps) => {
 
   return (
     <div class="artajs__tracking__timeline__minimal__wrapper">
-      {shipment.status === 'cancelled' ? (
-        <CancelledIcon config={config} />
+      {shipment.status === 'cancelled' || shipment.status === 'pending' ? (
+        shipment.status === 'pending' ? (
+          <PendingIcon config={config} />
+        ) : (
+          <CancelledIcon config={config} />
+        )
       ) : (
         <div class="artajs__tracking__timeline__minimal__divider">
           <div class="artajs__tracking__timeline__minimal__step">
             <div class="artajs__tracking__timeline__minimal__spacing">
-              {shipment.status === 'pending' ? (
-                <PendingIconBase config={config} />
-              ) : shipment.status === 'confirmed' ? (
+              {shipment.status === 'confirmed' ? (
                 <ConfirmedIconBase config={config} />
               ) : (
                 <SecondaryStep config={config} />
@@ -67,12 +69,10 @@ export const TimelineMinimal = ({ config, shipment }: TimelineProps) => {
             <div class="artajs__tracking__timeline__status__text__large">
               {config.text[labelMap[shipment.status]]}
             </div>
-            {shipment.status !== 'pending' && (
-              <SimpleDate
-                date={shipment[dateMap[shipment.status]]}
-                dateConfig={config.text.dates}
-              />
-            )}
+            <SimpleDate
+              date={shipment[dateMap[shipment.status]]}
+              dateConfig={config.text.dates}
+            />
           </div>
         </div>
       )}

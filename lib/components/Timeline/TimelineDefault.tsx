@@ -25,13 +25,15 @@ const isSmaller = (a: Shipment['status'], b: Shipment['status']): boolean => {
 export const TimelineDefault = ({ config, shipment }: TimelineProps) => {
   return (
     <div class="artajs__tracking__timeline__default__wrapper">
-      {shipment.status === 'cancelled' ? (
-        <CancelledIcon config={config} />
+      {shipment.status === 'cancelled' || shipment.status === 'pending' ? (
+        shipment.status === 'pending' ? (
+          <PendingIcon config={config} />
+        ) : (
+          <CancelledIcon config={config} />
+        )
       ) : (
         <div class="artajs__tracking__timeline__default__steps">
-          {shipment.status === 'pending' ? (
-            <PendingIcon config={config} />
-          ) : shipment.status === 'confirmed' ? (
+          {shipment.status === 'confirmed' ? (
             <ConfirmedIcon config={config} shipment={shipment} />
           ) : (
             <CheckedStep
@@ -41,10 +43,10 @@ export const TimelineDefault = ({ config, shipment }: TimelineProps) => {
             />
           )}
 
-          {shipment.status === 'pending' || shipment.status === 'confirmed' ? (
-            <SecondarySteps />
+          {shipment.status === 'confirmed' ? (
+            <SecondarySteps config={config} />
           ) : (
-            <CheckedSteps />
+            <CheckedSteps config={config} />
           )}
           {shipment.quote_type !== 'self_ship' &&
             (shipment.status === 'collected' ? (
@@ -61,9 +63,9 @@ export const TimelineDefault = ({ config, shipment }: TimelineProps) => {
           {shipment.quote_type !== 'self_ship' &&
             (shipment.status === 'collected' ||
             isSmaller(shipment.status, 'collected') ? (
-              <SecondarySteps />
+              <SecondarySteps config={config} />
             ) : (
-              <CheckedSteps />
+              <CheckedSteps config={config} />
             ))}
           {shipment.status === 'in_transit' ? (
             <InTransitIcon config={config} shipment={shipment} />
@@ -78,9 +80,9 @@ export const TimelineDefault = ({ config, shipment }: TimelineProps) => {
           )}
           {shipment.status === 'in_transit' ||
           isSmaller(shipment.status, 'in_transit') ? (
-            <SecondarySteps />
+            <SecondarySteps config={config} />
           ) : (
-            <CheckedSteps />
+            <CheckedSteps config={config} />
           )}
           {shipment.status === 'completed' ? (
             <CompletedIcon config={config} shipment={shipment} />
