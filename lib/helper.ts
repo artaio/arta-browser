@@ -121,6 +121,7 @@ export const getTrackingStyle = (config: TrackingFullConfig) => {
       config.style.variant === 'default' ? 'flex-start' : 'center',
     '--location-flex':
       config.style.variant === 'default' ? '1 0 0' : '0 1 auto',
+    '--backdrop-color': config.style.backdropColor,
   };
 };
 

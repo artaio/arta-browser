@@ -184,7 +184,7 @@ export const TrackingDrawer = ({
     <div>
       <style>{css}</style>
       <div class="artajs">
-        {/* <div class="artajs__drawer__backdrop" /> */}
+        {config.style.backdropEnabled && <div onClick={onClose} style={style} class="artajs__drawer__backdrop" />}
         <div
           style={style}
           class={`artajs__drawer ${
