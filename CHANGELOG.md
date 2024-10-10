@@ -1,3 +1,12 @@
+# [2.10.0](https://github.com/artaio/arta-browser/compare/v2.9.4...v2.10.0) (2024-10-10)
+
+
+### Features
+
+* add optional backdrop component ([#38](https://github.com/artaio/arta-browser/issues/38)) ([ac6407e](https://github.com/artaio/arta-browser/commit/ac6407e7e018f5b83ee2dfbdafc7b3450d2a803b))
+
+
+
 ## [2.9.4](https://github.com/artaio/arta-browser/compare/v2.9.3...v2.9.4) (2024-10-08)
 
 
