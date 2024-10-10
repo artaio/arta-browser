@@ -52,6 +52,8 @@ export interface TrackingConfig {
     position: 'left' | 'right';
     fontFamily: string;
     fontSize: number;
+    backdropEnabled: boolean;
+    backdropColor: string;
   };
   text: {
     header: {
@@ -125,6 +127,8 @@ export const defaultTrackingConfig: TrackingConfig = {
     position: 'right',
     fontFamily: 'Neue Haas Grotesk Text Pro, Arial, Helvetica, sans-serif',
     fontSize: 14,
+    backdropEnabled: true,
+    backdropColor: 'rgba(0, 0, 0, 0.5)',
   },
   text: {
     header: {

@@ -15,6 +15,7 @@
   --location-justify: 'center';
   --location-align: 'flex-start';
   --location-flex: '1 0 0';
+  --backdrop-color: rgba(0, 0, 0, 0.5);
 
 }
 
@@ -90,7 +91,7 @@
 
 /* backdrop */
 .artajs__drawer__backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--backdrop-color);
   bottom: 0;
   left: 0;
   position: fixed;
@@ -329,6 +330,10 @@
   .artajs__drawer .artajs__tracking__location__item {
     flex: 0 1 auto;
   }
+
+  .artajs__drawer__backdrop {
+    display: none;
+  }
 }
 
 @media (min-width: 541px) {
@@ -360,6 +365,10 @@
 
   .artajs__drawer .artajs__tracking__location__item {
     flex: var(--location-flex);
+  }
+
+  .artajs__drawer__backdrop {
+    display: unset;
   }
 }
 
