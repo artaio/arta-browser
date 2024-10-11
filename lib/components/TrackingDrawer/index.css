@@ -208,7 +208,6 @@
 
 .artajs__drawer .artajs__tracking__timeline__triple__dots {
   display: flex;
-  padding-top: 22px;
   align-items: flex-start;
   gap: 4px;
 }
@@ -717,8 +716,6 @@
 }
 
 .artajs__drawer .artajs__tracking__insurance__body {
-  width: 154px;
-  height: 18px;
   display: flex;
   gap: 4px;
 }
