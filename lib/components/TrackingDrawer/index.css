@@ -17,6 +17,7 @@
   --location-flex: '1 0 0';
   --backdrop-color: rgba(0, 0, 0, 0.5);
 
+  --animation: none;
 }
 
 .artajs__drawer,
@@ -79,14 +80,51 @@
   font-family: var(--font-family);
 }
 
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%); /* Start from off the screen */
+  }
+  
+  100% {
+    transform: translateX(0); /* End in the final position */
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(100%); /* Start from off the screen */
+  }
+  
+  100% {
+    transform: translateX(0); /* End in the final position */
+  }
+}
+
+
 .artajs__drawer__left {
   left: 0;
   right: auto;
+  animation: var(--animation);
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 .artajs__drawer__right {
   left: auto;
   right: 0;
+  animation: var(--animation);
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 /* backdrop */

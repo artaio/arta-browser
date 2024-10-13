@@ -33,6 +33,23 @@ interface PillConfig {
   text: string;
 }
 
+export type AnimationConfig =
+  | {
+      type: null;
+    }
+  | {
+      type: 'slide' | 'fade';
+      duration: string;
+      timing:
+        | 'ease'
+        | 'ease-in'
+        | 'ease-out'
+        | 'ease-in-out'
+        | 'linear'
+        | 'step-start'
+        | 'step-end';
+    };
+
 export interface TrackingConfig {
   navigation: {
     shipmentExceptionMailTo: string;
@@ -101,6 +118,9 @@ export interface TrackingConfig {
     undelivered: PillConfig;
     exception: PillConfig;
     expired: PillConfig;
+  };
+  animation: {
+    in: AnimationConfig;
   };
 }
 
@@ -237,6 +257,11 @@ export const defaultTrackingConfig: TrackingConfig = {
       textColor: '#772424',
       backgroundColor: '#FEF9F9',
       text: 'Expired',
+    },
+  },
+  animation: {
+    in: {
+      type: null,
     },
   },
 };
