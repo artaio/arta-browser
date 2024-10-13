@@ -122,11 +122,11 @@ export const getTrackingStyle = (config: TrackingFullConfig) => {
     '--location-flex':
       config.style.variant === 'default' ? '1 0 0' : '0 1 auto',
     '--backdrop-color': config.style.backdropColor,
-    '--animation': getAnimationStyle(config.animation.in, config),
+    '--animationIn': getAnimationStyleIn(config.animation.in, config),
   };
 };
 
-const getAnimationStyle = (
+const getAnimationStyleIn = (
   animation: AnimationConfig,
   config: TrackingFullConfig
 ) => {
@@ -141,7 +141,7 @@ const getAnimationStyle = (
       ? 'slideInFromLeft'
       : 'slideInFromRight';
 
-  return `${type} ${animation.timing} ${animation.duration}`;
+  return `${type} ease ${animation.duration}ms`;
 };
 
 const MINIMUM_RENDERING_HEIGHT = 467;

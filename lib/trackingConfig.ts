@@ -39,15 +39,7 @@ export type AnimationConfig =
     }
   | {
       type: 'slide' | 'fade';
-      duration: string;
-      timing:
-        | 'ease'
-        | 'ease-in'
-        | 'ease-out'
-        | 'ease-in-out'
-        | 'linear'
-        | 'step-start'
-        | 'step-end';
+      duration: number;
     };
 
 export interface TrackingConfig {
@@ -121,6 +113,7 @@ export interface TrackingConfig {
   };
   animation: {
     in: AnimationConfig;
+    out: AnimationConfig;
   };
 }
 
@@ -261,6 +254,9 @@ export const defaultTrackingConfig: TrackingConfig = {
   },
   animation: {
     in: {
+      type: null,
+    },
+    out: {
       type: null,
     },
   },
