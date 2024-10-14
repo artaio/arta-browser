@@ -40,6 +40,7 @@ export type AnimationConfig =
   | {
       type: 'slide' | 'fade';
       duration: number;
+      easing: 'ease' | 'linear' | 'ease-in' | 'ease-out' | 'ease-in-out';
     };
 
 export interface TrackingConfig {

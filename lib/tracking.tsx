@@ -55,7 +55,7 @@ export default class Tracking {
             ],
             {
               duration: this.config.animation.out.duration,
-              easing: 'ease',
+              easing: this.config.animation.out.easing,
             }
           );
 

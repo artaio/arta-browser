@@ -141,7 +141,7 @@ const getAnimationStyleIn = (
       ? 'slideInFromLeft'
       : 'slideInFromRight';
 
-  return `${type} ease ${animation.duration}ms`;
+  return `${type} ${animation.easing ?? 'ease'} ${animation.duration}ms`;
 };
 
 const MINIMUM_RENDERING_HEIGHT = 467;
