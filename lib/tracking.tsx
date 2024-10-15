@@ -6,6 +6,22 @@ import { validateShipment } from './requests';
 export default class Tracking {
   public isReady = false;
   public isOpen = false;
+  private fadeOut = {
+    fade: {
+      left: [{ opacity: 1 }, { opacity: 0 }],
+      right: [{ opacity: 1 }, { opacity: 0 }],
+    },
+    slide: {
+      left: [
+        { transform: 'translateX(0)' },
+        { transform: 'translateX(-100%)' },
+      ],
+      right: [
+        { transform: 'translateX(0)' },
+        { transform: 'translateX(100%)' },
+      ],
+    },
+  };
   constructor(
     private readonly shipmentId: string,
     private readonly config: TrackingFullConfig,
@@ -29,7 +45,28 @@ export default class Tracking {
   }
 
   public close() {
-    render(<div></div>, this.el);
+    if (this.isOpen) {
+      if (this.config.animation?.out?.type != null) {
+        const animation = document
+          .getElementsByClassName(`artajs__drawer`)[0]
+          ?.animate(
+            this.fadeOut[this.config.animation.out.type][
+              this.config.style.position
+            ],
+            {
+              duration: this.config.animation.out.duration,
+              easing: this.config.animation.out.easing,
+            }
+          );
+
+        animation.onfinish = (e) => {
+          e.preventDefault();
+          render(<div></div>, this.el);
+        };
+      } else {
+        render(<div></div>, this.el);
+      }
+    }
     this.isOpen = false;
   }
 

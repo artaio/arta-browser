@@ -3,7 +3,7 @@ import { DisqualifiedFullTextConfig } from './components/Disqualified';
 import { QuoteFullTextConfig } from './components/Quotes';
 import { EstimateFullConfig } from './estimateConfig';
 import { ArtaLocation } from './MetadataTypes';
-import { TrackingFullConfig } from './trackingConfig';
+import { AnimationConfig, TrackingFullConfig } from './trackingConfig';
 
 export const parseEstimatedLocation = (loc: ArtaLocation): string => {
   if (!loc) {
@@ -122,7 +122,26 @@ export const getTrackingStyle = (config: TrackingFullConfig) => {
     '--location-flex':
       config.style.variant === 'default' ? '1 0 0' : '0 1 auto',
     '--backdrop-color': config.style.backdropColor,
+    '--animationIn': getAnimationStyleIn(config.animation.in, config),
   };
+};
+
+const getAnimationStyleIn = (
+  animation: AnimationConfig,
+  config: TrackingFullConfig
+) => {
+  if (animation.type === null) {
+    return 'none';
+  }
+
+  const type =
+    animation.type === 'fade'
+      ? 'fadeInAnimation'
+      : config.style.position === 'left'
+      ? 'slideInFromLeft'
+      : 'slideInFromRight';
+
+  return `${type} ${animation.easing ?? 'ease'} ${animation.duration}ms`;
 };
 
 const MINIMUM_RENDERING_HEIGHT = 467;
