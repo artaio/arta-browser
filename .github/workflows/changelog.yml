@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
     - name: Conventional Changelog Action
-      uses: TriPSs/conventional-changelog-action@v3
+      uses: TriPSs/conventional-changelog-action@v5
       with:
         github-token: ${{ secrets.github_token }}
         skip-git-pull: "true"
@@ -27,22 +27,22 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - name: Use Node.js latest
-      uses: actions/setup-node@v3
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
       with:
-        node-version: latest
+        node-version: 20.x
 
     - run: git checkout main
     - run: git pull
     - run: npm install
     - run: npm run build
-    # - run: npm config set registry https://registry.npmjs.org 
-    # - run: npm config set _authToken=${{ secrets.NPM_TOKEN }}
-    # - run: npm config fix
-    # - run: npm publish --access public
-    #   env:
-    #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - run: npm config set registry https://registry.npmjs.org 
+    - run: npm config set _authToken=${{ secrets.NPM_TOKEN }}
+    - run: npm config fix
+    - run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
