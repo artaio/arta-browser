@@ -1,3 +1,13 @@
+# [2.11.0](https://github.com/artaio/arta-browser/compare/v2.10.3...v2.11.0) (2024-10-21)
+
+
+### Features
+
+* add tracking widget ([#43](https://github.com/artaio/arta-browser/issues/43)) ([919db8a](https://github.com/artaio/arta-browser/commit/919db8a707076d1117919bbc8bbcdcccde577c90))
+* minor padding and scroll updates for tracking drawer ([#41](https://github.com/artaio/arta-browser/issues/41)) ([0a9420f](https://github.com/artaio/arta-browser/commit/0a9420f08b4dc9bb60c28f79b486f25fd48ebb36)), closes [#42](https://github.com/artaio/arta-browser/issues/42)
+
+
+
 ## [2.10.3](https://github.com/artaio/arta-browser/compare/v2.10.2...v2.10.3) (2024-10-21)
 
 
