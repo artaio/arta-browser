@@ -131,7 +131,7 @@ export const defaultTrackingConfig: TrackingConfig = {
       background: '#FFFFFF',
       textPrimary: '#110F10',
       textSecondary: '#6F6C65',
-      border: '#D7D6D0',
+      border: '#E7E7E7',
       iconPrimary: 'black',
       iconSecondary: 'white',
       iconTertiary: '#8C8984',

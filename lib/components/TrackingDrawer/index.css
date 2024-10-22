@@ -4,7 +4,7 @@
   --background: #FFFFFF;
   --text-primary: #110F10;
   --text-secondary: #6F6C65;
-  --border: #D7D6D0;
+  --border: #E7E7E7;
   --width: 540px;
   --font-family: "Neue Haas Grotesk Text Pro, Helvetica, sans-serif, Arial";
   --font-size: 14px;
@@ -693,11 +693,11 @@
 
 .artajs__drawer .artajs__tracking__footer__content {
   display: flex;
-  width: 240px;
-  padding: 24px 32px 0px 32px;
+  margin-top: 24px;
   justify-content: center;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 }
 
 .artajs__drawer .artajs__tracking__footer__powered__by__text {
@@ -718,6 +718,12 @@
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
+  color: #379464;
+}
+
+.artajs__drawer .artajs__tracking__footer__content:hover .artajs__tracking__footer__powered__by__text,
+.artajs__drawer .artajs__tracking__footer__content:hover .artajs__tracking__footer__powered__by__logo {
+  color: #000;
 }
 
 /* Insurance box */
