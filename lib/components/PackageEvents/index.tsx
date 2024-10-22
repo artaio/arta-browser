@@ -160,7 +160,7 @@ export const PackageEvents = ({
                                   cx="15"
                                   cy="15"
                                   r="7.5"
-                                  fill="#110F10"
+                                  fill={config.style.color.iconPrimary}
                                 />
                               </svg>
                             ) : (
@@ -175,8 +175,9 @@ export const PackageEvents = ({
                                   cx="15"
                                   cy="15"
                                   r="7"
-                                  fill="white"
-                                  stroke="#9D9D9D"
+                                  fill="none"
+                                  stroke={config.style.color.iconTertiary}
+                                  stroke-width="2"
                                 />
                               </svg>
                             )}

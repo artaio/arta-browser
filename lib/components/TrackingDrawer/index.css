@@ -516,6 +516,7 @@
 }
 
 .artajs__drawer .artajas__tracking__top__date__and {
+  color: var(--text-primary);
   justify-content: flex-end;
   display: flex;
   flex-direction: column;
@@ -696,8 +697,11 @@
   margin-top: 24px;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   cursor: pointer;
+  padding: 6px 10px;
+  background: #FFFFFF;
+  border-radius: 12px;
 }
 
 .artajs__drawer .artajs__tracking__footer__powered__by__text {
@@ -708,13 +712,11 @@
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
-  /* 18px */
+  padding-top: 2px;
 }
 
 .artajs__drawer .artajs__tracking__footer__powered__by__logo {
   display: flex;
-  width: 48.32px;
-  height: 16px;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
@@ -762,6 +764,7 @@
 }
 
 .artajs__drawer .artajs__tracking__insurance__body__icon {
+  color: var(--text-primary);
   display: flex;
   width: 18px;
   height: 20px;
