@@ -1,3 +1,12 @@
+# [2.12.0](https://github.com/artaio/arta-browser/compare/v2.11.0...v2.12.0) (2024-10-22)
+
+
+### Features
+
+* polish in the footer + tracking README usage section ([#44](https://github.com/artaio/arta-browser/issues/44)) ([846aa59](https://github.com/artaio/arta-browser/commit/846aa5951f9f0bde3e094e4ff86b7e4d90215e22))
+
+
+
 # [2.11.0](https://github.com/artaio/arta-browser/compare/v2.10.3...v2.11.0) (2024-10-21)
 
 
