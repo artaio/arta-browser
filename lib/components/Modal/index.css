@@ -399,6 +399,12 @@
 .artajs__modal .artajs__modal__footer__link {
   display: inline-flex;
   text-decoration: none;
+  padding: 6px 10px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .artajs__modal .artajs__modal__footer__link p {
@@ -406,19 +412,6 @@
   font-family: 'helvetica';
   color: #6F6C65;
   padding-top: 2px;
-  margin-top: 2px;
-  margin-right: 5px;
-}
-
-.artajs__modal .artajs__modal__footer button {
-  background: #FFFFFF;
-  border-radius: 16px;
-  height: 22px;
-  justify-content: center;
-}
-
-.artajs__modal .artajs__modal__footer__link svg {
-  margin-top: 2px;
 }
 
 .artajs__modal .artajs__modal__footer__link path {

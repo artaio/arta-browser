@@ -52,7 +52,10 @@ export const TimelineDefault = ({ config, shipment }: TimelineProps) => {
             (shipment.status === 'collected' ? (
               <CollectedIcon config={config} shipment={shipment} />
             ) : isSmaller(shipment.status, 'collected') ? (
-              <EmptyStep text={config.text.collectedLabel} />
+              <EmptyStep
+                text={config.text.collectedLabel}
+                stroke={config.style.color.iconTertiary}
+              />
             ) : (
               <CheckedStep
                 text={config.text.collectedLabel}
@@ -70,7 +73,10 @@ export const TimelineDefault = ({ config, shipment }: TimelineProps) => {
           {shipment.status === 'in_transit' ? (
             <InTransitIcon config={config} shipment={shipment} />
           ) : isSmaller(shipment.status, 'in_transit') ? (
-            <EmptyStep text={config.text.inTransitLabel} />
+            <EmptyStep
+              text={config.text.inTransitLabel}
+              stroke={config.style.color.iconTertiary}
+            />
           ) : (
             <CheckedStep
               text={config.text.inTransitLabel}
@@ -87,7 +93,10 @@ export const TimelineDefault = ({ config, shipment }: TimelineProps) => {
           {shipment.status === 'completed' ? (
             <CompletedIcon config={config} shipment={shipment} />
           ) : isSmaller(shipment.status, 'completed') ? (
-            <EmptyStep text={config.text.completedLabel} />
+            <EmptyStep
+              text={config.text.completedLabel}
+              stroke={config.style.color.iconTertiary}
+            />
           ) : (
             <CheckedStep
               text={config.text.completedLabel}
