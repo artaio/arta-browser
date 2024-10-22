@@ -41,35 +41,38 @@ Arta.init('<YOUR_API_KEY>');
 // Set up origin and object details, request preferences as well as
 // your widget configuration overrides
 const origin = {
-    city: "Brooklyn",
-    region: "NY",
-    country: "US",
-    postal_code: "11249"
-  }
+  city: 'Brooklyn',
+  region: 'NY',
+  country: 'US',
+  postal_code: '11249',
+};
 
 const objects = [
-    {
-      depth: 2,
-      width: 36,
-      height: 24,
-      subtype: "painting_unframed",
-      unit_of_measurement: "in",
-      value_currency: "USD",
-      value: 500.00
-    }
-  ]
+  {
+    depth: 2,
+    width: 36,
+    height: 24,
+    subtype: 'painting_unframed',
+    unit_of_measurement: 'in',
+    value_currency: 'USD',
+    value: 500.0,
+  },
+];
 
-const requestPreferences = {currency: "EUR"};
+const requestPreferences = { currency: 'EUR' };
 
 const widgetConfig = {
   style: {
-    position: "center",
-    pricingDisplay: "range",
+    position: 'center',
+    pricingDisplay: 'range',
   },
 };
 
 // Setup an instance of the estimates widget
-const estimate = Arta.estimate({origin, objects, requestPreferences}, widgetConfig);
+const estimate = Arta.estimate(
+  { origin, objects, requestPreferences },
+  widgetConfig
+);
 
 // Validate the widget before rendering it
 await esimate.validate();
@@ -79,7 +82,10 @@ await esimate.validate();
 // when the widget has been validated.
 //
 // `estimate.open()` will render the widget on your page.
-esimate.isReady && <Button onClick={() => estimate.open()}>Estimate Shipping</Button>
+esimate.isReady && (
+  <Button onClick={() => estimate.open()}>Estimate Shipping</Button>
+);
+
 ```
 
 The Arta Estimates widget has many configuration options to customize the look and feel of the widget. You can view the full list of options in [/lib/estimateConfig.ts](/lib/estimateConfig.ts) and view a live demo at [manual.arta.io/estimates-demo](https://manual.arta.io/estimates-demo/).
@@ -96,22 +102,22 @@ Arta.init('<YOUR_API_KEY>');
 const config = {
   animation: {
     in: {
-      type: "slide",
+      type: 'slide',
       duration: 500,
-      easing: "ease-in-out",
+      easing: 'ease-in-out',
     },
     out: {
-      type: "slide",
+      type: 'slide',
       duration: 250,
-      easing: "ease-in-out",
+      easing: 'ease-in-out',
     },
   },
   style: {
     color: {
-        iconPrimary: "blue"
-      }
-    }
-  }
+      iconPrimary: 'blue',
+    },
+  },
+};
 
 // Setup an instance of the tracking widget
 const tracking = Arta.tracking('<SHIPMENT_ID>', config);
@@ -123,7 +129,7 @@ await tracking.validate();
 // when the widget has been validated.
 //
 // `tracking.open()` will render the widget on your page.
-tracking.isReady && <Button onClick={() => tracking.open()}>Track</Button>
+tracking.isReady && <Button onClick={() => tracking.open()}>Track</Button>;
 ```
 
 The Arta Tracking widget has many configuration options to customize the look and feel of the widget. You can view the full list of options in [/lib/trackingConfig.ts](/lib/trackingConfig.ts).
