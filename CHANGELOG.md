@@ -1,3 +1,12 @@
+## [2.12.1](https://github.com/artaio/arta-browser/compare/v2.12.0...v2.12.1) (2024-10-22)
+
+
+### Bug Fixes
+
+* improved support for alternate color palettes ([#45](https://github.com/artaio/arta-browser/issues/45)) ([d3e712a](https://github.com/artaio/arta-browser/commit/d3e712a5984cf1d5ddae17bcd6f1f04743c4b968))
+
+
+
 # [2.12.0](https://github.com/artaio/arta-browser/compare/v2.11.0...v2.12.0) (2024-10-22)
 
 
