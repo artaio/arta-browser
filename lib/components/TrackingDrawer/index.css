@@ -1,12 +1,12 @@
 /* reset */
 
 :root {
-  --background: #FFFFFF;
-  --text-primary: #110F10;
-  --text-secondary: #6F6C65;
-  --border: #E7E7E7;
+  --background: #ffffff;
+  --text-primary: #110f10;
+  --text-secondary: #6f6c65;
+  --border: #e7e7e7;
   --width: 540px;
-  --font-family: "Neue Haas Grotesk Text Pro, Helvetica, sans-serif, Arial";
+  --font-family: 'Neue Haas Grotesk Text Pro, Helvetica, sans-serif, Arial';
   --font-size: 14px;
   --default-styling: 'flex';
   --minimal-styling: 'none';
@@ -67,7 +67,7 @@
 .artajs__drawer button,
 .artajs__drawer select {
   font: inherit;
-  margin: 0
+  margin: 0;
 }
 
 /* drawer styles */
@@ -135,19 +135,17 @@
   z-index: 2001;
 }
 
-
 .artajs__drawer .artajs__tracking__out__wrapper {
   display: flex;
   width: var(--width);
   flex-direction: column;
   align-items: flex-start;
 
-  background: var(--background, #FFF);
+  background: var(--background, #fff);
 
   box-shadow: 0px 16px 32px 0px rgba(0, 0, 0, 0.25);
   height: 100%;
 }
-
 
 /* Header styles */
 .artajs__drawer .artajs__tracking__header {
@@ -214,7 +212,6 @@
   max-height: 100%;
   flex-grow: 1;
 }
-
 
 /* Timeline Default styles */
 .artajs__drawer .artajs__tracking__timeline__default__wrapper {
@@ -427,12 +424,6 @@
   gap: 12px;
 }
 
-.artajs__drawer .artajs__tracking__timeline__minimal__secondary__step {
-  fill: var(--border);
-  width: 8px;
-  height: 8px;
-}
-
 .artajs__drawer .artajs__tracking__timeline__divider {
   display: flex;
   width: 140px;
@@ -577,7 +568,7 @@
   background: var(--background);
 
   /* 1 */
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 .artajs__drawer .artajs__packings__spacer {
@@ -610,7 +601,6 @@
   gap: 4px;
   align-self: stretch;
 }
-
 
 .artajs__drawer .artajs__packings__line {
   width: 100%;
@@ -700,12 +690,12 @@
   gap: 6px;
   cursor: pointer;
   padding: 6px 10px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 12px;
 }
 
 .artajs__drawer .artajs__tracking__footer__powered__by__text {
-  color: #6F6C65;
+  color: #6f6c65;
   text-align: center;
   font-family: Helvetica;
   font-size: 12px;
@@ -723,8 +713,12 @@
   color: #379464;
 }
 
-.artajs__drawer .artajs__tracking__footer__content:hover .artajs__tracking__footer__powered__by__text,
-.artajs__drawer .artajs__tracking__footer__content:hover .artajs__tracking__footer__powered__by__logo {
+.artajs__drawer
+  .artajs__tracking__footer__content:hover
+  .artajs__tracking__footer__powered__by__text,
+.artajs__drawer
+  .artajs__tracking__footer__content:hover
+  .artajs__tracking__footer__powered__by__logo {
   color: #000;
 }
 
@@ -927,17 +921,19 @@
   height: 56px;
   width: 56px;
   box-sizing: border-box;
-  background: conic-gradient(from 90deg at 50% 50%,
-      rgba(39, 174, 96, 0) 0deg,
-      rgba(31, 144, 255, 0) 0.04deg,
-      var(--text-secondary) 360deg);
+  background: conic-gradient(
+    from 90deg at 50% 50%,
+    rgba(39, 174, 96, 0) 0deg,
+    rgba(31, 144, 255, 0) 0.04deg,
+    var(--text-secondary) 360deg
+  );
   border-radius: 56px;
   /* previous code */
   animation: 1s rotate infinite linear;
 }
 
 .artajs__drawer .artajs__drawer__loading::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   top: 50%;
@@ -949,7 +945,7 @@
 }
 
 .artajs__drawer .artajs__drawer__loading::after {
-  content: "";
+  content: '';
   position: absolute;
   right: 0;
   top: 50%;
@@ -1006,7 +1002,9 @@
   flex-grow: 1;
 }
 
-.artajs__drawer .artajs__tracking__events__body .artajs__tracking__footer__wrapper {
+.artajs__drawer
+  .artajs__tracking__events__body
+  .artajs__tracking__footer__wrapper {
   padding: 16px 0 32px 0;
 }
 
@@ -1129,5 +1127,4 @@
   font-style: normal;
   line-height: 130%;
   letter-spacing: 0.2px;
-
 }
