@@ -1,3 +1,12 @@
+## [2.12.2](https://github.com/artaio/arta-browser/compare/v2.12.1...v2.12.2) (2024-10-23)
+
+
+### Bug Fixes
+
+* secondary timeline steps color presentation for minimal layouts ([#46](https://github.com/artaio/arta-browser/issues/46)) ([d30936e](https://github.com/artaio/arta-browser/commit/d30936e9ec932714afcf7f4e0d5140ea899f060d))
+
+
+
 ## [2.12.1](https://github.com/artaio/arta-browser/compare/v2.12.0...v2.12.1) (2024-10-22)
 
 
