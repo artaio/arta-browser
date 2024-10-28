@@ -1,3 +1,12 @@
+# [2.13.0](https://github.com/artaio/arta-browser/compare/v2.12.2...v2.13.0) (2024-10-28)
+
+
+### Features
+
+* always centralize minimal timeline icons ([#48](https://github.com/artaio/arta-browser/issues/48)) ([7e3afb8](https://github.com/artaio/arta-browser/commit/7e3afb8933ba2be448c31c36f82f531356c342f4))
+
+
+
 ## [2.12.2](https://github.com/artaio/arta-browser/compare/v2.12.1...v2.12.2) (2024-10-23)
 
 
