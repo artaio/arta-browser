@@ -95,12 +95,7 @@ export const Destination = ({
             }`}
             for="country"
           >
-            <select
-              id="country"
-              onChange={onCountryChange}
-              placeholder=" "
-              value={country}
-            >
+            <select id="country" onChange={onCountryChange} value={country}>
               {countries.map((c) => (
                 <option key={c.code} value={c.code}>
                   {c.name}
@@ -125,7 +120,7 @@ export const Destination = ({
             <input
               id="postal_code"
               onInput={onPostalCodeInput}
-              placeholder=" "
+              placeholder=""
               type="text"
               value={postalCode}
             />
