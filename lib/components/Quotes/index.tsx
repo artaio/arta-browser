@@ -10,7 +10,7 @@ export const defaultQuoteConfig = {
   disclaimerLabel: 'Actual shipping costs will be provided at checkout.',
   rangeLabel: 'Shipping estimated between',
   startsAtLabel: 'Shipping Starts at',
-  artaInsuranceLabel: 'This estimate includes Arta Transit Insurance.',
+  artaInsuranceLabel: 'This estimate includes Arta Shipping Protection.',
 };
 
 export interface QuoteTextConfig {
