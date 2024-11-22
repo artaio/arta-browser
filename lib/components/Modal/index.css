@@ -1,22 +1,22 @@
 /* reset */
 
 :root {
-  --background: #FFFFFF;
-  --text-primary: #110F10;
-  --text-secondary: #6F6C65;
-  --border: #D7D6D0;
-  --border-hover: #6F6C65;
-  --border-focused: #110F10;
-  --button-background: #110F10;
-  --button-background-hover: #6F6C65;
-  --button-background-disabled: #F2F2F2;
-  --button-text: #FFFFFF;
-  --button-text-hover: #FFFFFF;
-  --button-text-disabled: #9D9D9D;
-  --quote-background: #F2F2F2;
+  --background: #ffffff;
+  --text-primary: #110f10;
+  --text-secondary: #6f6c65;
+  --border: #d7d6d0;
+  --border-hover: #6f6c65;
+  --border-focused: #110f10;
+  --button-background: #110f10;
+  --button-background-hover: #6f6c65;
+  --button-background-disabled: #f2f2f2;
+  --button-text: #ffffff;
+  --button-text-hover: #ffffff;
+  --button-text-disabled: #9d9d9d;
+  --quote-background: #f2f2f2;
   --error-text: #822828;
-  --error-background: #FBECEC;
-  --font-family: "Neue Haas Grotesk Text Pro, Arial, Helvetica, sans-serif";
+  --error-background: #fbecec;
+  --font-family: 'Neue Haas Grotesk Text Pro, Arial, Helvetica, sans-serif';
   --font-size: 14px;
   --width: 300px;
   --height: 467px;
@@ -69,7 +69,7 @@
 .artajs__modal button,
 .artajs__modal select {
   font: inherit;
-  margin: 0
+  margin: 0;
 }
 
 /* modal styles */
@@ -168,7 +168,12 @@
   stroke: var(--text-secondary);
 }
 
-.artajs__modal .artajs__modal__header .artajs__modal__header__close a:hover svg line {
+.artajs__modal
+  .artajs__modal__header
+  .artajs__modal__header__close
+  a:hover
+  svg
+  line {
   stroke: var(--text-primary);
 }
 
@@ -192,7 +197,6 @@
 
 .artajs__modal__form__label {
   font-size: calc(var(--font-size) - 2px);
-
 }
 
 .artajs__modal p.artajs__modal__form__row__location {
@@ -384,7 +388,6 @@
   fill: var(--text-secondary);
 }
 
-
 /* footer styles */
 .artajs__modal .artajs__modal__footer {
   background-color: var(--background);
@@ -400,7 +403,7 @@
   display: inline-flex;
   text-decoration: none;
   padding: 6px 10px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 12px;
   align-items: center;
   justify-content: center;
@@ -410,7 +413,7 @@
 .artajs__modal .artajs__modal__footer__link p {
   font-size: 12px;
   font-family: 'helvetica';
-  color: #6F6C65;
+  color: #6f6c65;
   padding-top: 2px;
 }
 
@@ -476,8 +479,8 @@
 }
 
 /* Input, Select */
-.artajs__modal .artajs__modal__textfield__outlined>input,
-.artajs__modal .artajs__modal__textfield__outlined>select {
+.artajs__modal .artajs__modal__textfield__outlined > input,
+.artajs__modal .artajs__modal__textfield__outlined > select {
   background-color: transparent;
   border: solid 1px;
   /* Safari */
@@ -500,28 +503,25 @@
   background: var(--background);
 }
 
-.artajs__modal .artajs__modal__textfield__outlined>select {
+.artajs__modal .artajs__modal__textfield__outlined > select {
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image:
-    linear-gradient(45deg, transparent 50%, var(--text-primary) 50%),
+  background-image: linear-gradient(
+      45deg,
+      transparent 50%,
+      var(--text-primary) 50%
+    ),
     linear-gradient(135deg, var(--text-primary) 50%, transparent 50%),
     linear-gradient(to right, transparent, transparent);
-  background-position:
-    calc(100% - 20px) calc(1em + 7px),
-    calc(100% - 15px) calc(1em + 7px),
-    calc(100% - 2.5em) 0.5em;
-  background-size:
-    5px 5px,
-    5px 5px,
-    1px 1.5em;
+  background-position: calc(100% - 20px) calc(1em + 7px),
+    calc(100% - 15px) calc(1em + 7px), calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
   background-repeat: no-repeat;
-
 }
 
 /* Span */
-.artajs__modal .artajs__modal__textfield__outlined>input+span,
-.artajs__modal .artajs__modal__textfield__outlined>select+span {
+.artajs__modal .artajs__modal__textfield__outlined > input + span,
+.artajs__modal .artajs__modal__textfield__outlined > select + span {
   position: absolute;
   top: 0;
   left: 0;
@@ -537,11 +537,11 @@
 }
 
 /* Corners */
-.artajs__modal .artajs__modal__textfield__outlined>input+span::before,
-.artajs__modal .artajs__modal__textfield__outlined>input+span::after,
-.artajs__modal .artajs__modal__textfield__outlined>select+span::before,
-.artajs__modal .artajs__modal__textfield__outlined>select+span::after {
-  content: "";
+.artajs__modal .artajs__modal__textfield__outlined > input + span::before,
+.artajs__modal .artajs__modal__textfield__outlined > input + span::after,
+.artajs__modal .artajs__modal__textfield__outlined > select + span::before,
+.artajs__modal .artajs__modal__textfield__outlined > select + span::after {
+  content: '';
   display: block;
   box-sizing: border-box;
   margin-top: 6px;
@@ -554,15 +554,15 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.artajs__modal .artajs__modal__textfield__outlined>input+span::before,
-.artajs__modal .artajs__modal__textfield__outlined>select+span::before {
+.artajs__modal .artajs__modal__textfield__outlined > input + span::before,
+.artajs__modal .artajs__modal__textfield__outlined > select + span::before {
   margin-right: 4px;
   border-left: solid 1px transparent;
   border-radius: 4px 0;
 }
 
-.artajs__modal .artajs__modal__textfield__outlined>input+span::after,
-.artajs__modal .artajs__modal__textfield__outlined>select+span::after {
+.artajs__modal .artajs__modal__textfield__outlined > input + span::after,
+.artajs__modal .artajs__modal__textfield__outlined > select + span::after {
   flex-grow: 1;
   margin-left: 4px;
   border-right: solid 1px transparent;
@@ -570,142 +570,217 @@
 }
 
 /* Hover */
-.artajs__modal .artajs__modal__textfield__outlined:hover>input,
-.artajs__modal .artajs__modal__textfield__outlined:hover>select {
+.artajs__modal .artajs__modal__textfield__outlined:hover > input,
+.artajs__modal .artajs__modal__textfield__outlined:hover > select {
   cursor: pointer;
   border-color: var(--border-hover);
 }
 
-.artajs__modal .artajs__modal__textfield__outlined:hover>input:not(:focus):placeholder-shown,
-.artajs__modal .artajs__modal__textfield__outlined:hover>select:not(:focus):placeholder-shown {
+.artajs__modal
+  .artajs__modal__textfield__outlined:hover
+  > input:not(:focus):placeholder-shown {
   cursor: pointer;
   border-color: var(--border-hover);
 }
 
 /* Placeholder-shown */
-.artajs__modal .artajs__modal__textfield__outlined>input:not(:focus):placeholder-shown+span,
-.artajs__modal .artajs__modal__textfield__outlined>select:not(:focus):placeholder-shown+span {
+.artajs__modal
+  .artajs__modal__textfield__outlined
+  > input:not(:focus):placeholder-shown
+  + span {
   font-size: inherit;
   line-height: 68px;
 }
 
 /* Focus */
-.artajs__modal .artajs__modal__textfield__outlined>input:focus,
-.artajs__modal .artajs__modal__textfield__outlined>select:focus {
+.artajs__modal .artajs__modal__textfield__outlined > input:focus,
+.artajs__modal .artajs__modal__textfield__outlined > select:focus {
   border-color: var(--border-focused);
   /* border-top-color: transparent; */
   /* box-shadow: inset 1px 0 var(--border-focused), inset -1px 0 var(--border-focused), inset 0 -1px var(--border-focused), inset 0 1px var(--border-focused); */
   outline: var(--border-focused);
 }
 
-.artajs__modal .artajs__modal__textfield__outlined>input:focus+span,
-.artajs__modal .artajs__modal__textfield__outlined>select:focus+span {
+.artajs__modal .artajs__modal__textfield__outlined > input:focus + span,
+.artajs__modal .artajs__modal__textfield__outlined > select:focus + span {
   color: var(--text-secondary);
 }
 
-.artajs__modal .artajs__modal__textfield__outlined>input:focus+span::before,
-.artajs__modal .artajs__modal__textfield__outlined>input:focus+span::after,
-.artajs__modal .artajs__modal__textfield__outlined>select:focus+span::before,
-.artajs__modal .artajs__modal__textfield__outlined>select:focus+span::after {
+.artajs__modal .artajs__modal__textfield__outlined > input:focus + span::before,
+.artajs__modal .artajs__modal__textfield__outlined > input:focus + span::after,
+.artajs__modal
+  .artajs__modal__textfield__outlined
+  > select:focus
+  + span::before,
+.artajs__modal
+  .artajs__modal__textfield__outlined
+  > select:focus
+  + span::after {
   box-shadow: inset 0 1px var(--text-primary);
 }
 
 /* Disabled */
-.artajs__modal .artajs__modal__textfield__outlined>input:disabled,
-.artajs__modal .artajs__modal__textfield__outlined>input:disabled+span,
-.artajs__modal .artajs__modal__textfield__outlined>select:disabled,
-.artajs__modal .artajs__modal__textfield__outlined>select:disabled+span {
+.artajs__modal .artajs__modal__textfield__outlined > input:disabled,
+.artajs__modal .artajs__modal__textfield__outlined > input:disabled + span,
+.artajs__modal .artajs__modal__textfield__outlined > select:disabled,
+.artajs__modal .artajs__modal__textfield__outlined > select:disabled + span {
   border-color: var(--text-secondary) !important;
   color: rgba(0, 0, 0, 0.38);
   pointer-events: none;
 }
 
 /* Error */
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>input,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>select {
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > input,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > select {
   border-color: var(--error-text) !important;
   border-top-color: transparent !important;
 }
 
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>input+span,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>select+span {
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > input
+  + span,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > select
+  + span {
   border-color: var(--error-text) !important;
   border-top-color: transparent !important;
   color: var(--error-text) !important;
 }
 
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>input+span::before,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>select+span::before,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>input+span::after,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>select+span::after {
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > input
+  + span::before,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > select
+  + span::before,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > input
+  + span::after,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > select
+  + span::after {
   border-top-color: var(--error-text) !important;
 }
 
 /* Error - Hover */
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover>input,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover>select {
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover
+  > input,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover
+  > select {
   border-color: var(--error-text) !important;
   border-top-color: transparent !important;
 }
 
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover>input+span::before,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover>select+span::before,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover>input+span::after,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover>select+span::after {
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover
+  > input
+  + span::before,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover
+  > select
+  + span::before,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover
+  > input
+  + span::after,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover
+  > select
+  + span::after {
   border-top-color: var(--error-text) !important;
 }
 
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover>input:not(:focus):placeholder-shown,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover>select:not(:focus):placeholder-shown {
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error:hover
+  > input:not(:focus):placeholder-shown {
   border-color: var(--error-text) !important;
 }
 
 /* Error - Placeholder-shown */
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>input:not(:focus):placeholder-shown,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>select:not(:focus):placeholder-shown {
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > input:not(:focus):placeholder-shown {
   border-top-color: var(--error-text) !important;
 }
 
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>input:not(:focus):placeholder-shown+span::before,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>select:not(:focus):placeholder-shown+span::before,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>input:not(:focus):placeholder-shown+span::after,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>select:not(:focus):placeholder-shown+span::after {
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > input:not(:focus):placeholder-shown
+  + span::before,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > input:not(:focus):placeholder-shown
+  + span::after {
   border-top-color: transparent !important;
 }
 
 /* Error - Focus */
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>input:focus,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>select:focus {
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > input:focus,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > select:focus {
   border-color: var(--error-text) !important;
   border-top-color: transparent !important;
-  box-shadow: inset 1px 0 var(--error-text), inset -1px 0 var(--error-text), inset 0 -1px var(--error-text) !important;
+  box-shadow: inset 1px 0 var(--error-text), inset -1px 0 var(--error-text),
+    inset 0 -1px var(--error-text) !important;
 }
 
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>input:focus+span,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>select:focus+span {
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > input:focus
+  + span,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > select:focus
+  + span {
   color: var(--error-text) !important;
 }
 
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>input:focus+span::before,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>input:focus+span::after,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>select:focus+span::before,
-.artajs__modal .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error>select:focus+span::after {
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > input:focus
+  + span::before,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > input:focus
+  + span::after,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > select:focus
+  + span::before,
+.artajs__modal
+  .artajs__modal__textfield__outlined.artajs__modal__textfield__outlined__error
+  > select:focus
+  + span::after {
   border-top-color: var(--error-text) !important;
   box-shadow: inset 0 1px var(--error-text) !important;
 }
 
 /* Faster transition in Safari for less noticable fractional font-size issue */
-@media not all and (min-resolution:.001dpcm) {
-  @supports (-webkit-appearance:none) {
-
-    .artajs__modal .artajs__modal__textfield__outlined>input,
-    .artajs__modal .artajs__modal__textfield__outlined>input+span,
-    .artajs__modal .artajs__modal__textfield__outlined>select,
-    .artajs__modal .artajs__modal__textfield__outlined>select+span,
-    .artajs__modal .artajs__modal__textfield__outlined>input+span::before,
-    .artajs__modal .artajs__modal__textfield__outlined>input+span::after,
-    .artajs__modal .artajs__modal__textfield__outlined>select+span::before,
-    .artajs__modal .artajs__modal__textfield__outlined>select+span::after {
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .artajs__modal .artajs__modal__textfield__outlined > input,
+    .artajs__modal .artajs__modal__textfield__outlined > input + span,
+    .artajs__modal .artajs__modal__textfield__outlined > select,
+    .artajs__modal .artajs__modal__textfield__outlined > select + span,
+    .artajs__modal .artajs__modal__textfield__outlined > input + span::before,
+    .artajs__modal .artajs__modal__textfield__outlined > input + span::after,
+    .artajs__modal .artajs__modal__textfield__outlined > select + span::before,
+    .artajs__modal .artajs__modal__textfield__outlined > select + span::after {
       transition-duration: 0.1s;
     }
   }
@@ -721,18 +796,19 @@
   height: 56px;
   width: 56px;
   box-sizing: border-box;
-  background: conic-gradient(from 90deg at 50% 50%,
-      rgba(39, 174, 96, 0) 0deg,
-      rgba(31, 144, 255, 0) 0.04deg,
-      var(--text-secondary)
- 360deg);
+  background: conic-gradient(
+    from 90deg at 50% 50%,
+    rgba(39, 174, 96, 0) 0deg,
+    rgba(31, 144, 255, 0) 0.04deg,
+    var(--text-secondary) 360deg
+  );
   border-radius: 56px;
   /* previous code */
   animation: 1s rotate infinite linear;
 }
 
 .artajs__modal .artajs__modal__loading::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   top: 50%;
@@ -744,7 +820,7 @@
 }
 
 .artajs__modal .artajs__modal__loading::after {
-  content: "";
+  content: '';
   position: absolute;
   right: 0;
   top: 50%;

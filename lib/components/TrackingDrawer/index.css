@@ -928,7 +928,6 @@
     var(--text-secondary) 360deg
   );
   border-radius: 56px;
-  /* previous code */
   animation: 1s rotate infinite linear;
 }
 
@@ -1078,7 +1077,7 @@
 }
 
 .artajs__drawer .artajs__tracking__events__vertical {
-  /* border: var(--border); */
+  border-width: 1px;
   height: 100%;
   margin-top: 0;
   margin-bottom: 0;

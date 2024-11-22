@@ -131,7 +131,7 @@ export const ShipmentException = ({
 
   return (
     <div class="artajs__tracking__exception__wrapper">
-      <div width={24} height={24}>
+      <div>
         <ExceptionIcon config={config} currentException={currentException} />
       </div>
       <div class="artajs__tracking__exception__content">
