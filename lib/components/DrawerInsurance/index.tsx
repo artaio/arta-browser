@@ -2,7 +2,7 @@ export const DrawerInsurance = () => {
   return (
     <div class="artajs__tracking__insurance__wrapper">
       <div class="artajs__tracking__insurance__content">
-        <div class="artajs__tracking__insurance__title">Protected with</div>
+        <div class="artajs__tracking__insurance__title">Covered by</div>
         <div class="artajs__tracking__insurance__body">
           <div class="artajs__tracking__insurance__body__icon">
             <svg
@@ -31,7 +31,7 @@ export const DrawerInsurance = () => {
             target="_blank"
             class="artajs__tracking__insurance__body__icon__text"
           >
-            Arta Transit Insurance
+            Arta Shipping Protection
           </a>
         </div>
       </div>
