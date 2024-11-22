@@ -184,7 +184,6 @@ export const PackageEvents = ({
                           </div>
                           <hr
                             class="artajs__tracking__events__vertical"
-                            width="1"
                             style="0 auto"
                           />
                         </div>
