@@ -36,6 +36,7 @@ export interface EstimateBody {
 }
 
 export interface EstimateConfig {
+  onClose?: (e: MouseEvent) => void;
   style: {
     color: {
       background: string;

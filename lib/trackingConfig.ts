@@ -44,6 +44,7 @@ export type AnimationConfig =
     };
 
 export interface TrackingConfig {
+  onClose?: (e: MouseEvent) => void;
   navigation: {
     shipmentExceptionMailTo: string;
   };
