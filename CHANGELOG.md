@@ -1,3 +1,12 @@
+# [2.15.0](https://github.com/artaio/arta-browser/compare/v2.14.0...v2.15.0) (2024-11-25)
+
+
+### Features
+
+* add onClose event callback on configuration ([#53](https://github.com/artaio/arta-browser/issues/53)) ([6552496](https://github.com/artaio/arta-browser/commit/655249666d7ba7f1764e1853d5ed21927be54c16))
+
+
+
 # [2.14.0](https://github.com/artaio/arta-browser/compare/v2.13.2...v2.14.0) (2024-11-25)
 
 
