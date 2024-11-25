@@ -38,7 +38,7 @@ export default class Tracking {
       <TrackingDrawer
         shipmentId={this.shipmentId}
         config={this.config}
-        onClose={this.onClose.bind(this)}
+        onClose={this.config.onClose ?? this.onClose.bind(this)}
       />,
       this.el
     );
@@ -70,7 +70,7 @@ export default class Tracking {
     this.isOpen = false;
   }
 
-  public onClose(e: any) {
+  public onClose(e: MouseEvent) {
     e.preventDefault();
     this.close();
     this.isOpen = false;

@@ -32,7 +32,7 @@ export default class Estimate {
   private render() {
     render(
       <Modal
-        onClose={this.onClose.bind(this)}
+        onClose={this.config.onClose ?? this.onClose.bind(this)}
         estimateBody={this.estimateBody}
         config={this.config}
       />,
@@ -45,7 +45,7 @@ export default class Estimate {
     this.isOpen = false;
   }
 
-  public onClose(e: any) {
+  public onClose(e: MouseEvent) {
     e.preventDefault();
     this.close();
     this.isOpen = false;
