@@ -54,7 +54,7 @@ export interface EstimateConfig {
       errorText: string;
       errorBackground: string;
     };
-    position: 'center' | 'left' | 'right';
+    position: 'center' | 'full_screen' | 'left' | 'right';
     pricingDisplay: 'starts_at' | 'range';
     fontFamily: string;
     fontSize: number;
