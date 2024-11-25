@@ -1,3 +1,12 @@
+# [2.14.0](https://github.com/artaio/arta-browser/compare/v2.13.2...v2.14.0) (2024-11-25)
+
+
+### Features
+
+* adds support for full screen estimates position ([#54](https://github.com/artaio/arta-browser/issues/54)) ([a3daf3d](https://github.com/artaio/arta-browser/commit/a3daf3db3f64ac2c7e5b539da6769f26c7781066))
+
+
+
 ## [2.13.2](https://github.com/artaio/arta-browser/compare/v2.13.1...v2.13.2) (2024-11-22)
 
 
