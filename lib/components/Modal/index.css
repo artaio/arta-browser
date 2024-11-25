@@ -75,54 +75,58 @@
 /* modal styles */
 .artajs__modal {
   background-color: var(--background);
-  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-  -webkit-background-clip: padding-box;
-  -moz-background-clip: padding-box;
   background-clip: padding-box;
-  bottom: 30px;
   color: var(--text-primary);
-  height: var(--height);
   padding: 0;
   position: fixed;
-  right: 30px;
-  width: var(--width);
   z-index: 2001;
 }
 
-.artajs__modal.artajs__modal__left {
-  bottom: 30px;
-  left: 30px;
-  right: auto;
-}
-
-.artajs__modal.artajs__modal__right {
-  bottom: 30px;
-  left: auto;
-  right: 30px;
-}
-
-.artajs__modal.artajs__modal__center {
-  position: fixed;
-  max-height: 100%;
-  overflow-y: scroll;
-  left: 50%;
-  margin-left: calc(0px - (var(--width) / 2));
-  top: 0;
+.artajs__modal {
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  top: 0px;
 }
 
 /* in case of not in mobile */
-@media (min-width: 800px) and (min-height: 600px) {
-  .artajs__modal {
+@media (min-width: 768px) and (min-height: 600px) {
+  .artajs__modal.artajs__modal__center,
+  .artajs__modal.artajs__modal__right,
+  .artajs__modal.artajs__modal__left {
+    -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    height: var(--height);
+    width: var(--width);
   }
+
+  .artajs__modal.artajs__modal__left {
+    bottom: 30px;
+    left: 30px;
+    right: auto;
+    top: auto;
+  }
+
+  .artajs__modal.artajs__modal__right {
+    bottom: 30px;
+    left: auto;
+    right: 30px;
+    top: auto;
+  }
+
   .artajs__modal.artajs__modal__center {
-    position: absolute;
-    overflow-y: hidden;
-    top: 50%;
+    left: 50%;
+    margin-left: calc(0px - (var(--width) / 2));
     margin-top: calc(0px - (var(--height) / 2));
+    overflow-y: hidden;
+    position: absolute;
+    top: 50%;
   }
+
   .artajs__modal .artajs__modal__footer {
     position: absolute;
   }
@@ -142,7 +146,13 @@
 /* header styles */
 .artajs__modal .artajs__modal__header__divider {
   margin-top: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) and (min-height: 600px) {
+  .artajs__modal .artajs__modal__header__divider {
+    margin-bottom: 10px;
+  }
 }
 
 .artajs__modal .artajs__modal__header {
@@ -394,7 +404,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding-bottom: 25px;
+  padding-bottom: 24px;
   text-align: center;
   border-radius: 8px;
 }
@@ -408,6 +418,13 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
+  margin-top: 6px;
+}
+
+@media (min-width: 768px) and (min-height: 600px) {
+  .artajs__modal .artajs__modal__footer__link {
+    margin-top: 0;
+  }
 }
 
 .artajs__modal .artajs__modal__footer__link p {
