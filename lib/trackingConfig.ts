@@ -210,26 +210,26 @@ export const defaultTrackingConfig: TrackingConfig = {
   pill: {
     unknown: {
       textColor: '#202020',
-      backgroundColor: '#D2D2D2',
+      backgroundColor: '#E7E7E7',
       text: 'Unknown',
     },
     pending: {
       textColor: '#202020',
-      backgroundColor: '#D2D2D2',
+      backgroundColor: '#E7E7E7',
       text: 'Pending',
     },
     notfound: {
       textColor: '#202020',
-      backgroundColor: '#D2D2D2',
+      backgroundColor: '#E7E7E7',
       text: 'Not Found',
     },
     transit: {
-      textColor: '#379464',
+      textColor: '#276947',
       backgroundColor: '#EFF8F3',
       text: 'In Transit',
     },
     out_for_delivery: {
-      textColor: '#379464',
+      textColor: '#276947',
       backgroundColor: '#EFF8F3',
       text: 'Out for Delivery',
     },
@@ -239,18 +239,18 @@ export const defaultTrackingConfig: TrackingConfig = {
       text: 'Delivered',
     },
     undelivered: {
-      textColor: '#772424',
-      backgroundColor: '#FEF9F9',
+      textColor: '#8C8984',
+      backgroundColor: '#E7E7E7',
       text: 'Undelivered',
     },
     exception: {
-      textColor: '#976315',
-      backgroundColor: '#FEF6E9',
+      textColor: '#875706',
+      backgroundColor: '#FEF9F9',
       text: 'Exception',
     },
     expired: {
-      textColor: '#772424',
-      backgroundColor: '#FEF9F9',
+      textColor: '#8C8984',
+      backgroundColor: '#E7E7E7',
       text: 'Expired',
     },
   },
