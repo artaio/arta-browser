@@ -2,6 +2,8 @@ import { ArtaJsFullConfig } from './arta';
 import { deepClone, DeepPartial, nestedObjectAssign } from './helper';
 
 export interface DateConfig {
+  locale: Intl.LocalesArgument;
+  formatOptions: Intl.DateTimeFormatOptions;
   weekdays: {
     sunday: string;
     monday: string;
@@ -58,6 +60,12 @@ export interface TrackingConfig {
       iconSecondary: string;
       iconTertiary: string;
       exceptionIcon: string;
+      buttonBackground: string;
+      buttonBackgroundHover: string;
+      buttonBorder: string;
+      buttonText: string;
+      buttonTextHover: string;
+      buttonBorderHover: string;
     };
     variant: 'default' | 'minimal';
     position: 'left' | 'right';
@@ -69,6 +77,8 @@ export interface TrackingConfig {
   text: {
     header: {
       title: string;
+      titleShipmentList: string;
+      titleShipmentDetail: string;
     };
     pendingLabel: string;
     completedLabel: string;
@@ -101,6 +111,8 @@ export interface TrackingConfig {
     singleShipmentHeldAtCustomsLabel: string;
     changeOfAddressRequestLabel: string;
     shipmentExceptionDefaultLabel: string;
+    viewShipmentDetailLabel: string;
+    viewShipmentsListLabel: string;
   };
   pill: {
     unknown: PillConfig;
@@ -112,6 +124,11 @@ export interface TrackingConfig {
     undelivered: PillConfig;
     exception: PillConfig;
     expired: PillConfig;
+
+    cancelled: PillConfig;
+    collected: PillConfig;
+    completed: PillConfig;
+    confirmed: PillConfig;
   };
   animation: {
     in: AnimationConfig;
@@ -137,6 +154,12 @@ export const defaultTrackingConfig: TrackingConfig = {
       iconSecondary: 'white',
       iconTertiary: '#8C8984',
       exceptionIcon: '#F59E0B',
+      buttonBackground: '#110F10',
+      buttonBackgroundHover: '#6F6C65',
+      buttonBorder: '#110F10',
+      buttonText: '#FFFFFF',
+      buttonTextHover: '#FFFFFF',
+      buttonBorderHover: '#110F10',
     },
     variant: 'default',
     position: 'right',
@@ -148,6 +171,8 @@ export const defaultTrackingConfig: TrackingConfig = {
   text: {
     header: {
       title: 'Track Shipment',
+      titleShipmentList: 'Shipments List',
+      titleShipmentDetail: 'Shipment Detail',
     },
     pendingLabel: 'Pending',
     completedLabel: 'Completed',
@@ -181,7 +206,11 @@ export const defaultTrackingConfig: TrackingConfig = {
     changeOfAddressRequestLabel:
       'A change of address was requested which may impact delivery timelines.',
     shipmentExceptionDefaultLabel: 'There is an exception with this shipment.',
+    viewShipmentDetailLabel: 'View Details',
+    viewShipmentsListLabel: '< All Shipments',
     dates: {
+      locale: navigator.language,
+      formatOptions: { dateStyle: 'medium' },
       weekdays: {
         sunday: 'Sun',
         monday: 'Mon',
@@ -253,6 +282,26 @@ export const defaultTrackingConfig: TrackingConfig = {
       backgroundColor: '#FEF9F9',
       text: 'Expired',
     },
+    cancelled: {
+      textColor: '#772424',
+      backgroundColor: '#FEF9F9',
+      text: 'Cancelled',
+    },
+    collected: {
+      textColor: '#173E2A',
+      backgroundColor: '#D6EDE1',
+      text: 'Collected',
+    },
+    completed: {
+      textColor: '#173E2A',
+      backgroundColor: '#D6EDE1',
+      text: 'Completed',
+    },
+    confirmed: {
+      textColor: '#173E2A',
+      backgroundColor: '#D6EDE1',
+      text: 'Confirmed',
+    },
   },
   animation: {
     in: {
@@ -268,9 +317,16 @@ export const getFullTrackingConfig = (
   artaConfig: ArtaJsFullConfig,
   trackingConfig?: PartialTrackingConfig
 ): TrackingFullConfig => {
-  return nestedObjectAssign(
+  const merged = nestedObjectAssign(
     deepClone(defaultTrackingConfig),
     artaConfig,
     trackingConfig
   );
+
+  // Do not merge the default formatOptions: { dateStyle: 'medium' }, as it will override
+  // the object property if none is passed which can lead to formatLocaleString to throw
+  merged.text.dates.formatOptions =
+    trackingConfig?.text?.dates?.formatOptions ??
+    defaultTrackingConfig.text.dates.formatOptions;
+  return merged;
 };

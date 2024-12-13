@@ -4,18 +4,13 @@ import { TrackingFullConfig } from '../../trackingConfig';
 import { DrawerHeader } from '../DrawerHeader';
 import css from './index.css';
 import { loadShipment } from '../../requests';
-import { ShipToFrom } from '../ShipToFrom';
-import { Package } from '../Package';
-import { Timeline } from '../Timeline';
-import { TrackingTop } from '../TrackingTop';
 import { DrawerFooter } from '../DrawerFooter';
-import { DrawerInsurance } from '../DrawerInsurance';
-import { Summary } from '../Summary';
 import { ShipmentException as ArtaShipmentException } from '../ShipmentException';
-import { PackageEvents } from '../PackageEvents';
+import { TrackingShipment } from '../TrackingShipment';
+import { SelectTrackingShipment } from '../SelectTrackingShipment';
 
 interface TrackingDrawerProps {
-  shipmentId: string;
+  shipmentIds: string[];
   config: TrackingFullConfig;
   onClose: (e: any) => void;
 }
@@ -150,35 +145,29 @@ export interface Shipment {
 }
 
 export const TrackingDrawer = ({
-  shipmentId,
+  shipmentIds,
   config,
   onClose,
 }: TrackingDrawerProps) => {
   const position = config.style.position;
   const style = getTrackingStyle(config);
 
-  const [shipment, setShipment] = useState<Shipment | null>(null);
-  const [packagesWithObjects, setPackagesWithObjects] = useState<ArtaPackage[]>(
-    []
+  const [shipments, setShipments] = useState<Shipment[] | null>(null);
+  const [selectedShipment, setSelectedShipment] = useState<Shipment | null>(
+    null
   );
-  const [packageId, setPackageId] = useState<number | null>(null);
-
-  const hasActiveException = (shipment: Shipment) => {
-    // TODO check with Dylan about status here
-    return (
-      shipment.shipment_exceptions.some((ex) => ex.status !== 'resolved') &&
-      shipment.status !== 'completed'
-    );
-  };
 
   useEffect(() => {
     (async () => {
-      const ship = await loadShipment(config, shipmentId);
-      setShipment(ship);
+      const ships = await Promise.all(
+        shipmentIds.map(async (shipmentId) => {
+          return await loadShipment(config, shipmentId);
+        })
+      );
+      setShipments(ships);
       //TODO should we ship.packages.filter(pkg => pkg.objects?.length)); ??
-      setPackagesWithObjects(ship.packages);
     })();
-  }, [shipmentId]);
+  }, [shipmentIds]);
 
   return (
     <div>
@@ -200,41 +189,32 @@ export const TrackingDrawer = ({
           }`}
         >
           <div class="artajs__tracking__out__wrapper">
-            <DrawerHeader title={config.text.header.title} onClose={onClose} />
+            <DrawerHeader
+              title={
+                selectedShipment
+                  ? config.text.header.titleShipmentDetail
+                  : shipments && shipments.length > 1
+                  ? config.text.header.titleShipmentList
+                  : config.text.header.title
+              }
+              onClose={onClose}
+              setSelectedShipment={setSelectedShipment}
+              multiple={!!selectedShipment}
+              config={config}
+            />
 
-            {shipment != null ? (
-              packageId ? (
-                <PackageEvents
-                  shipment={shipment}
+            {shipments?.length ? (
+              shipments.length === 1 || selectedShipment ? (
+                <TrackingShipment
+                  shipment={selectedShipment ?? shipments[0]}
                   config={config}
-                  packageId={packageId}
-                  setPackageId={setPackageId}
                 />
               ) : (
-                <div class="artajs__tracking__body">
-                  <Timeline shipment={shipment} config={config} />
-                  <div class="artajs__tracking__timeline__divider" />
-                  {hasActiveException(shipment) && (
-                    <ArtaShipmentException
-                      shipment={shipment}
-                      config={config}
-                    />
-                  )}
-                  <TrackingTop config={config} shipment={shipment} />
-                  <ShipToFrom config={config} shipment={shipment} />
-                  {packagesWithObjects.map((pkg, index) => (
-                    <Package
-                      title={`#${index + 1}`}
-                      pkg={pkg}
-                      shipment={shipment}
-                      config={config}
-                      setPackageId={setPackageId}
-                    />
-                  ))}
-                  {shipment.insurance_policy != null && <DrawerInsurance />}
-                  <Summary config={config} shipment={shipment} />
-                  <DrawerFooter />
-                </div>
+                <SelectTrackingShipment
+                  shipments={shipments}
+                  config={config}
+                  setSelectedShipment={setSelectedShipment}
+                />
               )
             ) : (
               <div class="artajs__tracking__body">
