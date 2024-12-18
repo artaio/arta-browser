@@ -39,11 +39,11 @@ export const ShipToFrom = ({ config, shipment }: ShipToFromProps) => {
             </svg>
             <div class="artajs__tracking__location__text__wrapper">
               <div class="artajs__tracking__location__text__header">
-                <div class="artajs__tracking__top__date__day">
+                <div class="artajs__tracking__location__text__header__label">
                   {config.text.shipsFromLabel}
                 </div>
               </div>
-              <div class="artajs__tracking__timeline__status__date__content">
+              <div class="artajs__tracking__location__text__content">
                 {formatAddress(shipment.origin)}
               </div>
             </div>
@@ -67,11 +67,11 @@ export const ShipToFrom = ({ config, shipment }: ShipToFromProps) => {
             </svg>
             <div class="artajs__tracking__location__text__wrapper">
               <div class="artajs__tracking__location__text__header">
-                <div class="artajs__tracking__top__date__day">
+                <div class="artajs__tracking__location__text__header__label">
                   {config.text.shipsToLabel}
                 </div>
               </div>
-              <div class="artajs__tracking__timeline__status__date__content">
+              <div class="artajs__tracking__location__text__content">
                 {formatAddress(shipment.destination)}
               </div>
             </div>

@@ -6,6 +6,7 @@ import {
   getTopPriorityExceptions,
   groupExceptions,
 } from '../ShipmentException';
+import { DrawerFooter } from '../DrawerFooter';
 import { ShipToFrom } from '../ShipToFrom';
 import { Shipment } from '../TrackingDrawer';
 import { hasActiveException } from '../TrackingShipment';
@@ -138,6 +139,8 @@ export const SelectTrackingShipment = ({
           </div>
         </div>
       ))}
+
+      <DrawerFooter />
     </div>
   );
 };

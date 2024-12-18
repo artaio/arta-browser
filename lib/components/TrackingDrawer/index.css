@@ -25,7 +25,6 @@
   --button-text: #ffffff;
   --button-text-hover: #ffffff;
   --button-border-hover: #110f10;
-
 }
 
 .artajs__drawer,
@@ -565,6 +564,25 @@
   align-self: stretch;
 }
 
+.artajs__drawer .artajs__tracking__location__text__header__label {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-weight: bold;
+  font-size: calc(var(--font-size) - 2px);
+  letter-spacing: 0.2px;
+  line-height: 150%;
+  text-align: left;
+}
+
+.artajs__drawer .artajs__tracking__location__text__content {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) - 2px);
+  letter-spacing: 0.2px;
+  line-height: 150%;
+  text-align: left;
+}
+
 /* Tracking Packings */
 
 .artajs__drawer .artajs__packings__wrapper {
@@ -724,8 +742,12 @@
   color: #379464;
 }
 
-.artajs__drawer .artajs__tracking__footer__content:hover .artajs__tracking__footer__powered__by__text,
-.artajs__drawer .artajs__tracking__footer__content:hover .artajs__tracking__footer__powered__by__logo {
+.artajs__drawer
+  .artajs__tracking__footer__content:hover
+  .artajs__tracking__footer__powered__by__text,
+.artajs__drawer
+  .artajs__tracking__footer__content:hover
+  .artajs__tracking__footer__powered__by__logo {
   color: #000;
 }
 
@@ -928,10 +950,12 @@
   height: 56px;
   width: 56px;
   box-sizing: border-box;
-  background: conic-gradient(from 90deg at 50% 50%,
-      rgba(39, 174, 96, 0) 0deg,
-      rgba(31, 144, 255, 0) 0.04deg,
-      var(--text-secondary) 360deg);
+  background: conic-gradient(
+    from 90deg at 50% 50%,
+    rgba(39, 174, 96, 0) 0deg,
+    rgba(31, 144, 255, 0) 0.04deg,
+    var(--text-secondary) 360deg
+  );
   border-radius: 56px;
   animation: 1s rotate infinite linear;
 }
@@ -1006,7 +1030,9 @@
   flex-grow: 1;
 }
 
-.artajs__drawer .artajs__tracking__events__body .artajs__tracking__footer__wrapper {
+.artajs__drawer
+  .artajs__tracking__events__body
+  .artajs__tracking__footer__wrapper {
   padding: 16px 0 32px 0;
 }
 
@@ -1141,7 +1167,7 @@
   border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--background);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 .artajs__drawer .artajs__tracking__select__shipment__content {
