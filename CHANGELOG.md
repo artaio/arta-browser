@@ -1,3 +1,12 @@
+# [2.16.0](https://github.com/artaio/arta-browser/compare/v2.15.1...v2.16.0) (2024-12-18)
+
+
+### Features
+
+* Add multiple shipments view ([#56](https://github.com/artaio/arta-browser/issues/56)) ([620a5aa](https://github.com/artaio/arta-browser/commit/620a5aaf00f169f4b0322922ce3c44e910e8da1f))
+
+
+
 ## [2.15.1](https://github.com/artaio/arta-browser/compare/v2.15.0...v2.15.1) (2024-12-10)
 
 
