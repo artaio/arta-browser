@@ -123,6 +123,13 @@ export const getTrackingStyle = (config: TrackingFullConfig) => {
       config.style.variant === 'default' ? '1 0 0' : '0 1 auto',
     '--backdrop-color': config.style.backdropColor,
     '--animationIn': getAnimationStyleIn(config.animation.in, config),
+
+    '--button-background': config.style.color.buttonBackground,
+    '--button-background-hover': config.style.color.buttonBackgroundHover,
+    '--button-border': config.style.color.buttonBorder,
+    '--button-text': config.style.color.buttonText,
+    '--button-text-hover': config.style.color.buttonTextHover,
+    '--button-border-hover': config.style.color.buttonBorderHover,
   };
 };
 

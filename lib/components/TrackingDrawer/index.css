@@ -18,6 +18,13 @@
   --backdrop-color: rgba(0, 0, 0, 0.5);
 
   --animationIn: none;
+
+  --button-background: #110f10;
+  --button-background-hover: #6f6c65;
+  --button-border: #110f10;
+  --button-text: #ffffff;
+  --button-text-hover: #ffffff;
+  --button-border-hover: #110f10;
 }
 
 .artajs__drawer,
@@ -94,6 +101,7 @@
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -103,6 +111,7 @@
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -160,6 +169,7 @@
   padding: 16px 24px;
   align-items: center;
   align-self: stretch;
+  gap: 16px;
 }
 
 .artajs__drawer .artajs__tracking__header__text {
@@ -552,6 +562,25 @@
   align-items: center;
   gap: 4px;
   align-self: stretch;
+}
+
+.artajs__drawer .artajs__tracking__location__text__header__label {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-weight: bold;
+  font-size: calc(var(--font-size) - 2px);
+  letter-spacing: 0.2px;
+  line-height: 150%;
+  text-align: left;
+}
+
+.artajs__drawer .artajs__tracking__location__text__content {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) - 2px);
+  letter-spacing: 0.2px;
+  line-height: 150%;
+  text-align: left;
 }
 
 /* Tracking Packings */
@@ -1125,5 +1154,91 @@
   font-size: var(--font-size);
   font-style: normal;
   line-height: 130%;
+  letter-spacing: 0.2px;
+}
+
+.artajs__drawer .artajs__tracking__select__shipment__card {
+  display: flex;
+  padding: 16px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.artajs__drawer .artajs__tracking__select__shipment__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.artajs__drawer .artajs__tracking__select__shipment__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.artajs__drawer .artajs__tracking__select__shipment__header__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  align-self: stretch;
+}
+
+.artajs__drawer .artajs__tracking__button {
+  display: flex;
+  padding: 6px 12px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-size: calc(var(--font-size) - 1px);
+  font-weight: bold;
+
+  background: var(--button-background);
+  border: 1px solid var(--button-border);
+  color: var(--button-text);
+}
+
+.artajs__drawer .artajs__tracking__button:hover {
+  background: var(--button-background-hover);
+  border: 1px solid var(--button-border-hover);
+  color: var(--button-text-hover);
+  cursor: pointer;
+}
+
+.artajs__drawer .artajs__tracking__button__container {
+  display: flex;
+  padding-right: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-right: 1px solid var(--border);
+}
+
+.artajs__drawer .artajs__tracking__select__shipment__exception__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.artajs__drawer .artajs__tracking__select__shipment__exception__title {
+  color: var(--text-primary);
+  align-self: stretch;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-style: normal;
+  font-weight: bold;
+  line-height: 150%;
   letter-spacing: 0.2px;
 }

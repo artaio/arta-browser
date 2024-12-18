@@ -10,6 +10,31 @@ export interface PackingsProps {
   setPackageId: (value: number) => void;
 }
 
+export const objectDetailTitle = (obj: ArtaObject, config: TrackingConfig) => {
+  if (
+    obj.details?.title == null &&
+    obj.details?.creator == null &&
+    obj.details?.creation_date == null
+  ) {
+    return config.text.noObjectDetailsTitle;
+  }
+
+  let formattedString = '';
+  if (obj.details.title && obj.details.creator) {
+    formattedString = `${obj.details.title}: ${obj.details.creator}`;
+  } else if (obj.details.title) {
+    formattedString = obj.details.title;
+  } else if (obj.details.creator) {
+    formattedString = obj.details.creator;
+  }
+
+  if (obj.details.creation_date) {
+    formattedString +=
+      (formattedString ? ', ' : '') + obj.details.creation_date;
+  }
+  return formattedString;
+};
+
 export const Package = ({
   config,
   shipment,
@@ -19,31 +44,6 @@ export const Package = ({
 }: PackingsProps) => {
   const pkgTracking = shipment.tracking.find((t) => t.package_id === pkg.id);
 
-  const objectDetailTitle = (obj: ArtaObject) => {
-    if (
-      obj.details?.title == null &&
-      obj.details?.creator == null &&
-      obj.details?.creation_date == null
-    ) {
-      return config.text.noObjectDetailsTitle;
-    }
-
-    let formattedString = '';
-    if (obj.details.title && obj.details.creator) {
-      formattedString = `${obj.details.title}: ${obj.details.creator}`;
-    } else if (obj.details.title) {
-      formattedString = obj.details.title;
-    } else if (obj.details.creator) {
-      formattedString = obj.details.creator;
-    }
-
-    if (obj.details.creation_date) {
-      formattedString +=
-        (formattedString ? ', ' : '') + obj.details.creation_date;
-    }
-    return formattedString;
-  };
-
   return (
     <div class="artajs__packings__wrapper">
       <div class="artajs__packings__spacer">
@@ -51,7 +51,7 @@ export const Package = ({
           <div class="artajs__packings__header">
             <div class="artajs__packings__header__top">
               <div class="artajs__tracking__header__text">{title}</div>
-              <Pill config={config} pkg={pkg} />
+              <Pill config={config} status={pkg.status} />
             </div>
             {pkgTracking?.carrier_name && pkgTracking.tracking_number && (
               <div class="artajs__packings__header__body">
@@ -100,7 +100,7 @@ export const Package = ({
             <div class="artajs__packings__item__content">
               {
                 <div class="artajs__tracking__title">
-                  {objectDetailTitle(obj)}
+                  {objectDetailTitle(obj, config)}
                 </div>
               }
               <div class="artajs__tracking__subtype">{obj.subtype_name}</div>

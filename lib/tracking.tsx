@@ -3,9 +3,12 @@ import type { TrackingFullConfig } from './trackingConfig';
 import { TrackingDrawer } from './components/TrackingDrawer';
 import { validateShipment } from './requests';
 
+const SHIPMENT_LIMIT_IDX = 100;
+
 export default class Tracking {
   public isReady = false;
   public isOpen = false;
+  private shipmentIds: string[] = [];
   private fadeOut = {
     fade: {
       left: [{ opacity: 1 }, { opacity: 0 }],
@@ -23,10 +26,38 @@ export default class Tracking {
     },
   };
   constructor(
-    private readonly shipmentId: string,
+    private readonly shipmentIdOrIds: string | string[],
     private readonly config: TrackingFullConfig,
     private readonly el: HTMLDivElement
-  ) {}
+  ) {
+    if (Array.isArray(this.shipmentIdOrIds)) {
+      if (this.shipmentIdOrIds.length === 0) {
+        throw new Error('Shipment id array is empty');
+      }
+
+      if (
+        this.shipmentIdOrIds.some(
+          (shipmentId) => typeof shipmentId !== 'string'
+        )
+      ) {
+        throw new Error('Shipment id array contains non-string values');
+      }
+
+      if (this.shipmentIdOrIds.some((shipmentId) => shipmentId.length === 0)) {
+        throw new Error('Shipment id array contains empty strings');
+      }
+
+      if (this.shipmentIdOrIds.length > SHIPMENT_LIMIT_IDX) {
+        throw new Error(
+          `Shipment id array contains more than ${SHIPMENT_LIMIT_IDX} shipment ids`
+        );
+      }
+    }
+
+    this.shipmentIds = Array.isArray(this.shipmentIdOrIds)
+      ? this.shipmentIdOrIds
+      : [this.shipmentIdOrIds];
+  }
 
   public open() {
     this.render();
@@ -36,7 +67,7 @@ export default class Tracking {
   private render() {
     render(
       <TrackingDrawer
-        shipmentId={this.shipmentId}
+        shipmentIds={this.shipmentIds}
         config={this.config}
         onClose={this.config.onClose ?? this.onClose.bind(this)}
       />,
@@ -77,9 +108,27 @@ export default class Tracking {
   }
 
   public async validate() {
-    const errors = await validateShipment(this.config, this.shipmentId);
-    if (errors && Object.keys(errors).length > 0) {
-      return Promise.reject(errors);
+    const shipmentIdsOrErrors = await Promise.all(
+      this.shipmentIds.map(async (shipmentId) => {
+        const errors = await validateShipment(this.config, shipmentId);
+        if (errors && Object.keys(errors).length > 0) {
+          return errors;
+        }
+        return shipmentId;
+      })
+    );
+
+    const newShipmentIds = [];
+    for (const shipmentIdOrError of shipmentIdsOrErrors) {
+      if (typeof shipmentIdOrError === 'object') {
+        console.error('Shipment validation failed', shipmentIdOrError);
+      } else {
+        newShipmentIds.push(shipmentIdOrError);
+      }
+    }
+
+    if (newShipmentIds.length === 0) {
+      return Promise.reject('No valid shipment ids');
     }
     this.isReady = true;
   }

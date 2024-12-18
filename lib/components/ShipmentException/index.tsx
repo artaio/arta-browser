@@ -24,7 +24,7 @@ const exceptionPriorityList = [
   'other',
 ] as const;
 
-function groupExceptions(
+export function groupExceptions(
   shipment: Shipment
 ): Record<string, ArtaShipmentException[]> {
   return shipment.shipment_exceptions
@@ -39,7 +39,7 @@ function groupExceptions(
     }, {} as Record<string, ArtaShipmentException[]>);
 }
 
-function getTopPriorityExceptions(
+export function getTopPriorityExceptions(
   groupedExceptions: Record<string, ArtaShipmentException[]> | null
 ): ArtaShipmentException[] {
   if (!groupedExceptions) {
@@ -78,7 +78,7 @@ function heldAtCustomsMessage(
   return config.text.multipleShipmentsHeldAtCustomsLabel;
 }
 
-function getExceptionMessage(
+export function getExceptionMessage(
   config: TrackingConfig,
   topPriorityExceptions: ArtaShipmentException[],
   shipment: Shipment
