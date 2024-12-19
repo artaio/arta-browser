@@ -1,5 +1,10 @@
 import { ArtaJsFullConfig } from './arta';
-import { deepClone, DeepPartial, nestedObjectAssign } from './helper';
+import {
+  deepClean,
+  deepClone,
+  DeepPartial,
+  nestedObjectAssign,
+} from './helper';
 
 export interface DateConfig {
   locale: Intl.LocalesArgument;
@@ -320,7 +325,7 @@ export const getFullTrackingConfig = (
   const merged = nestedObjectAssign(
     deepClone(defaultTrackingConfig),
     artaConfig,
-    trackingConfig
+    deepClean(trackingConfig)
   );
 
   // Do not merge the default formatOptions: { dateStyle: 'medium' }, as it will override

@@ -10,6 +10,7 @@ import {
 import { defaultQuoteConfig, type QuoteTextConfig } from './components/Quotes';
 import {
   applySmallMobileStyling,
+  deepClean,
   deepClone,
   nestedObjectAssign,
   type DeepPartial,
@@ -125,7 +126,7 @@ export const getFullEstimateConfig = (
   const finalConfig = nestedObjectAssign(
     deepClone(defaultEstimateConfig),
     artaConfig,
-    estimateConfig
+    deepClean(estimateConfig)
   );
 
   applySmallMobileStyling(finalConfig);

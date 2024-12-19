@@ -174,6 +174,31 @@ export type DeepPartial<T> = T extends object
     }
   : T;
 
+export function deepClean<T extends object>(obj?: T): T | undefined {
+  if (typeof obj !== 'object' || obj === null) {
+    return obj;
+  }
+
+  const cleanedObj = Object.entries(obj).reduce((acc, [key, value]) => {
+    if (value === null || value === undefined) {
+      return acc;
+    }
+
+    if (typeof value === 'object' && !Array.isArray(value)) {
+      const cleanedValue = deepClean(value);
+      if (Object.keys(cleanedValue).length > 0) {
+        (acc as any)[key] = cleanedValue;
+      }
+    } else {
+      (acc as any)[key] = value;
+    }
+
+    return acc;
+  }, {} as any);
+
+  return cleanedObj as T;
+}
+
 export function nestedObjectAssign(target: any, ...sources: any[]) {
   sources.forEach((source) => {
     if (source) {
