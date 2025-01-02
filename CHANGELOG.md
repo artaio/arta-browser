@@ -1,3 +1,12 @@
+## [2.16.1](https://github.com/artaio/arta-browser/compare/v2.16.0...v2.16.1) (2025-01-02)
+
+
+### Bug Fixes
+
+* clean undefined, null and empty object properties ([#57](https://github.com/artaio/arta-browser/issues/57)) ([e2d135b](https://github.com/artaio/arta-browser/commit/e2d135b88fe795290b350a17610ae641346f5fbd))
+
+
+
 # [2.16.0](https://github.com/artaio/arta-browser/compare/v2.15.1...v2.16.0) (2024-12-18)
 
 
