@@ -1,3 +1,12 @@
+# [2.17.0](https://github.com/artaio/arta-browser/compare/v2.16.1...v2.17.0) (2025-02-11)
+
+
+### Features
+
+* expose Estimate, Tracking and MetadataTypes typings ([#58](https://github.com/artaio/arta-browser/issues/58)) ([5e1ddcf](https://github.com/artaio/arta-browser/commit/5e1ddcfe7d57cc7ad8bd11101e823ddaacc6f80c))
+
+
+
 ## [2.16.1](https://github.com/artaio/arta-browser/compare/v2.16.0...v2.16.1) (2025-01-02)
 
 
