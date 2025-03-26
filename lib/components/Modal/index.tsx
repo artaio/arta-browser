@@ -87,7 +87,7 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
     <div>
       <style>{css}</style>
       <div class="artajs">
-        {position === 'center' && <div class="artajs__modal__backdrop" />}
+        {position === 'center' && <div class="artajs__modal__backdrop" onClick={onClose} />}
         <div class={`artajs__modal artajs__modal__${position}`} style={style}>
           <Header
             onClose={onClose}
