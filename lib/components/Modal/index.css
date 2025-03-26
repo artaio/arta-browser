@@ -89,6 +89,10 @@
   top: 0px;
 }
 
+body:has(.artajs__modal.artajs__modal__center) {
+  overflow: hidden;
+}
+
 /* in case of not in mobile */
 @media (min-width: 768px) and (min-height: 600px) {
   .artajs__modal.artajs__modal__center,
@@ -120,10 +124,9 @@
 
   .artajs__modal.artajs__modal__center {
     left: 50%;
-    margin-left: calc(0px - (var(--width) / 2));
-    margin-top: calc(0px - (var(--height) / 2));
+    transform: translate(-50%, -50%);
     overflow-y: hidden;
-    position: absolute;
+    position: fixed;
     top: 50%;
   }
 
