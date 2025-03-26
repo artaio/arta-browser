@@ -73,6 +73,10 @@ export interface EstimateConfig {
     destination: DestinationTextConfig;
     quoted: QuoteTextConfig;
     disqualified: DisqualifiedTextConfig;
+    invalidated: {
+      message: string;
+      detail: string;
+    };
   };
 }
 
@@ -116,6 +120,11 @@ export const defaultEstimateConfig: EstimateConfig = {
     destination: defaultDestinationConfig,
     quoted: defaultQuoteConfig,
     disqualified: defaultDisqualifiedConfig,
+    invalidated: {
+      message:
+        'Unfortunately we could not successfully geocode the origin location to provide a shipping estimate.',
+      detail: 'The address may be missing components or invalid.',
+    },
   },
 };
 

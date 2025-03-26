@@ -24,6 +24,7 @@ import {
 import { EstimateBody, EstimateFullConfig } from '../../estimateConfig';
 import { Disqualified } from '../Disqualified';
 import { ModalStatus } from '../../ModalStatus';
+import { Invalidated } from '../Invalidated';
 
 interface ModalOpts {
   estimateBody: EstimateBody;
@@ -49,6 +50,11 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
       const session = await loadHostedSessions(config, estimateBody);
       setHostedSession(session);
       setParsedOrigin(parseEstimatedLocation(session.origin));
+
+      if (!session.origin.city && !session.origin.estimated_city) {
+        setStatus(ModalStatus.INVALIDATED);
+        return;
+      }
       setStatus(ModalStatus.OPEN);
     })();
   }, [estimateBody.origin, estimateBody.objects]);
@@ -87,7 +93,9 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
     <div>
       <style>{css}</style>
       <div class="artajs">
-        {position === 'center' && <div class="artajs__modal__backdrop" />}
+        {position === 'center' && (
+          <div class="artajs__modal__backdrop" onClick={onClose} />
+        )}
         <div class={`artajs__modal artajs__modal__${position}`} style={style}>
           <Header
             onClose={onClose}
@@ -113,6 +121,13 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
               showCostRange={config.style.pricingDisplay === 'range'}
               textConfig={getQuoteConfig(config)}
               setStatus={setStatus}
+            />
+          )}
+
+          {status === ModalStatus.INVALIDATED && (
+            <Invalidated
+              message={config.text.invalidated.message}
+              detail={config.text.invalidated.detail}
             />
           )}
 
