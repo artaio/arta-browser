@@ -4,4 +4,5 @@ export enum ModalStatus {
   LOADING,
   OPEN,
   QUOTED,
+  INVALIDATED,
 }

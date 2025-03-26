@@ -13,10 +13,7 @@ init();
 export * from './arta';
 export * from './estimate';
 export * from './tracking';
-export {
-  Estimate,
-  Tracking
-};
+export { Estimate, Tracking };
 export * from './MetadataTypes';
 export type {
   EstimateConfig,
