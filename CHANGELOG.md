@@ -1,3 +1,12 @@
+## [2.17.2](https://github.com/artaio/arta-browser/compare/v2.17.1...v2.17.2) (2025-03-27)
+
+
+### Bug Fixes
+
+* invalidate when only estimated_city is not present ([#61](https://github.com/artaio/arta-browser/issues/61)) ([857c608](https://github.com/artaio/arta-browser/commit/857c60825fa84636fd377a3c2e83b754d7227521))
+
+
+
 ## [2.17.1](https://github.com/artaio/arta-browser/compare/v2.17.0...v2.17.1) (2025-03-26)
 
 
