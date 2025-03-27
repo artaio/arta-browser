@@ -51,7 +51,7 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
       setHostedSession(session);
       setParsedOrigin(parseEstimatedLocation(session.origin));
 
-      if (!session.origin.city && !session.origin.estimated_city) {
+      if (!session.origin.estimated_city) {
         setStatus(ModalStatus.INVALIDATED);
         return;
       }
