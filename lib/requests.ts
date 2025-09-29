@@ -32,7 +32,6 @@ export interface ArtaError {
 const AUTH_KEY = 'ARTA_APIKey';
 
 const logError = ({ status, errors }: ArtaError): void => {
-  console.log(errors);
   const keys = Object.keys(errors);
   if (status === 403) {
     console.error('Invalid API Key');

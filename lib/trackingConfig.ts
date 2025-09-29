@@ -79,6 +79,7 @@ export interface TrackingConfig {
     backdropEnabled: boolean;
     backdropColor: string;
   };
+  showThumbnails?: boolean;
   text: {
     header: {
       title: string;
@@ -149,6 +150,7 @@ export const defaultTrackingConfig: TrackingConfig = {
   navigation: {
     shipmentExceptionMailTo: 'hello@arta.io',
   },
+  showThumbnails: false,
   style: {
     color: {
       background: '#FFFFFF',
