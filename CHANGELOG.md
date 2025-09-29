@@ -1,3 +1,12 @@
+# [2.18.0](https://github.com/artaio/arta-browser/compare/v2.17.2...v2.18.0) (2025-09-29)
+
+
+### Features
+
+* adds showThumbnails configuration to embedded tracking ([#62](https://github.com/artaio/arta-browser/issues/62)) ([140f021](https://github.com/artaio/arta-browser/commit/140f021cac5541a5313bae9de5edfe96a4e9eb9f))
+
+
+
 ## [2.17.2](https://github.com/artaio/arta-browser/compare/v2.17.1...v2.17.2) (2025-03-27)
 
 
