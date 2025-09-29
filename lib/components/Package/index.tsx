@@ -1,16 +1,16 @@
-import type { TrackingConfig } from '../../trackingConfig';
+import type { TrackingFullConfig } from '../../trackingConfig';
 import { Pill } from '../Pill';
 import type { ArtaObject, Shipment } from '../TrackingDrawer';
 
 export interface PackingsProps {
   shipment: Shipment;
-  config: TrackingConfig;
+  config: TrackingFullConfig;
   pkg: Shipment['packages'][number];
   title: string;
   setPackageId: (value: number) => void;
 }
 
-export const objectDetailTitle = (obj: ArtaObject, config: TrackingConfig) => {
+export const objectDetailTitle = (obj: ArtaObject, config: TrackingFullConfig) => {
   if (
     obj.details?.title == null &&
     obj.details?.creator == null &&
@@ -96,16 +96,36 @@ export const Package = ({
         <div class="artajs__packings__line" />
 
         <div class="artajs__packings__item">
-          {pkg.objects.map((obj) => (
-            <div class="artajs__packings__item__content">
-              {
-                <div class="artajs__tracking__title">
-                  {objectDetailTitle(obj, config)}
+          {pkg.objects.map((obj) => {
+            const hasImage = obj.shipment_object_images && obj.shipment_object_images.length > 0;
+            const thumbnailUrl = hasImage && obj.shipment_object_images
+              ? `${config.httpSchema}://${config.host}/shipment_images/60x60/resize/${obj.shipment_object_images[0].filename}`
+              : null;
+
+            return (
+              <div class="artajs__packings__item__row">
+                {config.showThumbnails && (
+                  <div class="artajs__packings__item__thumbnail">
+                    {thumbnailUrl ? (
+                      <img
+                        src={thumbnailUrl}
+                        alt="shipment object image"
+                        class="artajs__packings__item__thumbnail__img"
+                      />
+                    ) : (
+                      <div class="artajs__packings__item__thumbnail__placeholder" />
+                    )}
+                  </div>
+                )}
+                <div class="artajs__packings__item__content">
+                  <div class="artajs__tracking__title">
+                    {objectDetailTitle(obj, config)}
+                  </div>
+                  <div class="artajs__tracking__subtype">{obj.subtype_name}</div>
                 </div>
-              }
-              <div class="artajs__tracking__subtype">{obj.subtype_name}</div>
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

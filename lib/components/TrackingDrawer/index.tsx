@@ -52,6 +52,10 @@ export interface ArtaObject {
   subtype: string;
   subtype_name: string;
   type: string;
+  shipment_object_images?: Array<{
+    filename: string;
+    url: string;
+  }>;
 }
 
 export interface ArtaPackage {
