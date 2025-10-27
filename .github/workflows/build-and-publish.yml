@@ -1,0 +1,99 @@
+name: Build and Publish
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  id-token: write  # Required for OIDC
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js LTS
+      uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+        registry-url: 'https://registry.npmjs.org'
+    # Ensure npm 11.5.1 or later is installed
+    - name: Update npm
+      run: npm install -g npm@latest
+    - run: npm install
+    - run: npm run build --if-present
+    - run: npm test
+
+  publish-draft:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    needs: build
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js LTS
+      uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+        registry-url: 'https://registry.npmjs.org'
+    # Ensure npm 11.5.1 or later is installed
+    - name: Update npm
+      run: npm install -g npm@latest
+
+    - name: get-npm-version
+      uses: martinbeentjes/npm-get-version-action@v1.3.1
+      id: package-version
+
+    - run: npm install
+    - run: npm run build
+    - run: npm version --no-git-tag-version ${{ steps.package-version.outputs.current-version}}-$(echo '${{ github.head_ref }}' | sed 's/\//-/g')${{ github.sha }}
+    - run: npm publish --access public --tag $(echo '${{ github.head_ref }}' | sed 's/\//-/g')-${{ github.sha }}
+
+  changelog:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Conventional Changelog Action
+      uses: TriPSs/conventional-changelog-action@v5
+      with:
+        github-token: ${{ secrets.github_token }}
+        skip-git-pull: "true"
+        release-count: 0
+        skip-on-empty: false
+
+  publish-release:
+    needs: changelog
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: latest
+        registry-url: 'https://registry.npmjs.org'
+    # Ensure npm 11.5.1 or later is installed
+    - name: Update npm
+      run: npm install -g npm@latest
+
+    - run: git checkout main
+    - run: git pull
+    - run: npm install
+    - run: npm run build
+    - run: npm publish --access public
