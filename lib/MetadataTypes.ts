@@ -292,6 +292,7 @@ export type ParcelTransportServices =
   | 'priority'
   | 'priority_freight'
   | 'second_day_air'
+  | 'three_day'
   | 'standard';
 
 export type WebhookDeliveryType =
