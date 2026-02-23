@@ -3,12 +3,19 @@ import { QuoteRequest } from '../../requests';
 import { parseEstimatedLocation } from '../../helper';
 import { ModalStatus } from '../../ModalStatus';
 
-const formatCurrency = (amount: number, currency: string) =>
-  new Intl.NumberFormat('en-US', {
+const formatCurrency = (amount: number, currency: string) => {
+  const formatted = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency,
+    currencyDisplay: 'narrowSymbol',
     maximumFractionDigits: 0,
   }).format(amount);
+  // Avoids redundancy when the symbol is the currency code (e.g. CHF 1,500 CHF)
+  if (formatted.startsWith(currency)) {
+    return formatted.slice(currency.length).trim();
+  }
+  return formatted;
+};
 
 export const defaultQuoteConfig = {
   shipFromLabel: 'These goods ship from:',
@@ -105,8 +112,14 @@ export const Quotes = ({
           <div class="artajs__modal__quotes__price">
             <strong class="artajs__modal__quotes__price__amount">
               {formatCurrency(quotes[0].total, quoteRequest.currency)} -{' '}
-              {formatCurrency(quotes[quotes.length - 1].total, quoteRequest.currency)}
+              {formatCurrency(
+                quotes[quotes.length - 1].total,
+                quoteRequest.currency
+              )}
             </strong>
+            <div class="artajs__modal__quotes__price__currency_code">
+              {quoteRequest.currency}
+            </div>
           </div>
           {isInternational && (
             <p class="artajs__modal__quotes__disclaimer">
@@ -129,6 +142,9 @@ export const Quotes = ({
             <strong class="artajs__modal__quotes__price__amount">
               {formatCurrency(quotes[0].total, quoteRequest.currency)}
             </strong>
+            <div class="artajs__modal__quotes__price__currency_code">
+              {quoteRequest.currency}
+            </div>
           </div>
           {isInternational && (
             <p class="artajs__modal__quotes__disclaimer">
