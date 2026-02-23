@@ -573,7 +573,7 @@ export type WebhookDeliveryStatus = 'delivered' | 'failed';
 
 export type PaymentContext = 'hosted_checkout' | 'invoiced';
 
-export type SupportedCurrency = 'CAD' | 'EUR' | 'GBP' | 'HKD' | 'USD';
+export type SupportedCurrency = 'CAD' | 'CHF' | 'EUR' | 'GBP' | 'HKD' | 'USD';
 
 export type AuthTypes = 'api_key';
 

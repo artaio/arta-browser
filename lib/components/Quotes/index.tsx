@@ -1,8 +1,21 @@
 import { Quote } from '../../MetadataTypes';
 import { QuoteRequest } from '../../requests';
 import { parseEstimatedLocation } from '../../helper';
-import currencies from './currencies';
 import { ModalStatus } from '../../ModalStatus';
+
+const formatCurrency = (amount: number, currency: string) => {
+  const formatted = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency,
+    currencyDisplay: 'narrowSymbol',
+    maximumFractionDigits: 0,
+  }).format(amount);
+  // Avoids redundancy when the symbol is the currency code (e.g. CHF 1,500 CHF)
+  if (formatted.startsWith(currency)) {
+    return formatted.slice(currency.length).trim();
+  }
+  return formatted;
+};
 
 export const defaultQuoteConfig = {
   shipFromLabel: 'These goods ship from:',
@@ -52,9 +65,6 @@ export const Quotes = ({
       return a.total - b.total;
     });
   }
-  const currencySymbol = currencies.filter(
-    (c) => c.id === quoteRequest.currency
-  )[0].symbol;
   const hasInsurance = quoteRequest.insurance === 'arta_transit_insurance';
   const isInternational =
     quoteRequest.origin.estimated_country ===
@@ -101,9 +111,11 @@ export const Quotes = ({
           <p class="artajs__modal__quotes__context">{textConfig.rangeLabel}</p>
           <div class="artajs__modal__quotes__price">
             <strong class="artajs__modal__quotes__price__amount">
-              {currencySymbol}
-              {Math.round(quotes[0].total)} - {currencySymbol}
-              {Math.round(quotes[quotes.length - 1].total)}
+              {formatCurrency(quotes[0].total, quoteRequest.currency)} -{' '}
+              {formatCurrency(
+                quotes[quotes.length - 1].total,
+                quoteRequest.currency
+              )}
             </strong>
             <div class="artajs__modal__quotes__price__currency_code">
               {quoteRequest.currency}
@@ -128,8 +140,7 @@ export const Quotes = ({
           </p>
           <div class="artajs__modal__quotes__price">
             <strong class="artajs__modal__quotes__price__amount">
-              {currencySymbol}
-              {Math.round(quotes[0].total)}
+              {formatCurrency(quotes[0].total, quoteRequest.currency)}
             </strong>
             <div class="artajs__modal__quotes__price__currency_code">
               {quoteRequest.currency}
