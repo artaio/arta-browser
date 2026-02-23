@@ -1,3 +1,12 @@
+# [2.19.0](https://github.com/artaio/arta-browser/compare/v2.18.2...v2.19.0) (2026-02-23)
+
+
+### Features
+
+* support CHF currency in estimates widget ([#68](https://github.com/artaio/arta-browser/issues/68)) ([7f9bf29](https://github.com/artaio/arta-browser/commit/7f9bf29cc2673411b3f78e7bba8d5ba704a697f5))
+
+
+
 ## [2.18.2](https://github.com/artaio/arta-browser/compare/v2.18.1...v2.18.2) (2026-01-30)
 
 
