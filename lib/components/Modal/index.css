@@ -335,12 +335,6 @@ body:has(.artajs__modal.artajs__modal__center) {
   line-height: 24px;
 }
 
-.artajs__modal .artajs__modal__quotes__price__currency_code {
-  font-size: var(--font-size);
-  line-height: 24px;
-  padding-left: 5px;
-  text-transform: uppercase;
-}
 
 .artajs__modal p.artajs__modal__quotes__disclaimer {
   display: block;
