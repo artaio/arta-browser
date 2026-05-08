@@ -1,3 +1,7 @@
+## [2.19.1](https://github.com/artaio/arta-browser/compare/v2.19.0...v2.19.1) (2026-05-08)
+
+
+
 # [2.19.0](https://github.com/artaio/arta-browser/compare/v2.18.2...v2.19.0) (2026-02-23)
 
 
