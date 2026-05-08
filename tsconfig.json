@@ -6,6 +6,7 @@
     "jsxFragmentFactory": "",
     "target": "es5",
     "module": "commonjs",
+    "moduleResolution": "node",
     "outDir": "dist",
     "esModuleInterop": true,
     "declaration": true,
