@@ -9,13 +9,15 @@
   ],
   "scripts": {
     "test": "npm run lint",
-    "build": "npm run build:cdn && npm run build:npm",
-    "build:npm": "./build-npm.sh && copyfiles -u 1 \"./lib/**/*.css\" \"./dist/\"",
-    "build:cdn": "microbundle -i lib/index.ts -o dist/bundle.js --external none --no-pkg-main -f umd --no-sourcemap --css inline",
+    "build": "rollup -c && copyfiles -u 1 \"./lib/**/*.css\" \"./dist/\"",
     "lint": "eslint .",
     "lint:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|tsx|jsx|json)\""
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
+    "@rollup/plugin-typescript": "^12.3.0",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.40.1",
     "copyfiles": "^2.4.1",
@@ -25,8 +27,9 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.0.1",
-    "microbundle": "^0.15.1",
     "prettier": "2.7.1",
+    "rollup": "^4.60.3",
+    "tslib": "^2.8.1",
     "typescript": "^5.7.2",
     "typescript-plugin-css-modules": "^4.1.1"
   },
@@ -42,5 +45,8 @@
   "homepage": "https://github.com/artaio/arta-browser#readme",
   "dependencies": {
     "preact": "^10.11.3"
+  },
+  "overrides": {
+    "rollup-plugin-typescript2": "0.37.0"
   }
 }
