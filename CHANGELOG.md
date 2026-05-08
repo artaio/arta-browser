@@ -1,3 +1,12 @@
+# [2.20.0](https://github.com/artaio/arta-browser/compare/v2.19.1...v2.20.0) (2026-05-08)
+
+
+### Features
+
+* handle new package statuses and surface delivery delays ([#70](https://github.com/artaio/arta-browser/issues/70)) ([7aa4a21](https://github.com/artaio/arta-browser/commit/7aa4a21c33022b3e8f4d5674e8f4d4f85daad27f))
+
+
+
 ## [2.19.1](https://github.com/artaio/arta-browser/compare/v2.19.0...v2.19.1) (2026-05-08)
 
 
