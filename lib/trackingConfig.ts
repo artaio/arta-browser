@@ -119,6 +119,7 @@ export interface TrackingConfig {
     shipmentExceptionDefaultLabel: string;
     viewShipmentDetailLabel: string;
     viewShipmentsListLabel: string;
+    deliveryDelayedLabel: string;
   };
   pill: {
     unknown: PillConfig;
@@ -135,6 +136,10 @@ export interface TrackingConfig {
     collected: PillConfig;
     completed: PillConfig;
     confirmed: PillConfig;
+
+    review_packing: PillConfig;
+    packed: PillConfig;
+    label_ready: PillConfig;
   };
   animation: {
     in: AnimationConfig;
@@ -215,6 +220,8 @@ export const defaultTrackingConfig: TrackingConfig = {
     shipmentExceptionDefaultLabel: 'There is an exception with this shipment.',
     viewShipmentDetailLabel: 'View Details',
     viewShipmentsListLabel: '< All Shipments',
+    deliveryDelayedLabel:
+      "There is a delay in delivery and we're working on it. We apologize for any inconvenience.",
     dates: {
       locale: navigator.language,
       formatOptions: { dateStyle: 'medium' },
@@ -295,6 +302,21 @@ export const defaultTrackingConfig: TrackingConfig = {
       text: 'Cancelled',
     },
     collected: {
+      textColor: '#173E2A',
+      backgroundColor: '#D6EDE1',
+      text: 'Collected',
+    },
+    review_packing: {
+      textColor: '#173E2A',
+      backgroundColor: '#D6EDE1',
+      text: 'Packed',
+    },
+    packed: {
+      textColor: '#173E2A',
+      backgroundColor: '#D6EDE1',
+      text: 'Packed',
+    },
+    label_ready: {
       textColor: '#173E2A',
       backgroundColor: '#D6EDE1',
       text: 'Collected',

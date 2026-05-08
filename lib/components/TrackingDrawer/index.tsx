@@ -72,7 +72,12 @@ export interface ArtaPackage {
     | 'delivered'
     | 'undelivered'
     | 'exception'
-    | 'expired';
+    | 'expired'
+    | 'collected'
+    | 'review_packing'
+    | 'packed'
+    | 'label_ready'
+    | 'cancelled';
   objects: ArtaObject[];
   packing_materials: string;
   depth: number;

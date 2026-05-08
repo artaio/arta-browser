@@ -9,6 +9,7 @@ import { DrawerInsurance } from '../DrawerInsurance';
 import { Summary } from '../Summary';
 import { ShipmentException as ArtaShipmentException } from '../ShipmentException';
 import { PackageEvents } from '../PackageEvents';
+import { DeliveryDelay } from '../DeliveryDelay';
 import type { Shipment, ArtaPackage } from '../TrackingDrawer';
 
 interface TrackingShipmentsProps {
@@ -57,6 +58,7 @@ export const TrackingShipment = ({
         <ArtaShipmentException shipment={shipment} config={config} />
       )}
       <TrackingTop config={config} shipment={shipment} />
+      <DeliveryDelay config={config} shipment={shipment} />
       <ShipToFrom config={config} shipment={shipment} />
       {packagesWithObjects.map((pkg, index) => (
         <Package
