@@ -45,8 +45,5 @@
   "homepage": "https://github.com/artaio/arta-browser#readme",
   "dependencies": {
     "preact": "^10.11.3"
-  },
-  "overrides": {
-    "rollup-plugin-typescript2": "0.37.0"
   }
 }
