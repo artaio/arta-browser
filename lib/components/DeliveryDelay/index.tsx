@@ -20,7 +20,12 @@ const isDeliveryDelayed = (shipment: Shipment): boolean => {
 };
 
 export const DeliveryDelay = ({ config, shipment }: DeliveryDelayProps) => {
-  if (shipment.status === 'completed' || !isDeliveryDelayed(shipment)) {
+  if (
+    shipment.status === 'completed' ||
+    shipment.status === 'cancelled' ||
+    shipment.quote_type === 'track' ||
+    !isDeliveryDelayed(shipment)
+  ) {
     return null;
   }
 
