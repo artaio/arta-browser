@@ -912,6 +912,24 @@
   cursor: pointer;
 }
 
+.artajs__drawer .artajs__tracking__delay__wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px 16px;
+  align-self: stretch;
+  border-bottom: 1px solid var(--border);
+}
+
+.artajs__drawer .artajs__tracking__delay__text {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) - 1px);
+  line-height: 150%;
+  letter-spacing: 0.2px;
+}
+
 /* Shipments Events List */
 
 .artajs__drawer .artajs__tracking__events__wrapper {
