@@ -1,3 +1,12 @@
+## [2.20.2](https://github.com/artaio/arta-browser/compare/v2.20.1...v2.20.2) (2026-05-12)
+
+
+### Bug Fixes
+
+* typo on thrown error ([#72](https://github.com/artaio/arta-browser/issues/72)) ([cfa90bf](https://github.com/artaio/arta-browser/commit/cfa90bf3a16613cb1f50c492f56e7cb4402b852a))
+
+
+
 ## [2.20.1](https://github.com/artaio/arta-browser/compare/v2.20.0...v2.20.1) (2026-05-12)
 
 
