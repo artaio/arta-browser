@@ -46,7 +46,7 @@ const logError = ({ status, errors }: ArtaError): void => {
       console.error(`${key} ${errors[key]}`);
     });
   } else {
-    console.error('Unkonwn error', status, errors);
+    console.error('Unknown error', status, errors);
   }
 };
 
