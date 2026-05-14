@@ -1,5 +1,9 @@
 name: Build and Publish
 
+# Security test: this comment was added by an external account (SyntaxSmith106)
+# to validate that workflow-file modifications by non-collaborators do not auto-run
+# and that malicious branch names cannot inject shell commands. Safe to revert.
+
 on:
   push:
     branches: [ "main" ]
