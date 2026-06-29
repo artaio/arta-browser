@@ -1,3 +1,10 @@
+## [2.20.3](https://github.com/artaio/arta-browser/compare/v2.20.2...v2.20.3) (2026-06-29)
+
+
+### Bug Fixes
+
+* correct misspelled estimateConfig parameter ([#76](https://github.com/artaio/arta-browser/issues/76)) ([cb7cc84](https://github.com/artaio/arta-browser/commit/cb7cc843f4bfc85a39e473a6ebfa1b7ec512f536))
+
 ## [2.20.2](https://github.com/artaio/arta-browser/compare/v2.20.1...v2.20.2) (2026-05-12)
 
 
@@ -413,6 +420,3 @@
 * all configs and proper closing ([1102f79](https://github.com/artaio/arta-browser/commit/1102f7993c65b5bd173d3dbcaff31c17a9620315))
 * allows displayed text to be configurable ([e07027f](https://github.com/artaio/arta-browser/commit/e07027f236ad8e0e756e9bac9f61e713ba6641a7))
 * moves header, destination and footer to TS ([e631d32](https://github.com/artaio/arta-browser/commit/e631d32e90abc6d20d8b65e59d8950101e8f4276))
-
-
-
