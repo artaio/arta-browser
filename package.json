@@ -7,17 +7,26 @@
   "files": [
     "dist/**/*"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "npm run lint",
     "build": "rollup -c && copyfiles -u 1 \"./lib/**/*.css\" \"./dist/\"",
     "lint": "eslint .",
-    "lint:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|tsx|jsx|json)\""
+    "lint:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|tsx|jsx|json)\"",
+    "prepare": "husky",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
     "@rollup/plugin-commonjs": "^29.0.2",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.3.0",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.40.1",
     "copyfiles": "^2.4.1",
@@ -27,8 +36,10 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.0.1",
+    "husky": "^9.1.0",
     "prettier": "2.7.1",
     "rollup": "^4.60.3",
+    "semantic-release": "^25.0.0",
     "tslib": "^2.8.1",
     "typescript": "^5.7.2",
     "typescript-plugin-css-modules": "^4.1.1"
