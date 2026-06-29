@@ -42,12 +42,12 @@ export default class Arta {
 
   public estimate(
     estimateBody: EstimateBody,
-    esimateConfig: PartialEstimateConfig = {}
+    estimateConfig: PartialEstimateConfig = {}
   ) {
     if (this.config && this.el) {
       const fullEstimateConfig = getFullEstimateConfig(
         this.config,
-        esimateConfig
+        estimateConfig
       );
       return new Estimate(estimateBody, fullEstimateConfig, this.el);
     } else {
