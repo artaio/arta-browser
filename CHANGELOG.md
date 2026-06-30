@@ -1,3 +1,10 @@
+# [2.21.0](https://github.com/artaio/arta-browser/compare/v2.20.3...v2.21.0) (2026-06-30)
+
+
+### Features
+
+* add new object subtypes ([#74](https://github.com/artaio/arta-browser/issues/74)) ([fa19dbb](https://github.com/artaio/arta-browser/commit/fa19dbbd2536ce01acb9730a566967dac81bd954))
+
 ## [2.20.3](https://github.com/artaio/arta-browser/compare/v2.20.2...v2.20.3) (2026-06-29)
 
 
