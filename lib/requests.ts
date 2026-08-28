@@ -43,8 +43,24 @@ export interface ArtaErrorResult {
 
 export type ArtaResult<T> = T | ArtaErrorResult;
 
-export const isArtaError = (res: unknown): res is ArtaErrorResult =>
-  typeof res === 'object' && res !== null && 'err' in res;
+/**
+ * Checks the shape of `err` rather than just its presence. A bare `'err' in res`
+ * would classify a success payload that happens to carry an `err` key as a
+ * failure, and would narrow `{ err: 'boom' }` to a type whose `err.errors` does
+ * not exist — so consumers reading `err.errors` would throw. Every failure this
+ * module produces sets a numeric `status`, so that is the discriminant.
+ */
+export const isArtaError = (res: unknown): res is ArtaErrorResult => {
+  if (typeof res !== 'object' || res === null || !('err' in res)) {
+    return false;
+  }
+  const { err } = res as { err: unknown };
+  return (
+    typeof err === 'object' &&
+    err !== null &&
+    typeof (err as ArtaError).status === 'number'
+  );
+};
 
 const AUTH_KEY = 'ARTA_APIKey';
 
