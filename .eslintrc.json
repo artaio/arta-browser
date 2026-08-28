@@ -22,7 +22,6 @@
   "ignorePatterns": [
     "**/dist/**",
     "**/coverage/**",
-    "jest.config.js",
     "**/example/**",
     "**/example_html/**"
   ],

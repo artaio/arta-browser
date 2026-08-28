@@ -1,4 +1,5 @@
-# Runs on pull requests: builds and lints the package, and lints PR commits.
+# Runs on pull requests: typechecks, builds and lints the package, and lints PR
+# commits.
 
 name: CI
 
@@ -23,6 +24,8 @@ jobs:
       with:
         node-version: lts/*
     - run: npm install
+    # the build aborts on the first type error; this lists all of them
+    - run: npm run typecheck
     - run: npm run build
     - run: npm test
 
