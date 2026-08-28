@@ -12,6 +12,7 @@
   },
   "scripts": {
     "test": "npm run lint",
+    "typecheck": "tsc --noEmit",
     "build": "rollup -c && copyfiles -u 1 \"./lib/**/*.css\" \"./dist/\"",
     "lint": "eslint .",
     "lint:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|tsx|jsx|json)\"",
