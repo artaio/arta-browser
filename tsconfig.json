@@ -5,6 +5,7 @@
     "jsxFactory": "",
     "jsxFragmentFactory": "",
     "target": "es5",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",
@@ -15,6 +16,7 @@
     "noEmitOnError": true,
     "skipDefaultLibCheck": false,
     "skipLibCheck": false,
+    "types": [],
     "resolveJsonModule": true
   },
   "include": ["lib/**/*"]

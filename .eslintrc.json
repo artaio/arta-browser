@@ -23,7 +23,8 @@
     "**/dist/**",
     "**/coverage/**",
     "**/example/**",
-    "**/example_html/**"
+    "**/example_html/**",
+    "**/demo/**"
   ],
   "rules": {
     "semi": "off",
