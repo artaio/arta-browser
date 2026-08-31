@@ -128,32 +128,32 @@ const unauthorizedHint = (): string => {
 
 const logError = ({ status, errors, url }: ArtaError): void => {
   const keys = Object.keys(errors ?? {});
-  if (status === 401) {
+  // The request is part of the message rather than a branch of its own: as a
+  // branch it shadowed every status-specific case below it.
+  const at = url ? ` (${url})` : '';
+
+  if (status === NO_RESPONSE) {
+    console.error(`Arta: the request${at} did not reach the server.`, errors);
+  } else if (status === 401) {
     console.error(
-      `Arta: request not authorized. ${unauthorizedHint()}`,
+      `Arta: request not authorized${at}. ${unauthorizedHint()}`,
       errors
     );
-  } else if (url) {
-    console.error(`Request to ${url} failed`, errors);
   } else if (status === 403) {
     // 403 means the credential is recognised but the organization is not
     // entitled, which the old 'Invalid API Key' wording had backwards — and it
     // is the organization, not the key, so say so or the reader rotates a key
     // that was never the problem.
     console.error(
-      'Arta: your Arta organization is not permitted to make that request.',
+      `Arta: your Arta organization is not permitted to make that request${at}.`,
       errors
     );
-  } else if (status === 422) {
-    keys.map((key) => {
-      console.error(`${key} ${errors[key]}`);
-    });
-  } else if (status === 400) {
-    keys.map((key) => {
+  } else if (status === 422 || status === 400) {
+    keys.forEach((key) => {
       console.error(`${key} ${errors[key]}`);
     });
   } else {
-    console.error('Unknown error', status, errors);
+    console.error(`Arta: unexpected error ${status}${at}`, errors);
   }
 };
 

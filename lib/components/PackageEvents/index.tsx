@@ -74,11 +74,16 @@ export const PackageEvents = ({
   let counter = eventHistory?.length ?? 0;
 
   useEffect(() => {
+    let current = true;
+
     (async () => {
       setHistoryFailed(false);
       setEventHistory(null);
       setGroupedEventHistory(null);
       const hist = await loadPackageEvents(config, shipment.id, packageId);
+      if (!current) {
+        return;
+      }
       if (isArtaError(hist)) {
         // An empty history would read as "this package has no events", so say
         // that loading failed instead. logError has named the cause.
@@ -88,7 +93,11 @@ export const PackageEvents = ({
       setEventHistory(hist);
       setGroupedEventHistory(groupByDate(hist));
     })();
-  }, [packageId]);
+
+    return () => {
+      current = false;
+    };
+  }, [packageId, shipment.id]);
 
   return (
     <div class="artajs__tracking__events__wrapper">
