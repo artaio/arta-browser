@@ -11,11 +11,17 @@ arta-browser is a TypeScript SDK providing easy setup for Arta's Estimates and T
 
 Copy and paste the following snippet before the closing `</body>` HTML tag wherever you want the Estimates widget available for your users (typically on your product pages):
 
-```
-<script src="https://cdn.jsdelivr.net/npm/@artaio/arta-browser@latest/dist/bundle.js"></script>
+```html
+<script
+  src="https://cdn.jsdelivr.net/npm/@artaio/arta-browser@2.21.0/dist/bundle.js"
+  integrity="sha384-7yoeTFjiPMPBNLL6OKE29dbCc1j34h1VH9u2EF5ONy/0nS5ppCY844RQ5ZdtMSRG"
+  crossorigin="anonymous"
+></script>
 ```
 
 And once the above script is loaded the `Arta` object should be available.
+
+The snippet pins the latest published version and verifies it with [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity); the version and `integrity` hash above are updated automatically on every release.
 
 ### With `npm`
 

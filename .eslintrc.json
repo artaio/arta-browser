@@ -20,6 +20,7 @@
     "project": ["./tsconfig.json"]
   },
   "ignorePatterns": [
+    "**/scripts/**",
     "**/dist/**",
     "**/coverage/**",
     "**/example/**",
