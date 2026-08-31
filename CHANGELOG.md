@@ -1,3 +1,10 @@
+# [2.22.0](https://github.com/artaio/arta-browser/compare/v2.21.0...v2.22.0) (2026-08-31)
+
+
+### Features
+
+* add DOM typings for tsconfig ([#80](https://github.com/artaio/arta-browser/issues/80)) ([3901855](https://github.com/artaio/arta-browser/commit/39018554f1aad246b34cd05baed792ff0750450a))
+
 # [2.21.0](https://github.com/artaio/arta-browser/compare/v2.20.3...v2.21.0) (2026-06-30)
 
 
