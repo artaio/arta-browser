@@ -67,6 +67,25 @@ const AUTH_KEY = 'ARTA_APIKey';
 /** No HTTP status exists when the request never reached the server. */
 const NO_RESPONSE = 0;
 
+/**
+ * Both validators reject only when the error map has keys, so an error response
+ * whose body omits `errors` — or sends it empty — must not produce an empty map
+ * here: that would mark the widget ready on a failed request.
+ */
+const errorsOrFallback = (
+  errors: unknown,
+  res: Response
+): ArtaError['errors'] => {
+  if (
+    typeof errors === 'object' &&
+    errors !== null &&
+    Object.keys(errors).length > 0
+  ) {
+    return errors as ArtaError['errors'];
+  }
+  return { detail: res.statusText || `HTTP ${res.status}` };
+};
+
 const logError = ({ status, errors, url }: ArtaError): void => {
   const keys = Object.keys(errors ?? {});
   if (url) {
@@ -140,9 +159,7 @@ const artaRequest = async <T>(
 
   if (!res.ok) {
     const err: ArtaError = {
-      // An error body does not always carry `errors`, so this cannot be assumed
-      // to exist — logError and every consumer would break on the omission.
-      errors: resBody?.errors ?? {},
+      errors: errorsOrFallback(resBody?.errors, res),
       status: res.status,
       statusText: res.statusText,
     };
