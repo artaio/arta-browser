@@ -41,10 +41,10 @@ jobs:
 
     # OIDC trusted publishing requires npm >= 11.5.1
     - name: Update npm
-      run: npm install -g npm@latest
+      run: npm install -g npm@11.19.1
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci --ignore-scripts
 
     - name: Release
       env:
