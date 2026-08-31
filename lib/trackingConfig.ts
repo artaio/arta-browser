@@ -86,6 +86,18 @@ export interface TrackingConfig {
       titleShipmentList: string;
       titleShipmentDetail: string;
     };
+    /** Shown when the shipments could not be loaded at all. */
+    errored: {
+      message: string;
+      detail: string;
+    };
+    /** Shown when a package's event history could not be loaded. */
+    packageHistoryErrored: {
+      message: string;
+      detail: string;
+    };
+    /** Shown alongside the shipments that did load, when some did not. */
+    someShipmentsUnavailableLabel: string;
     pendingLabel: string;
     completedLabel: string;
     inTransitLabel: string;
@@ -186,6 +198,16 @@ export const defaultTrackingConfig: TrackingConfig = {
       titleShipmentList: 'Shipments List',
       titleShipmentDetail: 'Shipment Detail',
     },
+    errored: {
+      message:
+        'Unfortunately we could not load tracking information right now.',
+      detail: 'Please try again in a moment.',
+    },
+    packageHistoryErrored: {
+      message: 'Unfortunately we could not load the package history right now.',
+      detail: 'Please try again in a moment.',
+    },
+    someShipmentsUnavailableLabel: 'Some shipments could not be loaded.',
     pendingLabel: 'Pending',
     completedLabel: 'Completed',
     inTransitLabel: 'In Transit',

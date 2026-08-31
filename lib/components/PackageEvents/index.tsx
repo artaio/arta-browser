@@ -64,6 +64,7 @@ export const PackageEvents = ({
     string,
     ArtaPackageEvent[]
   > | null>(null);
+  const [historyFailed, setHistoryFailed] = useState(false);
 
   const packageIdx = shipment.packages.findIndex((p) => p.id === packageId);
   const pkgTracking = shipment.tracking.find(
@@ -74,10 +75,14 @@ export const PackageEvents = ({
 
   useEffect(() => {
     (async () => {
+      setHistoryFailed(false);
+      setEventHistory(null);
+      setGroupedEventHistory(null);
       const hist = await loadPackageEvents(config, shipment.id, packageId);
       if (isArtaError(hist)) {
-        // groupByDate reduces over the result, so passing a failure to it
-        // throws. logError has reported the cause.
+        // An empty history would read as "this package has no events", so say
+        // that loading failed instead. logError has named the cause.
+        setHistoryFailed(true);
         return;
       }
       setEventHistory(hist);
@@ -129,7 +134,19 @@ export const PackageEvents = ({
           ))}
       </div>
 
-      {groupedEventHistory ? (
+      {historyFailed ? (
+        <div class="artajs__tracking__body">
+          <div class="artajs__tracking__top__divider">
+            <div class="artajs__tracking__top__text">
+              {config.text.packageHistoryErrored.message}
+            </div>
+            <div class="artajs__tracking__top__text">
+              {config.text.packageHistoryErrored.detail}
+            </div>
+          </div>
+          <DrawerFooter />
+        </div>
+      ) : groupedEventHistory ? (
         <div class="artajs__tracking__events__body">
           {Object.values(groupedEventHistory).map((events, idx) => {
             return (

@@ -77,6 +77,16 @@ export interface EstimateConfig {
       message: string;
       detail: string;
     };
+    /**
+     * Shown when the request itself failed, as distinct from `invalidated`,
+     * which is specifically about geocoding the origin. Kept deliberately vague
+     * about the cause: a buyer cannot tell a bad API key from an outage, and
+     * neither can the SDK.
+     */
+    errored: {
+      message: string;
+      detail: string;
+    };
   };
 }
 
@@ -124,6 +134,10 @@ export const defaultEstimateConfig: EstimateConfig = {
       message:
         'Unfortunately we could not successfully geocode the origin location to provide a shipping estimate.',
       detail: 'The address may be missing components or invalid.',
+    },
+    errored: {
+      message: 'Unfortunately we could not load a shipping estimate right now.',
+      detail: 'Please try again in a moment.',
     },
   },
 };

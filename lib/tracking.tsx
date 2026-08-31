@@ -108,27 +108,34 @@ export default class Tracking {
   }
 
   public async validate() {
-    const shipmentIdsOrErrors = await Promise.all(
-      this.shipmentIds.map(async (shipmentId) => {
-        const errors = await validateShipment(this.config, shipmentId);
-        if (errors && Object.keys(errors).length > 0) {
-          return errors;
-        }
-        return shipmentId;
-      })
+    this.isReady = false;
+    const results = await Promise.all(
+      this.shipmentIds.map(async (shipmentId) => ({
+        shipmentId,
+        errors: await validateShipment(this.config, shipmentId),
+      }))
     );
 
-    const newShipmentIds = [];
-    for (const shipmentIdOrError of shipmentIdsOrErrors) {
-      if (typeof shipmentIdOrError === 'object') {
-        console.error('Shipment validation failed', shipmentIdOrError);
-      } else {
-        newShipmentIds.push(shipmentIdOrError);
-      }
-    }
+    const failures = results.filter(
+      (result) => result.errors && Object.keys(result.errors).length > 0
+    );
 
-    if (newShipmentIds.length === 0) {
-      return Promise.reject('No valid shipment ids');
+    failures.forEach((failure) =>
+      console.error(
+        `Shipment ${failure.shipmentId} validation failed`,
+        failure.errors
+      )
+    );
+
+    // The ids that failed validation are deliberately left in place rather than
+    // filtered out. They may fail again in the drawer, which then shows the
+    // shipments that did load alongside a notice that some did not — filtering
+    // here would leave the buyer with a short list and no explanation. The
+    // count that notice depends on lives in TrackingDrawer.
+    if (failures.length === results.length) {
+      // Nothing to render. Reject with the reasons rather than a bare string,
+      // which is what this used to discard.
+      return Promise.reject(failures);
     }
     this.isReady = true;
   }
