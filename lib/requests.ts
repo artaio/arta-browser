@@ -92,24 +92,68 @@ const errorsOrFallback = (
   return { detail: res.statusText || `HTTP ${res.status}` };
 };
 
+/**
+ * A 401 has several indistinguishable causes: a missing or malformed key, an
+ * unknown or revoked one, a private API key used in the browser, an origin the
+ * key does not allow, and organization-level paths besides. Only the origin is
+ * something the SDK can see, so name it and let the integrator rule it out.
+ */
+const unauthorizedHint = (): string => {
+  const causes =
+    'The other causes are a missing, unknown or revoked key, or a private API ' +
+    'key used in the browser.';
+
+  if (typeof location === 'undefined') {
+    return causes;
+  }
+
+  // Browsers disagree on what a file:// page reports: Firefox gives 'null',
+  // Chromium and Safari give 'file://'. Anything that is not http(s) cannot be
+  // an allowlist entry, so treat them all as the opaque case.
+  if (!/^https?:\/\//.test(location.origin)) {
+    return (
+      'This page has no usable origin, which a publishable API key with valid ' +
+      'origin domains configured always rejects. Pages opened from the ' +
+      `filesystem and sandboxed iframes both do this (this page reports ` +
+      `"${location.origin}"). ${causes}`
+    );
+  }
+
+  return (
+    'If this key has valid origin domains configured, it must include the ' +
+    `hostname ${location.hostname} (this page is ${location.origin}). ` +
+    causes
+  );
+};
+
 const logError = ({ status, errors, url }: ArtaError): void => {
   const keys = Object.keys(errors ?? {});
-  if (url) {
-    console.error(`Request to ${url} failed`, errors);
-  } else if (status === 403) {
-    console.error('Invalid API Key', errors);
+  // The request is part of the message rather than a branch of its own: as a
+  // branch it shadowed every status-specific case below it.
+  const at = url ? ` (${url})` : '';
+
+  if (status === NO_RESPONSE) {
+    console.error(`Arta: the request${at} did not reach the server.`, errors);
   } else if (status === 401) {
-    console.error('Private API Key', errors);
-  } else if (status === 422) {
-    keys.map((key) => {
-      console.error(`${key} ${errors[key]}`);
-    });
-  } else if (status === 400) {
-    keys.map((key) => {
+    console.error(
+      `Arta: request not authorized${at}. ${unauthorizedHint()}`,
+      errors
+    );
+  } else if (status === 403) {
+    // 403 means the credential is recognised but the organization is not
+    // entitled, which the old 'Invalid API Key' wording had backwards — and it
+    // is the organization, not the key, so say so or the reader rotates a key
+    // that was never the problem.
+    console.error(
+      `Arta: your Arta organization is not permitted to make that request${at}.`,
+      errors
+    );
+  } else if (status === 422 || status === 400) {
+    keys.forEach((key) => {
       console.error(`${key} ${errors[key]}`);
     });
   } else {
-    console.error('Unknown error', status, errors);
+    console.error(`Arta: unexpected error ${status}${at}`, errors);
   }
 };
 

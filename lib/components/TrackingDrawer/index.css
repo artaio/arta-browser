@@ -455,6 +455,11 @@
   border-bottom: 1px solid var(--border);
 }
 
+.artajs__drawer .artajs__tracking__notice {
+  padding: 16px 24px 0;
+  align-self: stretch;
+}
+
 .artajs__drawer .artajs__tracking__top__divider {
   display: flex;
   flex-direction: column;

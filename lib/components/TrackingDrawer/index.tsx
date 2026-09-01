@@ -167,6 +167,13 @@ export const TrackingDrawer = ({
   );
 
   useEffect(() => {
+    let current = true;
+    // Reset, or a re-run would compare the previous load's shipments against the
+    // new id count — showing the "some are missing" notice, or another
+    // shipment's detail view, before a single request has resolved.
+    setShipments(null);
+    setSelectedShipment(null);
+
     (async () => {
       const results = await Promise.all(
         shipmentIds.map(async (shipmentId) => {
@@ -174,13 +181,20 @@ export const TrackingDrawer = ({
         })
       );
       // Render the shipments that did load rather than letting one bad id take
-      // the drawer down with it: a failure stored as a shipment throws during
-      // render. logError has reported each cause.
+      // the drawer down with it. An empty result is a real state here, not
+      // "still loading", and the render below distinguishes them.
+      if (!current) {
+        return;
+      }
       setShipments(
         results.filter((result): result is Shipment => !isArtaError(result))
       );
       //TODO should we ship.packages.filter(pkg => pkg.objects?.length)); ??
     })();
+
+    return () => {
+      current = false;
+    };
   }, [shipmentIds]);
 
   return (
@@ -217,24 +231,47 @@ export const TrackingDrawer = ({
               config={config}
             />
 
-            {shipments?.length ? (
-              shipmentIds.length === 1 || selectedShipment ? (
-                <TrackingShipment
-                  shipment={selectedShipment ?? shipments[0]}
-                  config={config}
-                />
-              ) : (
-                <SelectTrackingShipment
-                  shipments={shipments}
-                  config={config}
-                  setSelectedShipment={setSelectedShipment}
-                />
-              )
-            ) : (
+            {/* Tracking.validate() deliberately keeps ids that failed
+                validation in shipmentIds so this count stays meaningful. */}
+            {shipments !== null &&
+              shipments.length > 0 &&
+              shipments.length < shipmentIds.length &&
+              !selectedShipment && (
+                <div class="artajs__tracking__notice">
+                  <div class="artajs__tracking__top__text">
+                    {config.text.someShipmentsUnavailableLabel}
+                  </div>
+                </div>
+              )}
+
+            {shipments === null ? (
               <div class="artajs__tracking__body">
                 <div class="artajs__drawer__loading" />
                 <DrawerFooter />
               </div>
+            ) : shipments.length === 0 ? (
+              <div class="artajs__tracking__body">
+                <div class="artajs__tracking__top__divider">
+                  <div class="artajs__tracking__top__text">
+                    {config.text.errored.message}
+                  </div>
+                  <div class="artajs__tracking__top__text">
+                    {config.text.errored.detail}
+                  </div>
+                </div>
+                <DrawerFooter />
+              </div>
+            ) : shipmentIds.length === 1 || selectedShipment ? (
+              <TrackingShipment
+                shipment={selectedShipment ?? shipments[0]}
+                config={config}
+              />
+            ) : (
+              <SelectTrackingShipment
+                shipments={shipments}
+                config={config}
+                setSelectedShipment={setSelectedShipment}
+              />
             )}
           </div>
         </div>

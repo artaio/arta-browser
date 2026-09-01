@@ -50,11 +50,17 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
       setStatus(ModalStatus.LOADING);
       const session = await loadHostedSessions(config, estimateBody);
       if (isArtaError(session)) {
-        // The error banner renders outside the status switch, so it shows over
-        // the loading view without needing a new ModalStatus. Deliberately not
-        // INVALIDATED, whose copy is about geocoding and would tell the buyer
-        // to re-check an address that was never the problem.
-        setErrors(parseErrors(session.err.errors));
+        // Terminal either way: without a hosted session there is nothing to
+        // render. An `origin` error is the one case INVALIDATED's copy actually
+        // describes, so route it there and keep the specific message. Anything
+        // else — auth, an outage, a proxy answering with HTML — gets the generic
+        // one, because telling the buyer to re-check an address they did not
+        // enter is worse than saying nothing specific.
+        setStatus(
+          Object.keys(session.err.errors).indexOf('origin') !== -1
+            ? ModalStatus.INVALIDATED
+            : ModalStatus.ERRORED
+        );
         return;
       }
       setHostedSession(session);
@@ -137,6 +143,13 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
             <Invalidated
               message={config.text.invalidated.message}
               detail={config.text.invalidated.detail}
+            />
+          )}
+
+          {status === ModalStatus.ERRORED && (
+            <Invalidated
+              message={config.text.errored.message}
+              detail={config.text.errored.detail}
             />
           )}
 
