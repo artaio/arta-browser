@@ -23,11 +23,17 @@ export interface QuoteRequest {
   insurance: Insurance | null;
 }
 
+/**
+ * One failure shape for every way a request can fail, so a caller has a single
+ * thing to handle rather than a transport error and a response error. `status`
+ * is the HTTP status where there was a response, and `NO_RESPONSE` where the
+ * request never reached the server at all.
+ */
 export interface ArtaError {
   status: number;
   statusText?: string;
-  /** Set when the failure was in transport rather than in the response body. */
-  url?: string;
+  /** The request that failed. */
+  url: string;
   errors: { [key: string]: string };
 }
 
@@ -162,6 +168,7 @@ const artaRequest = async <T>(
       errors: errorsOrFallback(resBody?.errors, res),
       status: res.status,
       statusText: res.statusText,
+      url,
     };
     logError(err);
     return { err };

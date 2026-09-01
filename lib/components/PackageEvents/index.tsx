@@ -76,8 +76,8 @@ export const PackageEvents = ({
     (async () => {
       const hist = await loadPackageEvents(config, shipment.id, packageId);
       if (isArtaError(hist)) {
-        // groupByDate reduces over the result, so a failure here used to throw
-        // and leave the view spinning. See A-1445 for the error view.
+        // groupByDate reduces over the result, so passing a failure to it
+        // throws. logError has reported the cause.
         return;
       }
       setEventHistory(hist);

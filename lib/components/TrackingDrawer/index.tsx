@@ -174,9 +174,8 @@ export const TrackingDrawer = ({
         })
       );
       // Render the shipments that did load rather than letting one bad id take
-      // the drawer down with it, which is what happened before: a failure was
-      // stored as a shipment and threw during render. logError has reported
-      // each cause; a visible error state is A-1445.
+      // the drawer down with it: a failure stored as a shipment throws during
+      // render. logError has reported each cause.
       setShipments(
         results.filter((result): result is Shipment => !isArtaError(result))
       );

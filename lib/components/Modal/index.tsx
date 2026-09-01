@@ -53,8 +53,7 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
         // The error banner renders outside the status switch, so it shows over
         // the loading view without needing a new ModalStatus. Deliberately not
         // INVALIDATED, whose copy is about geocoding and would tell the buyer
-        // to re-check an address that was never the problem. A dedicated error
-        // view is A-1445.
+        // to re-check an address that was never the problem.
         setErrors(parseErrors(session.err.errors));
         return;
       }
