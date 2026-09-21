@@ -1,3 +1,10 @@
+# [2.23.0](https://github.com/artaio/arta-browser/compare/v2.22.0...v2.23.0) (2026-09-21)
+
+
+### Features
+
+* add arta pay widget ([#82](https://github.com/artaio/arta-browser/issues/82)) ([5a34e43](https://github.com/artaio/arta-browser/commit/5a34e431750346559ee19cc4747d386ec1b7598a))
+
 # [2.22.0](https://github.com/artaio/arta-browser/compare/v2.21.0...v2.22.0) (2026-08-31)
 
 
