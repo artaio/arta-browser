@@ -85,4 +85,4 @@ export const getFullPayConfig = (
   return Object.assign({}, defaultPayConfig, artaConfig, payConfig);
 };
 
-export const DEFAULT_PAY_ORIGIN = 'https://pay.arta.io';
+export const DEFAULT_PAY_ORIGIN = 'https://collectors.arta.io';

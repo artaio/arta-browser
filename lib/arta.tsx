@@ -38,7 +38,7 @@ export interface ArtaJsFullConfig extends ArtaJsConfig {
 const defaultConfig: ArtaJsConfig = {
   host: 'api.arta.io',
   httpSchema: 'https',
-  payOrigin: 'https://pay.arta.io',
+  payOrigin: 'https://collectors.arta.io',
 };
 
 export default class Arta {
