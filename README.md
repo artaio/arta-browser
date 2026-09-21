@@ -1,9 +1,10 @@
 # arta-browser
 
-arta-browser is a TypeScript SDK providing easy setup for Arta's Estimates and Tracking widgets.
+arta-browser is a TypeScript SDK providing easy setup for Arta's Estimates and Tracking widgets and the Arta Pay checkout.
 
 * Use [Arta Estimates](https://manual.arta.io/guides/solutions/no-code/estimates/estimates-widget) to dynamically generate shipping estimates (non-bookable) on your own website.
 * Use [Arta Tracking](https://manual.arta.io/guides/solutions/no-code/post-sale/tracking) to easily present clear and up-to-date tracking information on your own website.
+* Use [Arta Pay](#arta-pay-checkout) to let buyers pay a deposit and finance the rest with their Arta credit line, in a modal on your checkout page.
 
 ## Installation
 
@@ -139,6 +140,34 @@ tracking.isReady && <Button onClick={() => tracking.open()}>Track</Button>;
 ```
 
 The Arta Tracking widget has many configuration options to customize the look and feel of the widget. You can view the full list of options in [/lib/trackingConfig.ts](/lib/trackingConfig.ts).
+
+### Arta Pay checkout
+
+Arta Pay lets a buyer pay a deposit on your order and finance the rest with their Arta credit line, in an Arta-hosted modal on your page. It has a server half and a page half:
+
+1. **Your server** creates a purchase request with your **private** API key (`POST https://api.arta.io/purchase_requests`, with the order amounts, buyer email and line items) and gets back an `id` and a short-lived `client_token`. Pass only `{ purchaseRequestId, clientToken }` to the page — the private key never leaves your server.
+2. **Your page** initializes with your **public** key and opens the checkout:
+
+```js
+Arta.init('<PUBLIC_KEY>');
+
+const checkout = Arta.pay(
+  { purchaseRequestId, clientToken },
+  {
+    onReady: () => (payButton.disabled = false),
+    onComplete: ({ purchaseRequestId, purchaseId, status }) => {
+      // status: 'confirmed' | 'processing' | 'declined' — confirm server-side
+    },
+    onClose: ({ reason }) => {}, // 'customer' | 'complete' | 'error'
+    onError: ({ code, message, recoverable }) => {},
+  },
+  { position: 'center' }
+);
+
+payButton.addEventListener('click', () => checkout.open());
+```
+
+The widget mounts hidden and validates the purchase request, so `onReady` means "ready to open". `open()` shows the modal, `close()` hides it (reopening resumes) and `destroy()` removes it. `onComplete` fires once when the outcome is known; the callbacks are advisory, so confirm the order server-side with `GET /purchase_requests/:id`. `position` accepts `'center'` (default), `'left'`, `'right'` or `'full_screen'`. The `PayCompletion`, `PayCloseEvent` and `PayError` types are exported from the package.
 
 ## Contributing
 
