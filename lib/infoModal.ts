@@ -30,10 +30,14 @@ const overlayPositionCss: Record<PayPosition, string> = {
   right: 'align-items:stretch;justify-content:flex-end;',
 };
 
-// The card starts hidden and without a height transition: the first report
-// sizes it instantly, and only visible changes animate (see `showFrame`).
+// The card starts transparent and without a height transition: the first
+// report sizes it instantly, and only visible changes animate (see
+// `showFrame`). Opacity, not `visibility`: an iframe made explicitly visible
+// would keep painting after the overlay is hidden on close, since CSS lets a
+// visible child override a hidden parent, while opacity leaves the overlay's
+// visibility in charge of both.
 const frameBaseCss =
-  'box-sizing:content-box;border:0;background:#fff;visibility:hidden;';
+  'box-sizing:content-box;border:0;background:#fff;opacity:0;';
 
 // Placeholder heights for the centered card until the widget reports its own.
 // The view is taller when it carries a financing estimate (rendered only when
@@ -197,7 +201,7 @@ export default class InfoModal {
       return;
     }
     this.frameShown = true;
-    this.iframe.style.visibility = 'visible';
+    this.iframe.style.opacity = '1';
     this.enableFrameTransition();
   }
 
