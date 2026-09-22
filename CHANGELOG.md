@@ -1,3 +1,10 @@
+## [2.23.1](https://github.com/artaio/arta-browser/compare/v2.23.0...v2.23.1) (2026-09-22)
+
+
+### Bug Fixes
+
+* size the Arta Pay modals to their content ([#83](https://github.com/artaio/arta-browser/issues/83)) ([42f40bf](https://github.com/artaio/arta-browser/commit/42f40bf3c5d94a4e31facb6b3013a3f782980965))
+
 # [2.23.0](https://github.com/artaio/arta-browser/compare/v2.22.0...v2.23.0) (2026-09-21)
 
 
