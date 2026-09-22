@@ -33,7 +33,11 @@ import {
 const HANDSHAKE_TIMEOUT_MS = 10_000;
 const OVERLAY_ID = 'arta-pay-overlay';
 const FRAME_MIN_HEIGHT_PX = 240;
+// The centered frame's height until the widget reports its own. A placeholder
+// only: the widget hugs its content and every screen reports its real height.
+const FRAME_PLACEHOLDER_HEIGHT_PX = 539;
 const RESIZE_DEAD_BAND_PX = 2;
+const FRAME_HEIGHT_TRANSITION = 'height 0.15s ease';
 
 // Hidden means invisible and inert, not `display:none`: the iframe has to
 // keep loading and laying out so the widget can validate the context and
@@ -51,19 +55,20 @@ const overlayPositionCss: Record<PayPosition, string> = {
 
 // The widget reports its content height via arta-pay:resize; the centered
 // card follows it (capped to the viewport) while the side panels and full
-// screen take the full viewport height.
-// The centered height opens on the sign-in screen's own height, which the
-// widget holds from its first paint (.arta-pay-shell min-height); starting
-// anywhere else makes the frame resize once the widget reports itself.
+// screen take the full viewport height. Height changes animate only while the
+// modal is visible (see `reveal`/`close`): reports that arrive while it is
+// hidden are applied instantly so it appears at its final size. The widget
+// posts each screen's height before `ready`, so by `onReady` the frame is
+// already the size of what the buyer will see.
 // content-box is pinned because seller pages commonly reset `* { box-sizing:
 // border-box }`, which would let the frame's border eat into the viewport the
 // widget measures itself against.
-const frameBaseCss =
-  'box-sizing:content-box;border:0;background:#fff;transition:height 0.15s ease;';
+const frameBaseCss = 'box-sizing:content-box;border:0;background:#fff;';
 
 const framePositionCss: Record<PayPosition, string> = {
   center:
-    'width:min(576px, calc(100vw - 32px));height:min(539px, calc(100vh - 32px));' +
+    'width:min(576px, calc(100vw - 32px));' +
+    `height:min(${FRAME_PLACEHOLDER_HEIGHT_PX}px, calc(100vh - 32px));` +
     'border:1px solid #d2d2d2;border-radius:8px;' +
     'box-shadow:0 24px 64px rgba(17,15,16,0.35);',
   full_screen: 'width:100vw;height:100vh;',
@@ -133,6 +138,9 @@ export default class Pay {
       this.overlay.style.visibility = 'hidden';
       this.overlay.style.pointerEvents = 'none';
     }
+    if (this.iframe) {
+      this.iframe.style.transition = '';
+    }
     document.removeEventListener('keydown', this.keydownListener);
     this.isOpen = false;
   }
@@ -199,6 +207,12 @@ export default class Pay {
     }
     this.overlay.style.visibility = 'visible';
     this.overlay.style.pointerEvents = 'auto';
+    if (this.iframe) {
+      // Flush any height applied while hidden before turning the transition
+      // on, or that pending change would animate as the modal appears.
+      void this.iframe.offsetHeight;
+      this.iframe.style.transition = FRAME_HEIGHT_TRANSITION;
+    }
     document.addEventListener('keydown', this.keydownListener);
     this.isOpen = true;
     this.postToFrame({ type: 'arta-pay:open' });

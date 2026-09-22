@@ -4,13 +4,20 @@ import type { InfoFullConfig, InfoInput } from './infoConfig';
 
 // Arta Pay CTA info modal: a login-free marketing modal opened on demand via
 // `Arta.openArtaPayInfoModal()`. Unlike the checkout modal it has no purchase
-// request, no client token and no handshake — it mounts on `open()`, shows
-// immediately, and only listens for the iframe's resize/close reports. Every
-// message is accepted only from the iframe this modal created.
+// request, no client token and no handshake — it mounts on `open()` and only
+// listens for the iframe's resize/close reports. The backdrop shows at once;
+// the card itself appears on the widget's first height report (or after a
+// short grace period), so it arrives at its final size instead of resizing in
+// front of the buyer. Every message is accepted only from the iframe this
+// modal created.
 
 const OVERLAY_ID = 'arta-pay-info-overlay';
 const FRAME_MIN_HEIGHT_PX = 240;
 const RESIZE_DEAD_BAND_PX = 2;
+const FRAME_HEIGHT_TRANSITION = 'height 0.15s ease';
+// How long the card waits for the widget's first height report before it is
+// shown at the placeholder height anyway.
+const FRAME_REVEAL_GRACE_MS = 1_000;
 
 const overlayBaseCss =
   'box-sizing:border-box;position:fixed;inset:0;display:flex;background:rgba(17,15,16,0.55);' +
@@ -23,14 +30,15 @@ const overlayPositionCss: Record<PayPosition, string> = {
   right: 'align-items:stretch;justify-content:flex-end;',
 };
 
+// The card starts hidden and without a height transition: the first report
+// sizes it instantly, and only visible changes animate (see `showFrame`).
 const frameBaseCss =
-  'box-sizing:content-box;border:0;background:#fff;transition:height 0.15s ease;';
+  'box-sizing:content-box;border:0;background:#fff;visibility:hidden;';
 
-// The centered card opens on the height the info view will actually report,
-// so the frame never resizes once the iframe measures itself. The view has two
-// heights: the plain CTA, and the taller one that carries a financing estimate
-// (rendered only when a total price is supplied). Keep in step with
-// #arta-pay-info .arta-pay-shell in the widget's CSS.
+// Placeholder heights for the centered card until the widget reports its own.
+// The view is taller when it carries a financing estimate (rendered only when
+// a total price is supplied), so the placeholder follows the same condition;
+// neither value has to match the widget exactly.
 const CENTER_HEIGHT_PX = 412;
 const CENTER_WITH_ESTIMATE_HEIGHT_PX = 753;
 
@@ -56,6 +64,8 @@ export default class InfoModal {
   private overlay: HTMLDivElement | undefined;
   private iframe: HTMLIFrameElement | undefined;
   private destroyed = false;
+  private frameShown = false;
+  private revealTimer: number | undefined;
   private lastFrameHeight: number | undefined;
   private readonly payOrigin: string;
   private readonly messageListener = (event: MessageEvent) =>
@@ -86,9 +96,13 @@ export default class InfoModal {
   // Hides the overlay without tearing down the iframe, so a later `open()`
   // shows it again instantly.
   public close(): void {
+    this.clearRevealTimer();
     if (this.overlay) {
       this.overlay.style.visibility = 'hidden';
       this.overlay.style.pointerEvents = 'none';
+    }
+    if (this.iframe) {
+      this.iframe.style.transition = '';
     }
     document.removeEventListener('keydown', this.keydownListener);
     this.isOpen = false;
@@ -162,6 +176,46 @@ export default class InfoModal {
     this.overlay.style.pointerEvents = 'auto';
     document.addEventListener('keydown', this.keydownListener);
     this.isOpen = true;
+
+    if (this.frameShown) {
+      // Reopened: the card already has its measured height, so it shows at
+      // once and later changes animate.
+      this.enableFrameTransition();
+    } else {
+      this.revealTimer = window.setTimeout(
+        () => this.showFrame(),
+        FRAME_REVEAL_GRACE_MS
+      );
+    }
+  }
+
+  // Called on the first height report (or the grace timeout). The card is
+  // sized before it becomes visible, so the buyer never sees it resize.
+  private showFrame(): void {
+    this.clearRevealTimer();
+    if (!this.iframe || this.frameShown) {
+      return;
+    }
+    this.frameShown = true;
+    this.iframe.style.visibility = 'visible';
+    this.enableFrameTransition();
+  }
+
+  private enableFrameTransition(): void {
+    if (!this.iframe) {
+      return;
+    }
+    // Flush any height applied while hidden before turning the transition on,
+    // or that pending change would animate as the card appears.
+    void this.iframe.offsetHeight;
+    this.iframe.style.transition = FRAME_HEIGHT_TRANSITION;
+  }
+
+  private clearRevealTimer(): void {
+    if (this.revealTimer !== undefined) {
+      window.clearTimeout(this.revealTimer);
+      this.revealTimer = undefined;
+    }
   }
 
   private handleMessage(event: MessageEvent): void {
@@ -183,12 +237,21 @@ export default class InfoModal {
   }
 
   private handleResize(data: unknown): void {
-    // Side panels and full screen keep the whole viewport height.
-    if (this.config.position !== 'center' || !this.iframe) {
-      return;
-    }
     const height = parseResizeHeight(data);
     if (height === undefined) {
+      return;
+    }
+    // Side panels and full screen keep the whole viewport height.
+    if (this.config.position === 'center') {
+      this.applyFrameHeight(height);
+    }
+    if (this.isOpen) {
+      this.showFrame();
+    }
+  }
+
+  private applyFrameHeight(height: number): void {
+    if (!this.iframe) {
       return;
     }
     const px = Math.max(FRAME_MIN_HEIGHT_PX, Math.round(height));
