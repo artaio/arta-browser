@@ -17,6 +17,7 @@ import {
 } from '../../helper';
 import {
   HostedSession,
+  isArtaError,
   loadHostedSessions,
   loadQuoteRequests,
   QuoteRequest,
@@ -48,6 +49,14 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
       setErrors([]);
       setStatus(ModalStatus.LOADING);
       const session = await loadHostedSessions(config, estimateBody);
+      if (isArtaError(session)) {
+        // The error banner renders outside the status switch, so it shows over
+        // the loading view without needing a new ModalStatus. Deliberately not
+        // INVALIDATED, whose copy is about geocoding and would tell the buyer
+        // to re-check an address that was never the problem.
+        setErrors(parseErrors(session.err.errors));
+        return;
+      }
       setHostedSession(session);
       setParsedOrigin(parseEstimatedLocation(session.origin));
 
@@ -74,7 +83,7 @@ export const Modal = ({ estimateBody, onClose, config }: ModalOpts) => {
 
       const req = await loadQuoteRequests(config, sess, esimate);
 
-      if (req.err) {
+      if (isArtaError(req)) {
         const errorMessages = parseErrors(req.err.errors);
         setErrors(errorMessages);
         setStatus(ModalStatus.OPEN);

@@ -3,7 +3,7 @@ import { getTrackingStyle } from '../../helper';
 import { TrackingFullConfig } from '../../trackingConfig';
 import { DrawerHeader } from '../DrawerHeader';
 import css from './index.css';
-import { loadShipment } from '../../requests';
+import { isArtaError, loadShipment } from '../../requests';
 import { DrawerFooter } from '../DrawerFooter';
 import { ShipmentException as ArtaShipmentException } from '../ShipmentException';
 import { TrackingShipment } from '../TrackingShipment';
@@ -168,12 +168,17 @@ export const TrackingDrawer = ({
 
   useEffect(() => {
     (async () => {
-      const ships = await Promise.all(
+      const results = await Promise.all(
         shipmentIds.map(async (shipmentId) => {
           return await loadShipment(config, shipmentId);
         })
       );
-      setShipments(ships);
+      // Render the shipments that did load rather than letting one bad id take
+      // the drawer down with it: a failure stored as a shipment throws during
+      // render. logError has reported each cause.
+      setShipments(
+        results.filter((result): result is Shipment => !isArtaError(result))
+      );
       //TODO should we ship.packages.filter(pkg => pkg.objects?.length)); ??
     })();
   }, [shipmentIds]);
@@ -202,7 +207,7 @@ export const TrackingDrawer = ({
               title={
                 selectedShipment
                   ? config.text.header.titleShipmentDetail
-                  : shipments && shipments.length > 1
+                  : shipmentIds.length > 1
                   ? config.text.header.titleShipmentList
                   : config.text.header.title
               }
@@ -213,7 +218,7 @@ export const TrackingDrawer = ({
             />
 
             {shipments?.length ? (
-              shipments.length === 1 || selectedShipment ? (
+              shipmentIds.length === 1 || selectedShipment ? (
                 <TrackingShipment
                   shipment={selectedShipment ?? shipments[0]}
                   config={config}

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'preact/hooks';
 
 import type { TrackingFullConfig } from '../../trackingConfig';
 import type { Shipment } from '../TrackingDrawer';
-import { loadPackageEvents } from '../../requests';
+import { isArtaError, loadPackageEvents } from '../../requests';
 import { parseStringDate } from '../Date';
 import { DrawerFooter } from '../DrawerFooter';
 
@@ -75,6 +75,11 @@ export const PackageEvents = ({
   useEffect(() => {
     (async () => {
       const hist = await loadPackageEvents(config, shipment.id, packageId);
+      if (isArtaError(hist)) {
+        // groupByDate reduces over the result, so passing a failure to it
+        // throws. logError has reported the cause.
+        return;
+      }
       setEventHistory(hist);
       setGroupedEventHistory(groupByDate(hist));
     })();
