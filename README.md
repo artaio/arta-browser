@@ -14,8 +14,8 @@ Copy and paste the following snippet before the closing `</body>` HTML tag where
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/npm/@artaio/arta-browser@2.23.1/dist/bundle.js"
-  integrity="sha384-Z3euTa2mVIbuvRrH9S3yGX3I3w3BlmrlMRpJGvrIIy5SCX6XLcfwVoVlKzTsTsCL"
+  src="https://cdn.jsdelivr.net/npm/@artaio/arta-browser@2.23.2/dist/bundle.js"
+  integrity="sha384-a9afvobPsoQi9Ygps92oxPjOQvNuZRlG1UFvnsO4V6e+wC3IqPni1HqXvayY/IgK"
   crossorigin="anonymous"
 ></script>
 ```

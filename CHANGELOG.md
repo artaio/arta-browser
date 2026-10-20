@@ -1,3 +1,10 @@
+## [2.23.2](https://github.com/artaio/arta-browser/compare/v2.23.1...v2.23.2) (2026-10-20)
+
+
+### Bug Fixes
+
+* update arta-pay URL ([#84](https://github.com/artaio/arta-browser/issues/84)) ([b5cc0d1](https://github.com/artaio/arta-browser/commit/b5cc0d13f595ce6abb76d6bccbc7a3186ab3f4b4))
+
 ## [2.23.1](https://github.com/artaio/arta-browser/compare/v2.23.0...v2.23.1) (2026-09-22)
 
 
